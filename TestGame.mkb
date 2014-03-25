@@ -1,0 +1,43 @@
+#!/usr/bin/env mkb
+options
+{
+	s3e-data-dir="data"
+}
+
+files
+{
+    (source)
+    TestGame.cpp
+    AppDelegate.cpp
+    AppDelegate.h
+    GameLayer.cpp
+    GameLayer.h
+}
+assets 
+{
+	(data)
+	"images/background.jpg"
+	"images/btn1.png"
+	"images/btn2.png"
+	
+	"sounds/SelectLevel.raw"
+}
+
+subprojects
+{
+    iwutil
+    iwgl
+    third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
+    third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
+	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
+}
+
+deployment
+{
+}
+
+#### AUTO GENERATED deployment settings from DeployTool.exe. Do not edit below this line ####
+deployments
+{
+	["Default"]
+}

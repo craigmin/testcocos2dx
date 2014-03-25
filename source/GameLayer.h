@@ -28,6 +28,13 @@ public:
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(GameLayer);
     
+
+	void levelButtonClick(CCObject *sender);
+
+	void animCallback(CCNode *sender);
+
+
+	virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
 };
 
 #endif // __GAMELAYER_H__

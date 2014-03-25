@@ -11,6 +11,6 @@ int main()
 
     AppDelegate* app = new AppDelegate;
     cocos2d::CCApplication::sharedApplication()->Run();
-
+	delete app;
 	return 0;
 }

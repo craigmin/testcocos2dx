@@ -1,5 +1,5 @@
-Created: 周一 三月 24 09:27:09 2014
-By: lihui
+Created: 周一 3月 24 14:40:50 2014
+By: Craig
 Using Template: Cocos2d-x
 
 <description to go here>
