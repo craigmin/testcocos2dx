@@ -5,6 +5,36 @@
 
 
 int timeStamp = 0;
+
+int* GameScene::trackMovementPath(const int before[],const int after[], bool b = false) {
+
+		int path[4] = {0,0,0,0};
+		int afterC[4] = {0,0,0,0};
+		for(int i=0;i<4;i++){
+			afterC[i] = after[i];
+		}
+
+		for (int i = 0, j = 0; i < 4; i++) {
+			if (afterC[j] == 0) {
+				break;
+			}
+
+			if (before[i] == 0) {
+				continue;
+			} else if (before[i] == afterC[j]) {
+				if(i != j){
+					path[i] = j + 1;
+				}
+				j++;
+			} else {
+				path[i] = j + 1;
+				afterC[j] = afterC[j] - before[i];
+			}
+		}
+
+		return path;
+}
+
 GameScene::~GameScene()
 {
 }
@@ -28,10 +58,14 @@ void GameScene::drawMatrix(){
 	CCSprite* rect[16];
 	for(int i=0;i<4;i++)
 	for(int j=0;j<4;j++){
-		int z=getValue(i,j);
-		switch(z){
-		case 0:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
-			break;
+		this->removeChildByTag(i*4+j+100);
+		coodinates_last[i][j] = coodinates_now[i][j];
+		if(coodinates_now[i][j] == 0){
+			continue;
+		}
+		switch(coodinates_now[i][j]){
+		//case 0:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
+		//	break;
 		case 2:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_2.png");
 			break;
 		case 4:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_4.png");
@@ -55,12 +89,13 @@ void GameScene::drawMatrix(){
 		case 2048:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_2048.png");
 
 		break;
-		default:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
+		//default:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
 		}
 		CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
 		//rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
 		rect[i*4+j]->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
 		rect[i*4+j]->setPosition(ccp(SCREEN_WIDTH*(0.1375+j*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)));
+		rect[i*4+j]->setTag(i*4+j+100);
 		this->addChild(rect[i*4+j],2);
 	}
 }
@@ -72,6 +107,12 @@ bool GameScene::init()
 
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
+
+	for(int i=0;i<16;++i)
+	{
+		coodinates_last[i/4][i%4]=0;
+		coodinates_now[i/4][i%4]=getValue(i/4,i%4);
+	}
 
 	CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
 	/*sprite->setOpacity(100);*/
@@ -148,11 +189,17 @@ void GameScene::update(float dt)
 
 void GameScene::restartClick(CCObject *sender){
 	if(!bMovable){
-		this->removeChildByTag(1);
+		this->removeChildByTag(10);
 		bMovable = true;
 	}
 
 	reset();
+
+	for(int i=0;i<16;++i)
+	{
+		coodinates_last[i/4][i%4]=0;
+		coodinates_now[i/4][i%4]=getValue(i/4,i%4);
+	}
 	drawMatrix();
 	drawScore();
 }
@@ -167,15 +214,22 @@ void GameScene::drawScore(){
 	*buff = 0;
 	sprintf(buff,"%d",getCurrentScore());
 
-	scoreLabel->setString(buff);
+	//scoreLabel->setString(buff);
 
 	sprintf(buff,"%d",getBestScore());
 
 	topScoreLabel->setString(buff);
 }
 
+int bAnimFinished = true;
+int iAnimCount = 0;
 void GameScene::animCallback(CCNode *sender){
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/SelectLevel.raw");
+	iAnimCount--;
+	if(!bAnimFinished && iAnimCount == 0){
+		bAnimFinished = true;
+		drawMatrix();
+	}
+	//drawMatrix();
 }
 
 void GameScene::onEnter()
@@ -208,11 +262,99 @@ void GameScene::moveMatrix(int moveDir){
 
 	if(bMovable && isMovable()){
 		move(moveDir);
-		drawMatrix();
+		animateMatrix(moveDir);
+		//drawMatrix();
 		drawScore();
 	} else if (bMovable){
 		gameOver();
 		bMovable = false;
+	}
+}
+
+void GameScene::animateMatrix(int moveDir){
+	for(int i=0;i<4;i++){
+		for(int j=0;j<4;j++){
+			coodinates_now[i][j] = getValue(i,j);
+		}
+	}
+
+	float ANIM_TIME = 0.2;
+
+	bAnimFinished = false;
+	bool isChanged = false;
+	iAnimCount=0;
+	if(moveDir == 3) {
+		for(int i=0;i<4;i++){
+			int* anm;
+			anm = trackMovementPath(coodinates_last[i], coodinates_now[i], true);
+			
+			for (int j =0;j<4;j++) {
+				if(anm[j] == 0){
+					continue;
+				} else {
+					iAnimCount++;
+					isChanged = true;
+					CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
+
+					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+(anm[j]-1)*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)) );  
+
+					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
+					target->runAction( CCSequence::create(actionMove,actionMoveDone, NULL) );  
+
+					
+				}
+			}
+		}
+
+	} else if(moveDir == 1){
+		for(int i=0;i<4;i++){
+			int* anm;
+			int last[4] = {coodinates_last[0][i],coodinates_last[1][i],coodinates_last[2][i],coodinates_last[3][i]}; 
+			int now[4] = {coodinates_now[0][i],coodinates_now[1][i],coodinates_now[2][i],coodinates_now[3][i]}; 
+			anm = trackMovementPath(last, now, true);
+
+			for (int j =0;j<4;j++) {
+				if(anm[j] == 0){
+					continue;
+				} else {
+					iAnimCount++;
+					isChanged = true;
+					CCSprite *target = (CCSprite*)this->getChildByTag(j*4+i+100);
+
+					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+i*0.2417), SCREEN_HEIGHT*(0.7075-(anm[j]-1)*0.1359)) );  
+
+					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
+					target->runAction( CCSequence::create(actionMove,actionMoveDone, NULL) );  
+				}
+			}
+		}
+	} else if(moveDir == 2){
+		for(int i=0;i<4;i++){
+			int* anm;
+			int last[4] = {coodinates_last[3][i],coodinates_last[2][i],coodinates_last[1][i],coodinates_last[0][i]}; 
+			int now[4] = {coodinates_now[3][i],coodinates_now[2][i],coodinates_now[1][i],coodinates_now[0][i]}; 
+			anm = trackMovementPath(last, now, true);
+
+			for (int j=0;j<4;j++) {
+				if(anm[3-j] == 0){
+					continue;
+				} else {
+					iAnimCount++;
+					isChanged = true;
+					CCSprite *target = (CCSprite*)this->getChildByTag(j*4+i+100);
+
+					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+i*0.2417), SCREEN_HEIGHT*(0.7075-(4-anm[3-j])*0.1359)) );  
+
+					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
+					target->runAction( CCSequence::create(actionMove,actionMoveDone, NULL) );  
+				}
+			}
+		}
+	}
+
+	if(!isChanged){
+		bAnimFinished = true;
+		drawMatrix();
 	}
 }
 
@@ -253,6 +395,6 @@ void GameScene::gameOver(){
 	gameover->setScaleX(SCREEN_WIDTH/gameover->getContentSize().width);
 	gameover->setScaleY(SCREEN_WIDTH/gameover->getContentSize().width);
 	gameover->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
-	gameover->setTag(1);
+	gameover->setTag(10);
 	this->addChild(gameover,5);
 }

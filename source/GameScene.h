@@ -16,6 +16,7 @@ protected:
 	CCLabelTTF* topScoreLabel;
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
+	int coodinates_last[4][4], coodinates_now[4][4];
 
 public:
     ~GameScene();
@@ -42,6 +43,8 @@ public:
 	void drawScore();
 	void moveMatrix(int moveDir);
 	void gameOver();
+	void animateMatrix(int moveDir);
+	int* trackMovementPath(const int before[],const int after[], bool b);
 
 	virtual void onEnter();
     virtual void onExit();
