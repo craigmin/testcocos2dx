@@ -214,7 +214,7 @@ void GameScene::drawScore(){
 	*buff = 0;
 	sprintf(buff,"%d",getCurrentScore());
 
-	//scoreLabel->setString(buff);
+	scoreLabel->setString(buff);
 
 	sprintf(buff,"%d",getBestScore());
 
@@ -297,6 +297,31 @@ void GameScene::animateMatrix(int moveDir){
 					CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
 
 					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+(anm[j]-1)*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)) );  
+
+					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
+					target->runAction( CCSequence::create(actionMove,actionMoveDone, NULL) );  
+
+					
+				}
+			}
+		}
+
+	} else if(moveDir == 4) {
+		for(int i=0;i<4;i++){
+			int* anm;
+			int last[4] = {coodinates_last[i][3],coodinates_last[i][2],coodinates_last[i][1],coodinates_last[i][0]}; 
+			int now[4] = {coodinates_now[i][3],coodinates_now[i][2],coodinates_now[i][1],coodinates_now[i][0]}; 
+			anm = trackMovementPath(last, now, true);
+			
+			for (int j =0;j<4;j++) {
+				if(anm[3-j] == 0){
+					continue;
+				} else {
+					iAnimCount++;
+					isChanged = true;
+					CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
+
+					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+(4-anm[3-j])*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)) );  
 
 					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
 					target->runAction( CCSequence::create(actionMove,actionMoveDone, NULL) );  
