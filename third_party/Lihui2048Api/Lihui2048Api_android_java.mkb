@@ -1,0 +1,14 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the java portion of the Lihui2048Api extension on android
+platform JAVA
+
+files
+{
+    (source/android)
+    Lihui2048Api.java
+}
+
+librarypath "$MARMALADE_ROOT/s3e/deploy/plugins/android/android.jar"
+librarypath "$MARMALADE_ROOT/s3e/loader/android/s3e_release.jar"
+
+option output-name=lib/android/Lihui2048Api.jar

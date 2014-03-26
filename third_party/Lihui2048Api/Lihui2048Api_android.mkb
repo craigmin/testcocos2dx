@@ -1,0 +1,17 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the Lihui2048Api extension on android
+platform LINUX
+
+buildtype (SCONS, ARM)
+
+define S3E_ANDROID
+
+options
+{
+    dll
+    output-name="lib/android/libLihui2048Api.so"
+    output-name-debug="lib/android/libLihui2048Api_d.so"
+}
+define S3E_BUILD_EXT
+
+subproject Lihui2048Api_build

@@ -30,11 +30,10 @@ public:
     
 
 	void levelButtonClick(CCObject *sender);
+	void startButtonClick(CCObject *sender);
+	void finishButtonClick(CCObject *sender);
 
 	void animCallback(CCNode *sender);
-
-
-	virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
 };
 
 #endif // __GAMELAYER_H__

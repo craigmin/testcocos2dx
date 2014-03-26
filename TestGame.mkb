@@ -2,6 +2,7 @@
 options
 {
 	s3e-data-dir="data"
+	module_path="third_party/Lihui2048Api/"	
 }
 
 files
@@ -12,21 +13,57 @@ files
     AppDelegate.h
     GameLayer.cpp
     GameLayer.h
+	GameScene.cpp
+    GameScene.h
+	
 }
 assets 
 {
 	(data)
-	"images/background.jpg"
-	"images/btn1.png"
-	"images/btn2.png"
+	"images/background.png"
+	"images/game.jpg"
+	"images/gameover.png"
+	"images/menu_instruction.png"
+	"images/menu_leaderboard.png"
+	"images/menu_quit.png"
+	"images/menu_start.png"
+	"images/name_0.png"
+	"images/name_2.png"
+	"images/name_4.png"
+	"images/name_8.png"
+
 	
+	"images/gi_background.png"
+	"images/numb_2.png"
+	"images/numb_4.png"
+	"images/numb_8.png"
+	"images/numb_16.png"
+	"images/numb_32.png"
+	"images/numb_64.png"
+	"images/numb_128.png"
+	"images/numb_256.png"
+	"images/numb_512.png"
+	"images/numb_1024.png"
+	"images/numb_2048.png"
+	"images/numb_4096.png"
+	"images/numb_8192.png"
+	"images/numb_16384.png"
+	"images/numb_32768.png"
+	"images/numb_blank.png"
+	"images/numb_what.png"
+	"images/restart.png"
+	"images/back2menu.png"
+
 	"sounds/SelectLevel.raw"
+	
+	"fonts/arial.ttf"
 }
 
 subprojects
 {
     iwutil
     iwgl
+	Lihui2048Api
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion

@@ -16,5 +16,5 @@
 # Some conditional operations are also permitted, see the
 # S3E documentation for details.
 [S3E]
-
+MemSize= 20000000
 DispFixRot = Portrait
