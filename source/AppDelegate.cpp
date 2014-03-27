@@ -1,7 +1,7 @@
 #include "cocos2d.h"
 #include "CCEGLView.h"
 #include "AppDelegate.h"
-#include "GameLayer.h"
+#include "SplashScreen.h"
 
 USING_NS_CC;
 
@@ -29,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	pDirector->setAnimationInterval(1.0 / 60);
 
     // Create a scene
-    CCScene *pScene = GameLayer::scene();
+    CCScene *pScene = SplashScreen::scene();
 
     // Run
     pDirector->runWithScene(pScene);

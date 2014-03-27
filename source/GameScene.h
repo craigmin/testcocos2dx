@@ -17,6 +17,8 @@ protected:
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
+	bool bPaused;
+	bool bInMoving;
 
 public:
     ~GameScene();
@@ -45,6 +47,10 @@ public:
 	void gameOver();
 	void animateMatrix(int moveDir);
 	int* trackMovementPath(const int before[],const int after[], bool b);
+	void pauseGame(int pauseType);
+	void cancelButtonClick(CCObject *sender);
+	void restartConfirmButtonClick(CCObject *sender);
+	void backConfirmButtonClick(CCObject *sender);
 
 	virtual void onEnter();
     virtual void onExit();

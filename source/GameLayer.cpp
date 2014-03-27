@@ -109,13 +109,13 @@ bool GameLayer::init()
     this->addChild(eight, 1);
 
     // Create main loop
-    this->schedule(schedule_selector(GameLayer::update));
+    //this->schedule(schedule_selector(GameLayer::update));
 
     // COCOS2D TIP
     // Create Cocos2D objects here
 
 	// Create Box2D world
-	world = new b2World(b2Vec2(0, 100));
+	//world = new b2World(b2Vec2(0, 100));
 
     // BOX2D TIP
     // Create Box2D objects here
@@ -130,7 +130,7 @@ void GameLayer::draw()
 void GameLayer::update(float dt)
 {
 	// Update Box2D world
-	world->Step(dt, 6, 3);
+	//world->Step(dt, 6, 3);
 
     // BOX2D TIP
     // Update objects from box2d coordinates here

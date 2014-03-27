@@ -1,1 +1,1 @@
-VC11;build_testgame_vc11
+VC9;build_testgame_vc9

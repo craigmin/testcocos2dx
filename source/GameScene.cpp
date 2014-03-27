@@ -1,8 +1,9 @@
-#include "SimpleAudioEngine.h"
+ï»¿#include "SimpleAudioEngine.h"
 #include "GameScene.h"
 #include "GameLayer.h"
 #include "Lihui2048Api.h"
 
+#define LL_SCREEN_SCALE_VALUE (GameScene::SCREEN_HEIGHT/1024)
 
 int timeStamp = 0;
 
@@ -158,6 +159,7 @@ bool GameScene::init()
     this->addChild(pback2menuMenu, 3);	
 
 	bMovable = true;
+	bInMoving = false;
 
     // Create main loop
     this->schedule(schedule_selector(GameScene::update));
@@ -188,25 +190,21 @@ void GameScene::update(float dt)
 }
 
 void GameScene::restartClick(CCObject *sender){
-	if(!bMovable){
-		this->removeChildByTag(10);
-		bMovable = true;
+	if (bPaused) {
+		return;
 	}
 
-	reset();
-
-	for(int i=0;i<16;++i)
-	{
-		coodinates_last[i/4][i%4]=0;
-		coodinates_now[i/4][i%4]=getValue(i/4,i%4);
-	}
-	drawMatrix();
-	drawScore();
+	pauseGame(2);
 }
 
 void GameScene::back2menuClick(CCObject *sender){
 	//gameOver();
-	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
+	if (bPaused) {
+		return;
+	}
+
+	pauseGame(1);
+	//CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
 }
 
 void GameScene::drawScore(){
@@ -260,15 +258,18 @@ void GameScene::moveMatrix(int moveDir){
 	}
 	timeStamp = nowStamp;
 
-	if(bMovable && isMovable()){
+	if(bMovable){
 		move(moveDir);
 		animateMatrix(moveDir);
 		//drawMatrix();
 		drawScore();
-	} else if (bMovable){
-		gameOver();
-		bMovable = false;
+		bMovable = isMovable();
+		if (!bMovable){
+			gameOver();
+		}
 	}
+
+	bInMoving = false;
 }
 
 void GameScene::animateMatrix(int moveDir){
@@ -385,15 +386,20 @@ void GameScene::animateMatrix(int moveDir){
 
 void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    ccp_now = pTouch->getLocationInView();
+	if (bPaused || bInMoving) {
+		return;
+	}
+
+	bInMoving = true;
+	ccp_now = pTouch->getLocationInView();
     ccp_now = CCDirector::sharedDirector()->convertToGL(ccp_now);
     float adsx = ccp_now.x - ccp_last.x;
     float adsy = ccp_now.y - ccp_last.y;
-    if(fabsf(adsx) > fabsf(adsy) && fabsf(adsx) > 80)   //X·½ÏòÔöÁ¿´ó
+    if(fabsf(adsx) > fabsf(adsy) && fabsf(adsx) > 80)   //Xæ–¹å‘å¢é‡å¤§
     {
         if(adsx < 0)
         {
-            //×óÒÆ;
+            //å·¦ç§»;
             moveMatrix(3);
         }
         else
@@ -411,7 +417,9 @@ void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
         {
             moveMatrix(1);
         }
-    }
+	} else {
+		bInMoving = false;
+	}
 }
 
 void GameScene::gameOver(){
@@ -422,4 +430,98 @@ void GameScene::gameOver(){
 	gameover->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	gameover->setTag(10);
 	this->addChild(gameover,5);
+}
+
+void GameScene::pauseGame(int pauseType){
+	
+	if (bPaused) {
+		return;
+	}
+
+	/*if(!bMovable){
+		if(pauseType == 1){
+			backConfirmButtonClick(NULL);
+		} else {
+			restartConfirmButtonClick(NULL);
+		}
+
+		return;
+	}*/
+
+	bPaused = true;
+	CCLayer *layer2 = new CCLayer();
+
+	CCSprite* dialog_bk;
+	if(pauseType == 1){
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
+	} else {
+		dialog_bk= CCSprite::spriteWithFile("images/restart_dialog_bk.png");
+	}
+	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+	dialog_bk->setTag(1000);
+	layer2->addChild(dialog_bk,5);
+
+
+	CCSprite* confirmNormal = CCSprite::spriteWithFile("images/btn_confirm.png");
+    CCSprite* confirmSelected = CCSprite::spriteWithFile("images/btn_confirm.png");
+    CCSprite* confirmDisabled = CCSprite::spriteWithFile("images/btn_confirm.png");
+	CCMenuItemSprite* pconfirmNormalItemSprite;
+	if(pauseType == 1){
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
+	} else {
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::restartConfirmButtonClick));
+	}
+	
+	pconfirmNormalItemSprite->setScale(0.8);
+	CCMenu* pconfirmMenu = CCMenu::menuWithItems(pconfirmNormalItemSprite,NULL);
+    pconfirmMenu->setPosition(ccp(SCREEN_WIDTH*0.2778, SCREEN_HEIGHT*(1-LL_SCREEN_SCALE_VALUE*0.55)));
+	
+	layer2->addChild(pconfirmMenu, 1001);
+	
+	CCSprite* cancelNormal = CCSprite::spriteWithFile("images/btn_cancel.png");
+    CCSprite* cancelSelected = CCSprite::spriteWithFile("images/btn_cancel.png");
+    CCSprite* cancelDisabled = CCSprite::spriteWithFile("images/btn_cancel.png");
+    CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, cancelDisabled, this, menu_selector(GameScene::cancelButtonClick));
+    pcancelItemSprite->setScale(0.8);
+	CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
+    pcancelMenu->setPosition(ccp(SCREEN_WIDTH*0.7222, SCREEN_HEIGHT*(1-LL_SCREEN_SCALE_VALUE*0.55)));
+
+    layer2->addChild(pcancelMenu, 1001);
+	layer2->setTag(1000);
+
+	this->addChild(layer2, 1000);
+}
+
+void GameScene::cancelButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	//CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
+}
+
+void GameScene::backConfirmButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
+}
+
+void GameScene::restartConfirmButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+
+	if(!bMovable){
+		this->removeChildByTag(10);
+		bMovable = true;
+	}
+
+	reset();
+
+	for(int i=0;i<16;++i)
+	{
+		coodinates_last[i/4][i%4]=0;
+		coodinates_now[i/4][i%4]=getValue(i/4,i%4);
+	}
+	drawMatrix();
+	drawScore();
 }

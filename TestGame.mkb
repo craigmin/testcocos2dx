@@ -15,7 +15,8 @@ files
     GameLayer.h
 	GameScene.cpp
     GameScene.h
-	
+	SplashScreen.cpp
+    SplashScreen.h
 }
 assets 
 {
@@ -54,6 +55,13 @@ assets
 	"images/restart.png"
 	"images/back2menu.png"
 
+	"images/splashscreen_css.jpg"
+	"images/dialog_bk.png"
+	"images/restart_dialog_bk.png"
+
+	"images/btn_cancel.png"
+	"images/btn_confirm.png"
+	
 	"sounds/SelectLevel.raw"
 	
 	"fonts/arial.ttf"
