@@ -26,19 +26,13 @@ public:
     // Init method
     virtual bool init();
 
-	// Draw method
-	virtual void draw();
-
-	// Main update loop
-	void update(float dt);
-
     // Create instance of scene
     static CCScene* scene();
     
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(GameScene);
     
-	void drawMatrix();
+	void drawMatrix(float dt = 0.0);
 	void restartClick(CCObject *sender);	
 	void back2menuClick(CCObject *sender);
 	void animCallback(CCNode *sender);

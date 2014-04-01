@@ -1,0 +1,13 @@
+include:
+
+#include <s3eTypes.h>
+
+functions:
+
+void InitBdAd() run_on_os_thread
+
+void SetBdAdPosition(int opt) run_on_os_thread
+
+int GetBdAdHeight() 0 run_on_os_thread
+
+void showBdInter() run_on_os_thread

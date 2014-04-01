@@ -9,7 +9,10 @@ using namespace cocos2d;
 class GameLayer : public cocos2d::CCLayer
 {
 protected:
-    b2World*		world;		// Instance of physics world
+    bool bPaused;
+	int SCREEN_WIDTH;
+	int SCREEN_HEIGHT;
+
 public:
     ~GameLayer();
     
@@ -29,11 +32,11 @@ public:
     CREATE_FUNC(GameLayer);
     
 
-	void levelButtonClick(CCObject *sender);
+	void instructionButtonClick(CCObject *sender);
 	void startButtonClick(CCObject *sender);
 	void finishButtonClick(CCObject *sender);
+	void cancelButtonClick(CCObject *sender);
 
-	void animCallback(CCNode *sender);
 };
 
 #endif // __GAMELAYER_H__

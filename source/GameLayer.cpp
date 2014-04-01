@@ -2,6 +2,9 @@
 #include "GameLayer.h"
 #include "GameScene.h"
 #include "Lihui2048Api.h"
+#include "LihuiAD_Baidu.h"
+
+#define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
 
 GameLayer::~GameLayer()
 {
@@ -28,52 +31,54 @@ bool GameLayer::init()
     if (!CCLayer::init())
         return false;
 
-	int SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
-	int SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
+	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
+	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
+	bPaused = false;
 
 	CCSprite* sprite = CCSprite::spriteWithFile("images/background.png");
-	/*sprite->setOpacity(100);*/
 	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
 	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
 	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	this->addChild(sprite,1);
 
+	float iMenuWidthOffset = 0.55;
 	CCSprite* startNormal = CCSprite::spriteWithFile("images/menu_start.png");
     CCSprite* startSelected = CCSprite::spriteWithFile("images/menu_start.png");
     CCSprite* startDisabled = CCSprite::spriteWithFile("images/menu_start.png");
     CCMenuItemSprite* pStartItemSprite = CCMenuItemSprite::itemWithNormalSprite(startNormal, startSelected, startDisabled, this, menu_selector(GameLayer::startButtonClick));
 	
 	CCMenu* pStartMenu = CCMenu::menuWithItems(pStartItemSprite,NULL);
-	 pStartMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.5));
-	 pStartItemSprite->setScale(0.8);
-	  //Jerry--Action
-	CCScaleTo* large=CCScaleTo::actionWithDuration(0.5,0.9);
-	CCScaleTo* small=CCScaleTo::actionWithDuration(0.5,0.8);
+	pStartMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.5));
+	pStartItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+
+	//Jerry--Action
+	CCScaleTo* large=CCScaleTo::actionWithDuration(0.5,0.9*LL_SCREEN_SCALE_VALUE);
+	CCScaleTo* small=CCScaleTo::actionWithDuration(0.5,0.8*LL_SCREEN_SCALE_VALUE);
 	CCDelayTime *waiting=CCDelayTime::actionWithDuration(1.0f);
 	CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
 	CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
 	pStartItemSprite->stopAllActions();  
-   pStartItemSprite->runAction(actionShake); 
+	pStartItemSprite->runAction(actionShake); 
    
     this->addChild(pStartMenu, 3);
 
-	CCSprite* leaderboardNormal = CCSprite::spriteWithFile("images/menu_leaderboard.png");
+	/*CCSprite* leaderboardNormal = CCSprite::spriteWithFile("images/menu_leaderboard.png");
     CCSprite* leaderboardSelected = CCSprite::spriteWithFile("images/menu_leaderboard.png");
     CCSprite* leaderboardDisabled = CCSprite::spriteWithFile("images/menu_leaderboard.png");
     CCMenuItemSprite* pleaderboardItemSprite = CCMenuItemSprite::itemWithNormalSprite(leaderboardNormal, leaderboardSelected, leaderboardDisabled, this, menu_selector(GameLayer::levelButtonClick));
     pleaderboardItemSprite->setScale(0.8);
 	CCMenu* pleaderboardMenu = CCMenu::menuWithItems(pleaderboardItemSprite,NULL);
-    pleaderboardMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.4));
+    pleaderboardMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.4));
 	
-    this->addChild(pleaderboardMenu, 3);
+    this->addChild(pleaderboardMenu, 3);*/
 
 	CCSprite* instructionNormal = CCSprite::spriteWithFile("images/menu_instruction.png");
     CCSprite* instructionSelected = CCSprite::spriteWithFile("images/menu_instruction.png");
     CCSprite* instructionDisabled = CCSprite::spriteWithFile("images/menu_instruction.png");
-    CCMenuItemSprite* pinstructionItemSprite = CCMenuItemSprite::itemWithNormalSprite(instructionNormal, instructionSelected, instructionDisabled, this, menu_selector(GameLayer::levelButtonClick));
-    pinstructionItemSprite->setScale(0.8);
+    CCMenuItemSprite* pinstructionItemSprite = CCMenuItemSprite::itemWithNormalSprite(instructionNormal, instructionSelected, instructionDisabled, this, menu_selector(GameLayer::instructionButtonClick));
+    pinstructionItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
 	CCMenu* pinstructionMenu = CCMenu::menuWithItems(pinstructionItemSprite,NULL);
-    pinstructionMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.3));
+    pinstructionMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.4));
 	
     this->addChild(pinstructionMenu, 3);
 
@@ -81,9 +86,9 @@ bool GameLayer::init()
     CCSprite* quitSelected = CCSprite::spriteWithFile("images/menu_quit.png");
     CCSprite* quitDisabled = CCSprite::spriteWithFile("images/menu_quit.png");
     CCMenuItemSprite* pquitItemSprite = CCMenuItemSprite::itemWithNormalSprite(quitNormal, quitSelected, quitDisabled, this, menu_selector(GameLayer::finishButtonClick));
-    pquitItemSprite->setScale(0.8);
+    pquitItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
 	CCMenu* pquitMenu = CCMenu::menuWithItems(pquitItemSprite,NULL);
-    pquitMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.2));
+    pquitMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
 	
     this->addChild(pquitMenu, 3);
 
@@ -119,7 +124,7 @@ bool GameLayer::init()
 
     // BOX2D TIP
     // Create Box2D objects here
-
+	InitBdAd();
     return true;
 }
 
@@ -136,34 +141,51 @@ void GameLayer::update(float dt)
     // Update objects from box2d coordinates here
 }
 void GameLayer::startButtonClick(CCObject *sender){
+	if (bPaused) {
+		return;
+	}
 	reset();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
 }
 
-void GameLayer::levelButtonClick(CCObject *sender){
-	/*CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/SelectLevel.raw");
+void GameLayer::instructionButtonClick(CCObject *sender){
+	if (bPaused) {
+		return;
+	}
 
+	bPaused = true;
+	CCLayer *layer2 = new CCLayer();
 
-	CCSprite *target = CCSprite::spriteWithFile("images/btn1.png");
-    target->setPosition(ccp(100, 100));
-        
-    CCFiniteTimeAction* actionMove =   
-    CCMoveTo::create( (float)3,   
-                       ccp( 300, 100) );  
-    CCFiniteTimeAction* actionMoveDone =   
-    CCCallFuncN::create( this,   
-                         callfuncN_selector(GameLayer::animCallback));  
-    target->runAction( CCSequence::create(actionMove,   
-                         actionMoveDone, NULL) );  
+	CCSprite* dialog_bk = CCSprite::spriteWithFile("images/dialog_intro.png");
+	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+	layer2->addChild(dialog_bk,11);
 
-	this->addChild(target, 5);*/
+	CCSprite* cancelNormal = CCSprite::spriteWithFile("images/btn_know.png");
+    CCSprite* cancelSelected = CCSprite::spriteWithFile("images/btn_know.png");
+    CCSprite* cancelDisabled = CCSprite::spriteWithFile("images/btn_know.png");
+    CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, cancelDisabled, this, menu_selector(GameLayer::cancelButtonClick));
+    pcancelItemSprite->setScale(0.6*LL_SCREEN_SCALE_VALUE);
+	CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
+    pcancelMenu->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.28));
+
+    layer2->addChild(pcancelMenu, 12);
+	layer2->setTag(1000);
+
+	this->addChild(layer2, 10);
 }
 
 void GameLayer::finishButtonClick(CCObject *sender){
+	if (bPaused) {
+		return;
+	}
 	this->removeAllChildrenWithCleanup(true);
 	CCDirector::sharedDirector()->end();
 }
 
-void GameLayer::animCallback(CCNode *sender){
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/SelectLevel.raw");
+void GameLayer::cancelButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	//CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
 }
