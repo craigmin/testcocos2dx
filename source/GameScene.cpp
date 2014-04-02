@@ -114,9 +114,10 @@ bool GameScene::init()
     if (!CCLayer::init())
         return false;
 
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/swipe.wav");
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
-
+	
 	for(int i=0;i<16;++i)
 	{
 		coodinates_last[i/4][i%4]=0;
@@ -362,6 +363,8 @@ void GameScene::animateMatrix(int moveDir){
 	if(!isChanged){
 		bAnimFinished = true;
 		drawMatrix();
+	} else {
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.wav", false);
 	}
 }
 

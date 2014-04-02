@@ -64,7 +64,7 @@ assets
 	"images/btn_confirm.png"
 	"images/btn_know.png"
 
-	"sounds/SelectLevel.raw"
+	"sounds/swipe.wav"
 	
 	"fonts/arial.ttf"
 }

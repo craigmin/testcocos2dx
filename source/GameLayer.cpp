@@ -93,7 +93,7 @@ bool GameLayer::init()
     this->addChild(pquitMenu, 3);
 
 	
-    CCSprite* zero = CCSprite::spriteWithFile("images/name_0.png");
+    /*CCSprite* zero = CCSprite::spriteWithFile("images/name_0.png");
     zero->setPosition(ccp(SCREEN_WIDTH*0.397, SCREEN_HEIGHT*0.84));
 	zero->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
     this->addChild(zero,1);
@@ -111,7 +111,7 @@ bool GameLayer::init()
     CCSprite* eight = CCSprite::spriteWithFile("images/name_8.png");
     eight->setPosition(ccp(SCREEN_WIDTH*0.756, SCREEN_HEIGHT*0.804));
 	eight->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
-    this->addChild(eight, 1);
+    this->addChild(eight, 1);*/
 
     // Create main loop
     //this->schedule(schedule_selector(GameLayer::update));
