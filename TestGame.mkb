@@ -18,6 +18,8 @@ files
     GameScene.h
 	SplashScreen.cpp
     SplashScreen.h
+	LeaderBoard.cpp
+    LeaderBoard.h
 }
 assets 
 {
@@ -63,6 +65,8 @@ assets
 	"images/btn_cancel.png"
 	"images/btn_confirm.png"
 	"images/btn_know.png"
+
+	"images/leaderboard.png"
 
 	"sounds/swipe.wav"
 	

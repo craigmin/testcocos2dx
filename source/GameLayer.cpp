@@ -1,6 +1,7 @@
 #include "SimpleAudioEngine.h"
 #include "GameLayer.h"
 #include "GameScene.h"
+#include "LeaderBoard.h"
 #include "Lihui2048Api.h"
 #include "LihuiAD_Baidu.h"
 
@@ -91,6 +92,16 @@ bool GameLayer::init()
     pquitMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
 	
     this->addChild(pquitMenu, 3);
+	//Jerry--Code
+    CCSprite* lbNormal = CCSprite::spriteWithFile("images/menu_quit.png");
+    CCSprite* lbSelected = CCSprite::spriteWithFile("images/menu_quit.png");
+    CCSprite* lbDisabled = CCSprite::spriteWithFile("images/menu_quit.png");
+    CCMenuItemSprite* plbItemSprite = CCMenuItemSprite::itemWithNormalSprite(lbNormal, lbSelected, lbDisabled, this, menu_selector(GameLayer::leaderboardButtonClick));
+    plbItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+	CCMenu* plbMenu = CCMenu::menuWithItems(plbItemSprite,NULL);
+    plbMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.2));
+	
+    this->addChild(plbMenu, 3);
 
 	
     /*CCSprite* zero = CCSprite::spriteWithFile("images/name_0.png");
@@ -146,6 +157,11 @@ void GameLayer::startButtonClick(CCObject *sender){
 	}
 	reset();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
+}
+//Jerry--Code
+void GameLayer::leaderboardButtonClick(CCObject *sender){
+	
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f, LeaderBoard::scene()));
 }
 
 void GameLayer::instructionButtonClick(CCObject *sender){

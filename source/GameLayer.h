@@ -36,7 +36,7 @@ public:
 	void startButtonClick(CCObject *sender);
 	void finishButtonClick(CCObject *sender);
 	void cancelButtonClick(CCObject *sender);
-
+	void leaderboardButtonClick(CCObject *sender);
 };
 
 #endif // __GAMELAYER_H__
