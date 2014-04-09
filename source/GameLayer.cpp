@@ -1,13 +1,13 @@
 #include "SimpleAudioEngine.h"
 #include "GameLayer.h"
 #include "GameScene.h"
-#include "LeaderBoard.h"
+#include "LeaderBoard.h"LL_BUTTON_SCALE_VALUE
 #include "Lihui2048Api.h"
 #include "LihuiAD_Baidu.h"
 #include "LihuiLB.h"
 
 #define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
-#define LL_BUTTON_SCALE_VALUE (0.5*LL_SCREEN_SCALE_VALUE)
+#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
 
 GameLayer::~GameLayer()
 {

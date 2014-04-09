@@ -1,0 +1,28 @@
+callbacks
+
+include:
+
+#include <s3eTypes.h>
+
+enum LihuiLBCallback
+{
+    LIHUILB_CALLBACK_REICEIVE_SUCCESSFUL,
+    LIHUILB_CALLBACK_REICEIVE_FAILED,
+    LIHUILB_CALLBACK_UPDATE_SUCCESSFUL,
+    LIHUILB_CALLBACK_UPDATE_FAILED,
+    LIHUILB_CALLBACK_MAX
+};
+
+
+functions:
+
+void initLB() run_on_os_thread
+void updateScore(int score) run_on_os_thread
+void receiveRank() run_on_os_thread
+int getScore(int rank) 0 run_on_os_thread
+int getUserRank() 1 run_on_os_thread
+int getNextWeekLeftSeconds() 0 run_on_os_thread
+bool notUnlimetedLives() true run_on_os_thread
+void setBeijingTime() run_on_os_thread
+bool notShared() true run_on_os_thread
+void setShareTime() run_on_os_thread

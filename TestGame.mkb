@@ -3,7 +3,8 @@ options
 {
 	s3e-data-dir="data"
 	module_path="third_party/Lihui2048Api/"
-	module_path="third_party/LihuiAD_Baidu/"	
+	module_path="third_party/LihuiAD_Baidu/"
+	module_path="third_party/LihuiLB/"		
 }
 
 files
@@ -79,6 +80,7 @@ subprojects
     iwgl
 	Lihui2048Api
 	LihuiAD_Baidu
+	LihuiLB
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
