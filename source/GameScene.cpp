@@ -2,8 +2,10 @@
 #include "GameScene.h"
 #include "GameLayer.h"
 #include "Lihui2048Api.h"
+#include "LihuiLB.h"
 
 #define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
+#define LL_BUTTON_SCALE_VALUE (0.5*LL_SCREEN_SCALE_VALUE)
 
 int timeStamp = 0;
 
@@ -132,7 +134,7 @@ bool GameScene::init()
 
 	drawMatrix();
 	
-	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",52*LL_SCREEN_SCALE_VALUE);
+	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",40*LL_SCREEN_SCALE_VALUE);
 	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.845));
 	scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(scoreLabel, 4);
@@ -140,7 +142,7 @@ bool GameScene::init()
 	char buff[16];
 	*buff = 0;
 	sprintf(buff,"%d",getBestScore());
-	topScoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",52*LL_SCREEN_SCALE_VALUE);
+	topScoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",40*LL_SCREEN_SCALE_VALUE);
 	topScoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.92));
 	topScoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(topScoreLabel, 4);	
@@ -149,7 +151,7 @@ bool GameScene::init()
     CCSprite* restartSelected = CCSprite::spriteWithFile("images/restart.png");
     CCSprite* restartDisabled = CCSprite::spriteWithFile("images/restart.png");
     CCMenuItemSprite* prestartItemSprite = CCMenuItemSprite::itemWithNormalSprite(restartNormal, restartSelected, restartDisabled, this, menu_selector(GameScene::restartClick));
-	prestartItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+	prestartItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 
 	CCMenu* prestartMenu = CCMenu::menuWithItems(prestartItemSprite,NULL);
     prestartMenu->setPosition(ccp(SCREEN_WIDTH*0.2778, SCREEN_HEIGHT*0.1667));
@@ -160,7 +162,7 @@ bool GameScene::init()
     CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
     CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
     CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::back2menuClick));
-    pback2menuItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+    pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
     pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7222, SCREEN_HEIGHT*0.1667));
 	
@@ -208,7 +210,7 @@ void GameScene::animCallback(CCNode *sender){
 	}
 
 	if(!bAnimFinished && iAnimCount == 0){
-		bAnimFinished = true;
+		bAnimFinished = true; 
 		this->schedule(schedule_selector(GameScene::drawMatrix), 0.0, false, 0.0);
 	}
 }
@@ -407,6 +409,8 @@ void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 }
 
 void GameScene::gameOver(){
+//Jerry--LB
+	updateScore(getBestScore());
 	CCSprite* gameover= CCSprite::spriteWithFile("images/gameover.png");
 	gameover->setScaleX(SCREEN_WIDTH/gameover->getContentSize().width);
 	gameover->setScaleY(SCREEN_WIDTH/gameover->getContentSize().width);
@@ -416,7 +420,8 @@ void GameScene::gameOver(){
 }
 
 void GameScene::pauseGame(int pauseType){
-	
+	//Jerry--LB
+	updateScore(getBestScore());
 	if (bPaused) {
 		return;
 	}
@@ -456,7 +461,7 @@ void GameScene::pauseGame(int pauseType){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::restartConfirmButtonClick));
 	}
 	
-	pconfirmNormalItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+	pconfirmNormalItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pconfirmMenu = CCMenu::menuWithItems(pconfirmNormalItemSprite,NULL);
     pconfirmMenu->setPosition(ccp(SCREEN_WIDTH*0.2778, SCREEN_HEIGHT*(1-0.55)));
 	
@@ -466,7 +471,7 @@ void GameScene::pauseGame(int pauseType){
     CCSprite* cancelSelected = CCSprite::spriteWithFile("images/btn_cancel.png");
     CCSprite* cancelDisabled = CCSprite::spriteWithFile("images/btn_cancel.png");
     CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, cancelDisabled, this, menu_selector(GameScene::cancelButtonClick));
-    pcancelItemSprite->setScale(0.8*LL_SCREEN_SCALE_VALUE);
+    pcancelItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
     pcancelMenu->setPosition(ccp(SCREEN_WIDTH*0.7222, SCREEN_HEIGHT*(1-0.55)));
 

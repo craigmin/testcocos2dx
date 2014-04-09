@@ -6,6 +6,7 @@
 
 using namespace cocos2d;
 
+
 class GameLayer : public cocos2d::CCLayer
 {
 protected:

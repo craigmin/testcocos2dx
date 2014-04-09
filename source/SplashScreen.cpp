@@ -1,6 +1,7 @@
 #include "SimpleAudioEngine.h"
 #include "SplashScreen.h"
 #include "GameLayer.h"
+#include "LihuiLB.h"
 
 SplashScreen::~SplashScreen()
 {
@@ -29,6 +30,9 @@ bool SplashScreen::init()
 
 	int SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	int SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
+	//Jerry--Init LB
+	initLB();
+	receiveRank();
 
 	CCSprite* bg = CCSprite::spriteWithFile("images/splashscreen_css.jpg");
 	float scale = SCREEN_HEIGHT/bg->getContentSize().height;
