@@ -57,7 +57,7 @@ bool GameLayer::init()
 	pStartItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 
 	//Jerry--Action
-	CCScaleTo* large=CCScaleTo::actionWithDuration(0.5,0.9*LL_SCREEN_SCALE_VALUE);
+	CCScaleTo* large=CCScaleTo::actionWithDuration(0.5,0.7*LL_SCREEN_SCALE_VALUE);
 	CCScaleTo* small=CCScaleTo::actionWithDuration(0.5,LL_BUTTON_SCALE_VALUE);
 	CCDelayTime *waiting=CCDelayTime::actionWithDuration(1.0f);
 	CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
@@ -93,17 +93,17 @@ bool GameLayer::init()
     CCMenuItemSprite* pquitItemSprite = CCMenuItemSprite::itemWithNormalSprite(quitNormal, quitSelected, quitDisabled, this, menu_selector(GameLayer::finishButtonClick));
     pquitItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pquitMenu = CCMenu::menuWithItems(pquitItemSprite,NULL);
-    pquitMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
+    pquitMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.2));
 	
     this->addChild(pquitMenu, 3);
 	//Jerry--Code
-    CCSprite* lbNormal = CCSprite::spriteWithFile("images/menu_quit.png");
-    CCSprite* lbSelected = CCSprite::spriteWithFile("images/menu_quit.png");
-    CCSprite* lbDisabled = CCSprite::spriteWithFile("images/menu_quit.png");
+    CCSprite* lbNormal = CCSprite::spriteWithFile("images/menu_leaderboard.png");
+    CCSprite* lbSelected = CCSprite::spriteWithFile("images/menu_leaderboard.png");
+    CCSprite* lbDisabled = CCSprite::spriteWithFile("images/menu_leaderboard.png");
     CCMenuItemSprite* plbItemSprite = CCMenuItemSprite::itemWithNormalSprite(lbNormal, lbSelected, lbDisabled, this, menu_selector(GameLayer::leaderboardButtonClick));
     plbItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* plbMenu = CCMenu::menuWithItems(plbItemSprite,NULL);
-    plbMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.2));
+    plbMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
 	
     this->addChild(plbMenu, 3);
 

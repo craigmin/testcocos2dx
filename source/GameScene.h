@@ -14,11 +14,13 @@ protected:
 	int SCREEN_HEIGHT;
 	CCLabelTTF* scoreLabel;
 	CCLabelTTF* topScoreLabel;
+	CCMenuItemSprite *psoundmenuItemSprite;
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
 	bool bPaused;
 	bool bInMoving;
+	bool soundState;
 
 public:
     ~GameScene();
@@ -45,6 +47,7 @@ public:
 	void cancelButtonClick(CCObject *sender);
 	void restartConfirmButtonClick(CCObject *sender);
 	void backConfirmButtonClick(CCObject *sender);
+	void soundButtonClick(CCObject *sender);
 
 	virtual void onEnter();
     virtual void onExit();

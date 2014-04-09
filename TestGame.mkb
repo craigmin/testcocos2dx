@@ -67,8 +67,11 @@ assets
 	"images/btn_confirm.png"
 	"images/btn_know.png"
 
-	"images/leaderboard.png"
+	"images/sound_on.png"
+	"images/sound_off.png"
 
+	"images/leaderboard.png"
+	"sounds/909.mp3"
 	"sounds/swipe.wav"
 	
 	"fonts/arial.ttf"

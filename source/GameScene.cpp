@@ -5,7 +5,7 @@
 #include "LihuiLB.h"
 
 #define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
-#define LL_BUTTON_SCALE_VALUE (0.5*LL_SCREEN_SCALE_VALUE)
+#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
 
 int timeStamp = 0;
 
@@ -116,7 +116,8 @@ bool GameScene::init()
     if (!CCLayer::init())
         return false;
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/swipe.wav");
+	soundState=true;
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/909.mp3");
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
 	
@@ -135,7 +136,7 @@ bool GameScene::init()
 	drawMatrix();
 	
 	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",40*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.845));
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.843));
 	scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(scoreLabel, 4);
 
@@ -154,7 +155,7 @@ bool GameScene::init()
 	prestartItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 
 	CCMenu* prestartMenu = CCMenu::menuWithItems(prestartItemSprite,NULL);
-    prestartMenu->setPosition(ccp(SCREEN_WIDTH*0.2778, SCREEN_HEIGHT*0.1667));
+    prestartMenu->setPosition(ccp(SCREEN_WIDTH*0.24, SCREEN_HEIGHT*0.16));
 	
     this->addChild(prestartMenu, 3);	
 
@@ -164,10 +165,18 @@ bool GameScene::init()
     CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::back2menuClick));
     pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
-    pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7222, SCREEN_HEIGHT*0.1667));
+    pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.62, SCREEN_HEIGHT*0.16));
 	
     this->addChild(pback2menuMenu, 3);	
 
+	CCSprite* soundButtonOff = CCSprite::spriteWithFile("images/sound_on.png");
+    CCSprite* soundButtonOn = CCSprite::spriteWithFile("images/sound_on.png");
+	  psoundmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(soundButtonOff, soundButtonOn, this, menu_selector(GameScene::soundButtonClick));
+    psoundmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* psound2menuMenu = CCMenu::menuWithItems(psoundmenuItemSprite,NULL);
+    psound2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.89, SCREEN_HEIGHT*0.16));
+	
+    this->addChild(psound2menuMenu, 3);
 	bMovable = true;
 	bInMoving = false;
 
@@ -365,8 +374,8 @@ void GameScene::animateMatrix(int moveDir){
 	if(!isChanged){
 		bAnimFinished = true;
 		drawMatrix();
-	} else {
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.wav", false);
+	} else if(soundState){
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/909.mp3", false);
 	}
 }
 
@@ -489,7 +498,21 @@ void GameScene::cancelButtonClick(CCObject *sender){
 void GameScene::backConfirmButtonClick(CCObject *sender){
 	this->removeChildByTag(1000);
 	bPaused = false;
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
+}
+
+void GameScene::soundButtonClick(CCObject *sender){
+	soundState = !soundState;
+	if (soundState) {
+		//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.wav", true);
+		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_on.png"));
+		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_on.png"));
+	} else {
+		//CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_off.png"));
+		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_off.png"));
+	}
 }
 
 void GameScene::restartConfirmButtonClick(CCObject *sender){
