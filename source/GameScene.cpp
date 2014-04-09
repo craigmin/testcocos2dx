@@ -118,6 +118,7 @@ bool GameScene::init()
 
 	soundState=true;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/909.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.2);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
 	
