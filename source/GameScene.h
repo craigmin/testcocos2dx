@@ -21,6 +21,7 @@ protected:
 	bool bPaused;
 	bool bInMoving;
 	bool soundState;
+	int topTileScore;
 
 public:
     ~GameScene();

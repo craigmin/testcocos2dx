@@ -73,6 +73,7 @@ assets
 	"images/leaderboard.png"
 	"sounds/909.mp3"
 	"sounds/swipe.wav"
+	"sounds/CollisionKey.raw"
 	
 	"fonts/arial.ttf"
 }

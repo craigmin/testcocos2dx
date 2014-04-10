@@ -60,6 +60,7 @@ CCScene* GameScene::scene()
 void GameScene::drawMatrix(float dt){
 
 	CCSprite* rect[16];
+	bool isGood = false;
 	for(int i=0;i<4;i++)
 	for(int j=0;j<4;j++){
 
@@ -68,7 +69,17 @@ void GameScene::drawMatrix(float dt){
 		if(coodinates_now[i][j] == 0){
 			continue;
 		}
-		switch(coodinates_now[i][j]){
+
+		char buff[256];
+		*buff = 0;
+		sprintf(buff,"images/numb_%d.png",coodinates_now[i][j]);
+		rect[i*4+j]=CCSprite::spriteWithFile(buff);
+
+		if(!isGood && coodinates_now[i][j] > topTileScore) {
+			topTileScore = coodinates_now[i][j];
+			isGood = true;
+		}
+		/*switch(coodinates_now[i][j]){
 	
 		case 2:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_2.png");
 			break;
@@ -82,7 +93,9 @@ void GameScene::drawMatrix(float dt){
 		break;
 		case 64:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_64.png");
 		break;
-		case 128:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_128.png");
+		case 128:
+			rect[i*4+j]=CCSprite::spriteWithFile("images/numb_128.png");
+			isGood = true;
 		break;
 		case 256:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_256.png");
 		break;
@@ -101,13 +114,17 @@ void GameScene::drawMatrix(float dt){
 		case 32768:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_32768.png");
 		break;
 		//default:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
-		}
+		}*/
 		CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
 		//rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
 		rect[i*4+j]->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
 		rect[i*4+j]->setPosition(ccp(SCREEN_WIDTH*(0.1375+j*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)));
 		rect[i*4+j]->setTag(i*4+j+100);
 		this->addChild(rect[i*4+j],2);
+	}
+
+	if(isGood&&soundState) {
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionKey.raw");
 	}
 }
 // on "init" you need to initialize your instance
@@ -117,7 +134,9 @@ bool GameScene::init()
         return false;
 
 	soundState=true;
+	topTileScore = 16;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/909.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/CollisionKey.raw");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.2);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
@@ -376,6 +395,7 @@ void GameScene::animateMatrix(int moveDir){
 		bAnimFinished = true;
 		drawMatrix();
 	} else if(soundState){
+	
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/909.mp3", false);
 	}
 }
@@ -528,6 +548,8 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 	bInMoving = false;
 
 	reset();
+
+	topTileScore = 16;
 
 	for(int i=0;i<16;++i)
 	{
