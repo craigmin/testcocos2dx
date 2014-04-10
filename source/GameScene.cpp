@@ -4,8 +4,6 @@
 #include "Lihui2048Api.h"
 #include "LihuiLB.h"
 
-#define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
-#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
 
 int timeStamp = 0;
 
@@ -79,44 +77,8 @@ void GameScene::drawMatrix(float dt){
 			topTileScore = coodinates_now[i][j];
 			isGood = true;
 		}
-		/*switch(coodinates_now[i][j]){
-	
-		case 2:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_2.png");
-			break;
-		case 4:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_4.png");
-		break;
-		case 8:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_8.png");
-		break;
-		case 16:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_16.png");
-		break;
-		case 32:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_32.png");
-		break;
-		case 64:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_64.png");
-		break;
-		case 128:
-			rect[i*4+j]=CCSprite::spriteWithFile("images/numb_128.png");
-			isGood = true;
-		break;
-		case 256:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_256.png");
-		break;
-		case 512:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_512.png");
-		break;
-		case 1024:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_1024.png");
-		break;
-		case 2048:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_2048.png");
-		break;
-		case 4096:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_4096.png");
-		break;
-		case 8192:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_8192.png");
-		break;
-		case 16384:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_16384.png");
-		break;
-		case 32768:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_32768.png");
-		break;
-		//default:rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
-		}*/
+		
 		CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
-		//rect[i*4+j]=CCSprite::spriteWithFile("images/numb_blank.png");
 		rect[i*4+j]->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
 		rect[i*4+j]->setPosition(ccp(SCREEN_WIDTH*(0.1375+j*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)));
 		rect[i*4+j]->setTag(i*4+j+100);
@@ -124,7 +86,7 @@ void GameScene::drawMatrix(float dt){
 	}
 
 	if(isGood&&soundState) {
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionKey.raw");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/plaudit.raw");
 	}
 }
 // on "init" you need to initialize your instance
@@ -135,8 +97,8 @@ bool GameScene::init()
 
 	soundState=true;
 	topTileScore = 16;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/909.mp3");
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/CollisionKey.raw");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/swipe.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/plaudit.raw");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.2);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
@@ -396,7 +358,7 @@ void GameScene::animateMatrix(int moveDir){
 		drawMatrix();
 	} else if(soundState){
 	
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/909.mp3", false);
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.mp3", false);
 	}
 }
 

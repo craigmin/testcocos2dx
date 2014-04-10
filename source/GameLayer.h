@@ -1,6 +1,9 @@
 #ifndef __GAMELAYER_H__
 #define __GAMELAYER_H__
 
+#define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
+#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
+
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
 

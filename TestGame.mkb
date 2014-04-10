@@ -71,9 +71,9 @@ assets
 	"images/sound_off.png"
 
 	"images/leaderboard.png"
-	"sounds/909.mp3"
-	"sounds/swipe.wav"
-	"sounds/CollisionKey.raw"
+
+	"sounds/swipe.mp3"
+	"sounds/plaudit.raw"
 	
 	"fonts/arial.ttf"
 }

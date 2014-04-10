@@ -4,9 +4,6 @@
 #include "Lihui2048Api.h"
 #include "LihuiLB.h"
 
-#define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
-#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
-
 LeaderBoard::~LeaderBoard()
 {
 }
