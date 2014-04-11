@@ -45,6 +45,7 @@ public:
 	void animateMatrix(int moveDir);
 	int* trackMovementPath(const int before[],const int after[], bool b);
 	void pauseGame(int pauseType);
+	void shareButtonClick(CCObject *sender);
 	void cancelButtonClick(CCObject *sender);
 	void restartConfirmButtonClick(CCObject *sender);
 	void backConfirmButtonClick(CCObject *sender);

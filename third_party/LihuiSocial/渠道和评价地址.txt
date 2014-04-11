@@ -1,0 +1,5 @@
+豌豆荚：wandoujia  "http://www.wandoujia.com/apps/com.lihui.bubblebirdslihui"
+网易：wangyi "http://m.163.com/android/software/32g5n7.html"
+优亿：eoemarket "http://www.eoemarket.com/game/268822.html"
+联通：wo "http://store.wo.com.cn/product/195254.html?flag=%E8%83%96%E9%B8%9F%E6%BC%82%E6%B5%81%E8%AE%B0"
+移动：mm "http://mm.10086.cn/android/info/6686747.html?from=www&stag=cT0lRTglODMlOTYlRTklQjglOUYlRTYlQkMlODIlRTYlQjUlODElRTglQUUlQjAmcD0xJnQ9JUU1JTg1JUE4JUU5JTgzJUE4JnNuPTEmYWN0aXZlPTE%3D"

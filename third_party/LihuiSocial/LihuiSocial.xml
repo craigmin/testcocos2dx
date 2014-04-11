@@ -1,0 +1,20 @@
+<activity android:name="com.lihui.social4wx.SendToWXActivity"
+android:label="@string/app_name"
+/>
+<activity android:name=".wxapi.WXEntryActivity"
+android:label="@string/app_name"
+android:exported="true"/>
+<activity android:name="cn.lihui.iap.mm.SecondActivity"
+android:label="@string/app_name"
+/>
+<activity android:name="com.estore.ui.CTEStoreSDKActivity"
+android:screenOrientation="portrait"
+android:theme="@android:style/Theme.Translucent"
+/>
+<activity
+            android:name="com.alipay.android.app.sdk.WapPayActivity"
+            android:screenOrientation="portrait" >
+</activity>
+		
+<meta-data android:value="53281ccc56240b6289008af6" android:name="UMENG_APPKEY"></meta-data>
+<meta-data android:value="UNI_store" android:name="UMENG_CHANNEL"/>

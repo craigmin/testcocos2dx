@@ -1,0 +1,17 @@
+callbacks
+
+include:
+
+#include <s3eTypes.h>
+
+enum LihuiSocialCallback
+{
+    LIHUISOCIAL_CALLBACK_SHARE_SUCCESSFUL,
+    LIHUISOCIAL_CALLBACK_SHARE_FAILED,
+    LIHUISOCIAL_CALLBACK_MAX
+};
+functions:
+
+void connectToWX() run_on_os_thread
+void sendMessageOnWX() run_on_os_thread
+int isWXLoggedIn() 0  run_on_os_thread
