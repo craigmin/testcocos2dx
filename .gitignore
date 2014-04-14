@@ -8,3 +8,9 @@
 /project_TestGame
 /third_party/Lihui2048Api/Lihui2048Api/gen
 /third_party/Lihui2048Api/Lihui2048Api/bin
+/third_party/LihuiLB/build_lihuilb_android_linux_scons_arm
+
+/third_party/LihuiSocial/build_lihuisocial_android_linux_scons_arm
+/third_party/Lihui2048Api/build_lihui2048api_android_linux_scons_arm
+
+/third_party/LihuiAD_Baidu/build_lihuiad_baidu_android_linux_scons_arm
