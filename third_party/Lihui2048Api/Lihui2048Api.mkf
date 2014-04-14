@@ -37,7 +37,7 @@ if {{ not defined IW_MKF_IWCRT}}
 #Include the extension's jar file during deployment
 deployments
 {
-    android-external-jars="lib/android/Lihui2048Api.jar"
+    android-external-jars="Lihui2048Api/bin/lihui2048api.jar"
     android-so="lib/android/libLihui2048Api.so"
 	#android-external-jars="gmbc.jar"
 }

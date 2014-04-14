@@ -14,3 +14,5 @@
 /third_party/Lihui2048Api/build_lihui2048api_android_linux_scons_arm
 
 /third_party/LihuiAD_Baidu/build_lihuiad_baidu_android_linux_scons_arm
+
+/third_party/Lihui2048Api/lib/android/lihui2048api.jar
