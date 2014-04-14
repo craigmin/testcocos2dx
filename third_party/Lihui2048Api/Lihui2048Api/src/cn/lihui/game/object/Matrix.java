@@ -51,7 +51,6 @@ public class Matrix {
 		for (int x = 0; x < MatrixSize.X_SIZE; x++)
 			for (int y = 0; y < MatrixSize.Y_SIZE; y++) {
 				points[x][y] = new Point(x, y);
-
 			}
 		emptyPoints = MatrixSize.X_SIZE * MatrixSize.Y_SIZE;
 

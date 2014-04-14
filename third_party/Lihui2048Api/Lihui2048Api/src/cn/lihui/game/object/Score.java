@@ -10,9 +10,10 @@ public class Score {
 	private int best;
 	private int current;
 	private SharedPreferences mSharedPreferences;
-	public Score (){
-		mSharedPreferences = LoaderActivity.m_Activity.getSharedPreferences("cn.lihui.2048",
-				LoaderActivity.m_Activity.MODE_PRIVATE);
+
+	public Score() {
+		mSharedPreferences = LoaderActivity.m_Activity.getSharedPreferences(
+				"cn.lihui.2048", LoaderActivity.m_Activity.MODE_PRIVATE);
 		best = mSharedPreferences.getInt("TOPSCORE", 0);
 	}
 

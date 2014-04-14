@@ -18,7 +18,7 @@ public abstract class MoveOperationBase {
 			if (ps[i].equals(ps[i + 1])) {
 				return true;
 			} else if (ps[i].isEmpty()){
-				return false;
+				return true;
 			}
 		}
 		return false;
@@ -31,6 +31,10 @@ public abstract class MoveOperationBase {
 
 		points = closer(points);
 		for (int i = 0; i < points.length - 1; ++i) {
+			if(points[i].isEmpty()){
+				break;
+			}
+
 			if (points[i].equals(points[i + 1])) {
 				points[i].bigger();
 				points[i + 1].clear();
