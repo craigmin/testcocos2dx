@@ -4,7 +4,8 @@ options
 	s3e-data-dir="data"
 	module_path="third_party/Lihui2048Api/"
 	module_path="third_party/LihuiAD_Baidu/"
-	module_path="third_party/LihuiLB/"		
+	module_path="third_party/LihuiLB/"
+	module_path="third_party/LihuiSocial/"		
 }
 
 files
@@ -25,6 +26,7 @@ files
 assets 
 {
 	(data)
+	"BB3Share.jpg"
 	"images/background.png"
 	"images/gameover.png"
 	"images/menu_instruction.png"
@@ -71,7 +73,8 @@ assets
 	"images/sound_off.png"
 
 	"images/leaderboard.png"
-
+	"images/share.png"
+	"sunbeams.png"
 	"sounds/swipe.mp3"
 	"sounds/plaudit.raw"
 	
@@ -85,6 +88,7 @@ subprojects
 	Lihui2048Api
 	LihuiAD_Baidu
 	LihuiLB
+	LihuiSocial
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
@@ -101,4 +105,6 @@ deployments
 	icon = "data/icons/icon170.png"
 	name = "Daily2048"
 	android-manifest='AndroidManifest.xml'
+	android-custom-activity='com.lihui.bubblebirds.LihuiMain'
+	android-external-jars=marmaladecustom.jar
 }

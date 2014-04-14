@@ -3,6 +3,7 @@
 #include "GameLayer.h"
 #include "Lihui2048Api.h"
 #include "LihuiLB.h"
+#include "LihuiSocial.h"
 
 
 int timeStamp = 0;
@@ -165,21 +166,6 @@ bool GameScene::init()
     return true;
 }
 
-void GameScene::restartClick(CCObject *sender){
-	if (bPaused) {
-		return;
-	}
-
-	pauseGame(2);
-}
-
-void GameScene::back2menuClick(CCObject *sender){
-	if (bPaused) {
-		return;
-	}
-
-	pauseGame(1);
-}
 
 void GameScene::drawScore(){
 	char buff[16];
@@ -408,7 +394,30 @@ void GameScene::gameOver(){
 	gameover->setScaleY(SCREEN_WIDTH/gameover->getContentSize().width);
 	gameover->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	gameover->setTag(10);
+
+	//ShareButton
+	CCSprite* shareButtonOff = CCSprite::spriteWithFile("images/share.png");
+    CCSprite* shareButtonOn = CCSprite::spriteWithFile("images/share.png");
+	 CCMenuItemSprite* psharemenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(shareButtonOff, shareButtonOn, this, menu_selector(GameScene::shareButtonClick));
+    psharemenuItemSprite->setScale(0.7*LL_BUTTON_SCALE_VALUE);
+	CCMenu* pshare2menuMenu = CCMenu::menuWithItems(psharemenuItemSprite,NULL);
+    pshare2menuMenu->setPosition(ccp(gameover->getContentSize().width*0.5, gameover->getContentSize().width*0.3));
+	
+    gameover->addChild(pshare2menuMenu, 1);
+
+	char buff[16];
+	*buff = 0;
+	sprintf(buff,"%d !!",getCurrentScore());
+	CCLabelTTF* scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(400*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,"arial",80*LL_SCREEN_SCALE_VALUE);
+	scoreLabel->setPosition(ccp(gameover->getContentSize().width*0.5,gameover->getContentSize().width*0.5));
+	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
+	gameover->addChild(scoreLabel, 1);
+
 	this->addChild(gameover,5);
+
+	
+
+	
 }
 
 void GameScene::pauseGame(int pauseType){
@@ -486,6 +495,7 @@ void GameScene::backConfirmButtonClick(CCObject *sender){
 }
 
 void GameScene::soundButtonClick(CCObject *sender){
+	
 	soundState = !soundState;
 	if (soundState) {
 		//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.wav", true);
@@ -496,13 +506,14 @@ void GameScene::soundButtonClick(CCObject *sender){
 		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_off.png"));
 		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_off.png"));
 	}
+	
 }
 
 void GameScene::restartConfirmButtonClick(CCObject *sender){
 	this->removeChildByTag(1000);
 	bPaused = false;
 
-	if(!bMovable){
+		if(!bMovable){
 		this->removeChildByTag(10);
 		bMovable = true;
 	}
@@ -520,4 +531,24 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 	}
 	drawMatrix();
 	drawScore();
+}
+// ShareButtonClick
+void GameScene::shareButtonClick(CCObject *sender){
+	connectToWX();
+}
+
+void GameScene::restartClick(CCObject *sender){
+	if (bPaused) {
+		return;
+	}
+	//connectToWX();
+	pauseGame(2);
+}
+
+void GameScene::back2menuClick(CCObject *sender){
+	if (bPaused) {
+		return;
+	}
+
+	pauseGame(1);
 }
