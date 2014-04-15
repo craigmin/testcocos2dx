@@ -55,6 +55,9 @@ public class MatrixOperator {
 	public int getValue(int x, int y){
 		return matrix.getPointValue(x, y);
 	}
+	public int getAnim(int x, int y){
+		return matrix.getPointAnim(x, y);
+	}
 
 	public boolean isWin() {
 		return matrix.isPointReachMax();

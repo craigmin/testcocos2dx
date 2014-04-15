@@ -21,6 +21,7 @@ static jmethodID g_getBestScore;
 static jmethodID g_reset;
 static jmethodID g_isWin;
 static jmethodID g_getValue;
+static jmethodID g_getAnim;
 
 s3eResult Lihui2048ApiInit_platform()
 {
@@ -71,6 +72,10 @@ s3eResult Lihui2048ApiInit_platform()
 
     g_getValue = env->GetMethodID(cls, "getValue", "(II)I");
     if (!g_getValue)
+        goto fail;
+
+    g_getAnim = env->GetMethodID(cls, "getAnim", "(II)I");
+    if (!g_getAnim)
         goto fail;
 
 
@@ -140,4 +145,10 @@ int getValue_platform(int x, int y)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     return (int)env->CallIntMethod(g_Obj, g_getValue, x, y);
+}
+
+int getAnim_platform(int x, int y)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    return (int)env->CallIntMethod(g_Obj, g_getAnim, x, y);
 }

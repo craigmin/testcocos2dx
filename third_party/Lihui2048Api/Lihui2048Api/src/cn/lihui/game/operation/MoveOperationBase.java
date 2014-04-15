@@ -1,5 +1,6 @@
 package cn.lihui.game.operation;
 
+import android.util.Log;
 import cn.lihui.game.object.Point;
 
 public abstract class MoveOperationBase {
@@ -28,23 +29,60 @@ public abstract class MoveOperationBase {
 		if (points == null || points.length == 0) {
 			return points;
 		}
-
-		points = closer(points);
-		for (int i = 0; i < points.length - 1; ++i) {
+		//Log.i("","Jerry int j=0;");
+       int j=0;
+       Point[] ps = new Point[points.length];
+       boolean flag=true;
+		//points = closer(points);
+		for (int i = 0; i < points.length ; ++i) {
+			ps[i] = points[i].clone();
+			ps[i].clear();
 			if(points[i].isEmpty()){
-				break;
+			continue;
 			}
-
-			if (points[i].equals(points[i + 1])) {
-				points[i].bigger();
-				points[i + 1].clear();
-				++i;
+			if(flag){
+				ps[j] = points[j].clone(); 
+			ps[j].setValue(points[i].getValue());
+			Log.i("","Jerry: "+String.valueOf(ps[j].getX())+" "+String.valueOf(ps[j].getY())+" "+String.valueOf(ps[j].getValue()));
+			flag=false;
+			if(j!=i){
+				ps[j].setChanged(true);
 			}
+			continue;
+			}
+            if (ps[j].equals(points[i])){
+            	//points[i].clear();
+            	ps[j].bigger(); 
+            	Log.i("","Jerry: "+String.valueOf(ps[j].getX())+" "+String.valueOf(ps[j].getY())+" "+String.valueOf(ps[j].getValue()));
+            	j++;
+            	//ps[j].setValue(points[i].getValue()); 
+            	flag=true;
+            }else {
+            	j++;
+            	ps[j] = points[j].clone(); 
+    			ps[j].setValue(points[i].getValue());
+    			if(j!=i){
+    				ps[j].setChanged(true);
+    			}
+               	//flag=true;
+            }
 		}
-
-		return closer(points);
+		
+          
+         
+				//			if (points[i].equals(points[i + 1])) {
+//				points[i].bigger();
+//				points[i + 1].clear();
+//				++i;
+//			}
+		
+		//Log.i("","Jerry: "+String.valueOf(j));
+//    for(j=0;j<points.length;j++){
+//    	Log.i("","Jerry: "+String.valueOf(ps[j].getX())+" "+String.valueOf(ps[j].getY())+" "+String.valueOf(ps[j].getValue()));
+//    }
+		return ps;
 	}
-
+	
 	private Point[] closer(final Point[] points) {
 		if (points == null || points.length == 0) {
 			return points;

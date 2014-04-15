@@ -60,8 +60,11 @@ void GameScene::drawMatrix(float dt){
 
 	CCSprite* rect[16];
 	bool isGood = false;
+	
+	
 	for(int i=0;i<4;i++)
 	for(int j=0;j<4;j++){
+		
 
 		this->removeChildByTag(i*4+j+100);
 		coodinates_last[i][j] = coodinates_now[i][j];
@@ -83,6 +86,39 @@ void GameScene::drawMatrix(float dt){
 		rect[i*4+j]->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
 		rect[i*4+j]->setPosition(ccp(SCREEN_WIDTH*(0.1375+j*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)));
 		rect[i*4+j]->setTag(i*4+j+100);
+		//Jerry--Acition
+		int anim=getAnim(i,j);
+		if(anim==1){
+			CCActionInterval* largeto = CCScaleBy::create(0.05, 2);
+			rect[i*4+j]->setScale(0.5*SCREEN_WIDTH/sprite->getContentSize().width);
+			rect[i*4+j]->runAction(largeto);
+			if(soundState){
+			//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.mp3", false);
+	}
+		}else if(anim==2){
+			CCActionInterval * large = CCScaleBy::create(0.05, 1.1);
+			CCActionInterval * small = large->reverse();
+			rect[i*4+j]->runAction(CCSequence::actions(large,small,NULL));
+			if(soundState&&!isGood){
+			//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/kick.mp3", false);
+			//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/combo.wav", false);
+	}
+		}
+		/*
+		switch(anim){
+		case 0:
+			break;
+		case 1:
+			rect[i*4+j]->setScale(0.5*SCREEN_WIDTH/sprite->getContentSize().width);
+			rect[i*4+j]->runAction(largeto);
+			break;
+		case 2:  
+			//CCFiniteTimeAction * actionbyback = CCSequence::actions(large,small);
+			CCActionInterval * large = CCScaleBy::create(0.1, 1.1);
+	CCActionInterval * small = large->reverse();
+			rect[i*4+j]->runAction(CCSequence::actions(large,small,NULL)); 
+			break;
+		}*/
 		this->addChild(rect[i*4+j],2);
 	}
 
@@ -100,7 +136,8 @@ bool GameScene::init()
 	topTileScore = 16;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/swipe.mp3");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/plaudit.raw");
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.2);
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/kick.mp3");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(1);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
 	
@@ -241,11 +278,12 @@ void GameScene::animateMatrix(int moveDir){
 		}
 	}
 
-	float ANIM_TIME = 0.1;
+	float ANIM_TIME = 0.05;
 
 	bAnimFinished = false;
 	bool isChanged = false;
 	iAnimCount=0;
+	
 	if(moveDir == 3) {
 		for(int i=0;i<4;i++){
 			int* anm;
@@ -338,12 +376,11 @@ void GameScene::animateMatrix(int moveDir){
 			}
 		}
 	}
-
+	
 	if(!isChanged){
 		bAnimFinished = true;
 		drawMatrix();
 	} else if(soundState){
-	
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.mp3", false);
 	}
 }
@@ -420,7 +457,7 @@ void GameScene::gameOver(){
 	
 }
 
-void GameScene::pauseGame(int pauseType){
+void GameScene::pauseGame(int pauseType){ 
 	//Jerry--LB
 	updateScore(getBestScore());
 	if (bPaused) {
