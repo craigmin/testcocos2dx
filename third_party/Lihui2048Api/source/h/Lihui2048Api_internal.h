@@ -56,5 +56,7 @@ bool isWin_platform();
 
 int getValue_platform(int x, int y);
 
+int getAnim_platform(int x, int y);
+
 
 #endif /* !LIHUI2048API_INTERNAL_H */

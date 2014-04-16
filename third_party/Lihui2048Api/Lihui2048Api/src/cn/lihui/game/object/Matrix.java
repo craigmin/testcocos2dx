@@ -165,7 +165,9 @@ public class Matrix {
 	public int getPointValue(int x, int y) {
 		return points[x][y].getValue();
 	}
-
+   public int getPointAnim(int x, int y){
+	   return points[x][y].getAnim();
+   }
 	public boolean isPointReachMax() {
 		for (int x = 0; x < MatrixSize.X_SIZE; x++) {
 			for (int y = 0; y < MatrixSize.Y_SIZE; y++)

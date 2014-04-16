@@ -57,3 +57,8 @@ int getValue(int x, int y)
 {
 	getValue_platform(x, y);
 }
+
+int getAnim(int x, int y)
+{
+	getAnim_platform(x, y);
+}

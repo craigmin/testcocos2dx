@@ -41,4 +41,8 @@ class Lihui2048Api
     {
         return 0;
     }
+    public int getAnim(int x, int y)
+    {
+        return 0;
+    }
 }
