@@ -35,15 +35,14 @@ public class Lihui2048 {
 	}
 
 	public int getValue(int x, int y) {
-		//Log.i("","Jerry: " +x+" "+y+" "+" "+MatrixOperator.getInstance().getValue(x, y));
 		return MatrixOperator.getInstance().getValue(x, y);
 	}
 
 	public void reset() {
 		MatrixOperator.getInstance().reset();
 	}
+
 	public int getAnim(int x, int y) {
-		Log.i("","getAnim: " +x+" "+y+" "+" "+MatrixOperator.getInstance().getAnim(x, y));
 		return MatrixOperator.getInstance().getAnim(x, y);
 	}
 }

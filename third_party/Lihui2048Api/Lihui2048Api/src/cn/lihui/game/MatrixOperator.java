@@ -11,11 +11,11 @@ public class MatrixOperator {
 		matrix = new Matrix();
 	}
 
-	public static MatrixOperator getInstance(){
-		if(instanse == null){
+	public static MatrixOperator getInstance() {
+		if (instanse == null) {
 			instanse = new MatrixOperator();
 		}
-		
+
 		return instanse;
 	}
 
@@ -51,15 +51,20 @@ public class MatrixOperator {
 			}
 		return matrixValues;
 	}
-	
-	public int getValue(int x, int y){
+
+	public int getValue(int x, int y) {
 		return matrix.getPointValue(x, y);
 	}
-	public int getAnim(int x, int y){
+
+	public int getAnim(int x, int y) {
 		return matrix.getPointAnim(x, y);
 	}
 
 	public boolean isWin() {
 		return matrix.isPointReachMax();
+	}
+
+	public void rearrangeMatrix() {
+		matrix.rearrangeMatrix();
 	}
 }

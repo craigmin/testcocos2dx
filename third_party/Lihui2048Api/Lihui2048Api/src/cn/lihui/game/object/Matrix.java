@@ -3,6 +3,8 @@ package cn.lihui.game.object;
 import cn.lihui.game.consts.MatrixSize;
 import cn.lihui.game.consts.MoveTypes;
 import cn.lihui.game.operation.MovableValidator;
+import cn.lihui.game.operation.RandomArrangeOperation;
+import cn.lihui.game.operation.i.IArrangeOperation;
 import cn.lihui.game.operation.i.IMovableValidator;
 import cn.lihui.game.operation.i.IMoveOperation;
 
@@ -10,10 +12,13 @@ public class Matrix {
 	private Point[][] points;
 	private Score score;
 	private int emptyPoints;
+	private IArrangeOperation arrangeOpt;
 
 	public Matrix() {
-		init();
+		arrangeOpt = new RandomArrangeOperation();
 		score = new Score();
+
+		init();
 	}
 
 	public Point[] getXLine(int y) {
@@ -165,9 +170,11 @@ public class Matrix {
 	public int getPointValue(int x, int y) {
 		return points[x][y].getValue();
 	}
-   public int getPointAnim(int x, int y){
-	   return points[x][y].getAnim();
-   }
+
+	public int getPointAnim(int x, int y) {
+		return points[x][y].getAnim();
+	}
+
 	public boolean isPointReachMax() {
 		for (int x = 0; x < MatrixSize.X_SIZE; x++) {
 			for (int y = 0; y < MatrixSize.Y_SIZE; y++)
@@ -177,5 +184,9 @@ public class Matrix {
 		}
 
 		return false;
+	}
+
+	public void rearrangeMatrix() {
+		arrangeOpt.rearrange(this);
 	}
 }

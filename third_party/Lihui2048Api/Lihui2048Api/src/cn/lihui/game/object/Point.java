@@ -10,6 +10,14 @@ public class Point {
 	private int anim;
 	private boolean isChanged;
 
+	public Point(int value) {
+		this.x = 0;
+		this.y = 0;
+		this.value = value;
+		this.score = 0;
+		this.isChanged = false;
+	}
+
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
