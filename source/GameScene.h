@@ -15,13 +15,18 @@ protected:
 	CCLabelTTF* scoreLabel;
 	CCLabelTTF* topScoreLabel;
 	CCMenuItemSprite *psoundmenuItemSprite;
+	//CCSprite* rect[16];
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
 	bool bPaused;
 	bool bInMoving;
 	bool soundState;
+	bool bClean;
 	int topTileScore;
+	float widoffset;
+	float heioffset;
+
 
 public:
     ~GameScene();
@@ -50,7 +55,9 @@ public:
 	void restartConfirmButtonClick(CCObject *sender);
 	void backConfirmButtonClick(CCObject *sender);
 	void soundButtonClick(CCObject *sender);
-
+	void cleancancleClick(CCObject *sender);
+	void cleanPoint(float x,float y);
+	
 	virtual void onEnter();
     virtual void onExit();
 

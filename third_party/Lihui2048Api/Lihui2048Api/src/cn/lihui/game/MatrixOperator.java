@@ -52,6 +52,10 @@ public class MatrixOperator {
 		return matrixValues;
 	}
 
+	public void cleanPoint(int x, int y) {
+		matrix.cleanPointValue(x, y);
+	}
+
 	public int getValue(int x, int y) {
 		return matrix.getPointValue(x, y);
 	}

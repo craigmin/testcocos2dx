@@ -119,7 +119,9 @@ void GameScene::drawMatrix(float dt){
 			rect[i*4+j]->runAction(CCSequence::actions(large,small,NULL)); 
 			break;
 		}*/
+		
 		this->addChild(rect[i*4+j],2);
+	
 	}
 
 	if(isGood&&soundState) {
@@ -140,7 +142,9 @@ bool GameScene::init()
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(1);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
-	
+	widoffset=0.2417*SCREEN_WIDTH;
+	heioffset=0.1359*SCREEN_HEIGHT;
+
 	for(int i=0;i<16;++i)
 	{
 		coodinates_last[i/4][i%4]=0;
@@ -176,9 +180,10 @@ bool GameScene::init()
 
 	CCMenu* prestartMenu = CCMenu::menuWithItems(prestartItemSprite,NULL);
     prestartMenu->setPosition(ccp(SCREEN_WIDTH*0.24, SCREEN_HEIGHT*0.16));
+	//Jerry--Test
 	
     this->addChild(prestartMenu, 3);	
-
+	
 	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2menu.png");
     CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
     CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
@@ -296,7 +301,7 @@ void GameScene::animateMatrix(int moveDir){
 					iAnimCount++;
 					isChanged = true;
 					CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
-
+					//target->setTag(i*4+j+100);
 					CCFiniteTimeAction* actionMove = CCMoveTo::create(ANIM_TIME,ccp(SCREEN_WIDTH*(0.1375+(anm[j]-1)*0.2417), SCREEN_HEIGHT*(0.7075-i*0.1359)) );  
 
 					CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::animCallback));  
@@ -384,16 +389,81 @@ void GameScene::animateMatrix(int moveDir){
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.mp3", false);
 	}
 }
+void GameScene::cleanPoint(float x,float y)
+{
+	for(int i=0;i<4;i++){
+		for(int j=0;j<4;j++){
+		CCSprite* target=(CCSprite*)this->getChildByTag(i*4+j+100);
+		if(target!=NULL){
+			char buff[16];
+			*buff = 0;
 
+			float rangXL = target->getPositionX()-0.1042*SCREEN_WIDTH;
+			float rangXR = target->getPositionX()+0.1042*SCREEN_WIDTH;
+			float rangYU = target->getPositionY()-0.0586*SCREEN_HEIGHT;
+			float rangYB = target->getPositionY()+0.0586*SCREEN_HEIGHT;
+
+			/*sprintf(buff,"%4.0f:%4.0f",rangXL, rangXR);
+
+			scoreLabel->setString(buff);
+
+			sprintf(buff,"%4.0f:%4.0f",x, y);
+
+			topScoreLabel->setString(buff);*/
+			
+			if(rangXL<x && x<rangXR && rangYU<y && y<rangYB){
+				cleanRect(i,j);
+				//drawMatrix();
+				target->setOpacity(0);
+				i=4;
+				break;
+			}
+		}
+	}
+}
+}
 void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
+
+		if(bClean){
+		CCPoint	touch = pTouch->getLocationInView();
+		touch = CCDirector::sharedDirector()->convertToGL(touch);
+		cleanPoint(touch.x,touch.y);
+		/*
+		int i,j;
+		if(0.0333*SCREEN_WIDTH<ccp_now.x<0.2416*SCREEN_WIDTH){
+			i=2;
+	     }else if(0.0333*SCREEN_WIDTH+widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+widoffset){
+			i=1;
+		 }else if(0.0333*SCREEN_WIDTH+2*widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+2*widoffset){
+			i=2;
+	     }else if(0.0333*SCREEN_WIDTH+3*widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+3*widoffset){
+			i=3;
+	     }
+		 if(0.6489*SCREEN_HEIGHT<ccp_now.y<0.7661*SCREEN_HEIGHT){
+			 j=3;
+		 }else if(0.6489*SCREEN_HEIGHT-heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-heioffset){
+			 j=1;
+		 }else if(0.6489*SCREEN_HEIGHT-2*heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-2*heioffset){
+			 j=2;
+		 }
+		 else if(0.6489*SCREEN_HEIGHT-3*heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-3*heioffset){
+			 j=3;
+		 }
+		 this->removeChildByTag(4*i+j+100);
+		 */
+		
+		return;
+		 
+	}
+	ccp_now = pTouch->getLocationInView();
+    ccp_now = CCDirector::sharedDirector()->convertToGL(ccp_now);
 	if (bPaused || bInMoving) {
 		return;
 	}
 
 	bInMoving = true;
-	ccp_now = pTouch->getLocationInView();
-    ccp_now = CCDirector::sharedDirector()->convertToGL(ccp_now);
+	
     float adsx = ccp_now.x - ccp_last.x;
     float adsy = ccp_now.y - ccp_last.y;
     if(fabsf(adsx) > fabsf(adsy) && fabsf(adsx) > 80)   //X方向增量大
@@ -421,6 +491,7 @@ void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 	} else {
 		bInMoving = false;
 	}
+	
 }
 
 void GameScene::gameOver(){
@@ -436,10 +507,19 @@ void GameScene::gameOver(){
 	CCSprite* shareButtonOff = CCSprite::spriteWithFile("images/share.png");
     CCSprite* shareButtonOn = CCSprite::spriteWithFile("images/share.png");
 	 CCMenuItemSprite* psharemenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(shareButtonOff, shareButtonOn, this, menu_selector(GameScene::shareButtonClick));
-    psharemenuItemSprite->setScale(0.7*LL_BUTTON_SCALE_VALUE);
+   
 	CCMenu* pshare2menuMenu = CCMenu::menuWithItems(psharemenuItemSprite,NULL);
-    pshare2menuMenu->setPosition(ccp(gameover->getContentSize().width*0.5, gameover->getContentSize().width*0.3));
-	
+	pshare2menuMenu->setPosition(ccp(gameover->getContentSize().width*0.5, gameover->getContentSize().width*0.3));
+	 psharemenuItemSprite->setScale(0.7*LL_BUTTON_SCALE_VALUE);
+	//Jerry--Action
+	CCScaleTo* large=CCScaleTo::actionWithDuration(0.1,0.8*LL_BUTTON_SCALE_VALUE);
+	CCScaleTo* small=CCScaleTo::actionWithDuration(0.1,0.7*LL_BUTTON_SCALE_VALUE);
+	CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.5f);
+	CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
+	CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
+	psharemenuItemSprite->stopAllActions();
+	psharemenuItemSprite->runAction(actionShake);
+
     gameover->addChild(pshare2menuMenu, 1);
 
 	char buff[16];
@@ -517,6 +597,7 @@ void GameScene::pauseGame(int pauseType){
 	layer2->setTag(1000);
 
 	this->addChild(layer2, 1000);
+
 }
 
 void GameScene::cancelButtonClick(CCObject *sender){
@@ -532,18 +613,44 @@ void GameScene::backConfirmButtonClick(CCObject *sender){
 }
 
 void GameScene::soundButtonClick(CCObject *sender){
-	
-	soundState = !soundState;
-	if (soundState) {
-		//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sounds/swipe.wav", true);
-		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_on.png"));
-		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_on.png"));
-	} else {
-		//CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_off.png"));
-		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_off.png"));
+	if (bPaused) {
+		return;
 	}
+	bPaused = true;
+	bClean=true;
+
+	CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background_2.png");
+	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
+	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
+	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+	sprite->setTag(2000);
+	this->addChild(sprite,10);
+	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2menu.png");
+    CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
+    CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
+    CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
+    pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
+    pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.16));
 	
+    sprite->addChild(pback2menuMenu,1);	
+	
+		for(int i=0;i<4;i++)
+		for(int j=0;j<4;j++){
+	
+			if(coodinates_now[i][j] == 0){
+				continue;
+			}
+		CCScaleTo* large=CCScaleTo::create(0.2,1.05);
+		CCScaleTo* small=CCScaleTo::create(0.2,1);
+		CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.2f);
+		CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
+		CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
+		CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
+		target->setOpacity(180);
+		target->stopAllActions();
+		target->runAction(actionShake);
+		}
 }
 
 void GameScene::restartConfirmButtonClick(CCObject *sender){
@@ -575,7 +682,7 @@ void GameScene::shareButtonClick(CCObject *sender){
 }
 
 void GameScene::restartClick(CCObject *sender){
-	if (bPaused) {
+	if (bPaused||bClean) {
 		return;
 	}
 	//connectToWX();
@@ -583,9 +690,18 @@ void GameScene::restartClick(CCObject *sender){
 }
 
 void GameScene::back2menuClick(CCObject *sender){
-	if (bPaused) {
+	bPaused=false;
+	
+	if (bPaused||bClean) {
 		return;
 	}
 
 	pauseGame(1);
+	
+}
+
+void GameScene::cleancancleClick(CCObject *sender){
+	this->removeChildByTag(2000);
+	bPaused = false;
+	 bClean=false;
 }

@@ -22,6 +22,8 @@ static jmethodID g_reset;
 static jmethodID g_isWin;
 static jmethodID g_getValue;
 static jmethodID g_getAnim;
+static jmethodID g_cleanRect;
+static jmethodID g_reArrange;
 
 s3eResult Lihui2048ApiInit_platform()
 {
@@ -76,6 +78,14 @@ s3eResult Lihui2048ApiInit_platform()
 
     g_getAnim = env->GetMethodID(cls, "getAnim", "(II)I");
     if (!g_getAnim)
+        goto fail;
+
+    g_cleanRect = env->GetMethodID(cls, "cleanRect", "(II)V");
+    if (!g_cleanRect)
+        goto fail;
+
+    g_reArrange = env->GetMethodID(cls, "reArrange", "()V");
+    if (!g_reArrange)
         goto fail;
 
 
@@ -151,4 +161,16 @@ int getAnim_platform(int x, int y)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     return (int)env->CallIntMethod(g_Obj, g_getAnim, x, y);
+}
+
+void cleanRect_platform(int x, int y)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_cleanRect, x, y);
+}
+
+void reArrange_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_reArrange);
 }

@@ -45,4 +45,12 @@ class Lihui2048Api
     {
         return 0;
     }
+    public void cleanRect(int x, int y)
+    {
+        
+    }
+    public void reArrange()
+    {
+        
+    }
 }
