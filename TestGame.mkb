@@ -22,6 +22,12 @@ files
     SplashScreen.h
 	LeaderBoard.cpp
     LeaderBoard.h
+	[Object]
+	Point.cpp
+	Point.h
+	[UI]
+	JerryScene.cpp
+	JerryScene.h
 }
 assets 
 {
@@ -40,6 +46,7 @@ assets
 
 	
 	"images/gi_background.png"
+	"images/gi_background_2.png"
 	"images/numb_2.png"
 	"images/numb_4.png"
 	"images/numb_8.png"

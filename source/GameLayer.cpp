@@ -192,7 +192,9 @@ void GameLayer::instructionButtonClick(CCObject *sender){
 
     layer2->addChild(pcancelMenu, 12);
 	layer2->setTag(1000);
-
+	CCActionInterval* largeto = CCScaleBy::create(0.2, 2);
+	layer2->setScale(0.5);
+	layer2->runAction(largeto);
 	this->addChild(layer2, 10);
 }
 

@@ -46,4 +46,13 @@ public class Lihui2048 {
 		Log.i("","getAnim: " +x+" "+y+" "+" "+MatrixOperator.getInstance().getAnim(x, y));
 		return MatrixOperator.getInstance().getAnim(x, y);
 	}
+	public void cleanRect(int x,int y){
+		Log.i("","cleanRect: "+x+" "+y);
+		MatrixOperator.getInstance().cleanPoint(x, y);
+		
+	}
+	public void reArrange(){
+		
+	}
+	
 }

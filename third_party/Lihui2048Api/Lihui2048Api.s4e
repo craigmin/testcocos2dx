@@ -16,6 +16,10 @@ void reset() run_on_os_thread
 
 bool isWin() true run_on_os_thread
 
-int getValue(int x,int y) run_on_os_thread 
+int getValue(int x,int y) 0 run_on_os_thread 
 
-int getAnim(int x,int y) run_on_os_thread 
+int getAnim(int x,int y) 0 run_on_os_thread 
+
+void cleanRect(int x,int y) run_on_os_thread
+
+void reArrange() run_on_os_thread

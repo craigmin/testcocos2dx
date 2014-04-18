@@ -55,10 +55,20 @@ bool isWin()
 
 int getValue(int x, int y)
 {
-	getValue_platform(x, y);
+	return getValue_platform(x, y);
 }
 
 int getAnim(int x, int y)
 {
-	getAnim_platform(x, y);
+	return getAnim_platform(x, y);
+}
+
+void cleanRect(int x, int y)
+{
+	cleanRect_platform(x, y);
+}
+
+void reArrange()
+{
+	reArrange_platform();
 }

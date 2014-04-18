@@ -72,6 +72,18 @@ static int getAnim_wrap(int x, int y)
     return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getAnim, 2, x, y);
 }
 
+static void cleanRect_wrap(int x, int y)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: cleanRect"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)cleanRect, 2, x, y);
+}
+
+static void reArrange_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: reArrange"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)reArrange, 0);
+}
+
 #define isMovable isMovable_wrap
 #define move move_wrap
 #define getCurrentScore getCurrentScore_wrap
@@ -80,13 +92,15 @@ static int getAnim_wrap(int x, int y)
 #define isWin isWin_wrap
 #define getValue getValue_wrap
 #define getAnim getAnim_wrap
+#define cleanRect cleanRect_wrap
+#define reArrange reArrange_wrap
 
 #endif
 
 void Lihui2048ApiRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[8];
+    void* funcPtrs[10];
     funcPtrs[0] = (void*)isMovable;
     funcPtrs[1] = (void*)move;
     funcPtrs[2] = (void*)getCurrentScore;
@@ -95,11 +109,13 @@ void Lihui2048ApiRegisterExt()
     funcPtrs[5] = (void*)isWin;
     funcPtrs[6] = (void*)getValue;
     funcPtrs[7] = (void*)getAnim;
+    funcPtrs[8] = (void*)cleanRect;
+    funcPtrs[9] = (void*)reArrange;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[8] = { 0 };
+    int flags[10] = { 0 };
 
     /*
      * Register the extension

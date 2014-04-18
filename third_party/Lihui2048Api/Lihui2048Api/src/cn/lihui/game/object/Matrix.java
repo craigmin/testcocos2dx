@@ -1,5 +1,6 @@
 package cn.lihui.game.object;
 
+import android.util.Log;
 import cn.lihui.game.consts.MatrixSize;
 import cn.lihui.game.consts.MoveTypes;
 import cn.lihui.game.operation.MovableValidator;
@@ -57,7 +58,12 @@ public class Matrix {
 		addPoint();
 		addPoint();
 	}
-
+  public void reorder(){
+	  for (int i=0;i<4;i++)
+		  for (int j=0;j<4;j++){
+			  Point pt= this.points[i][j];
+		  }
+  }
 	public void reset() {
 		init();
 		score.resetCurrent();
@@ -177,5 +183,10 @@ public class Matrix {
 		}
 
 		return false;
+	}
+	
+	public void cleanPointValue(int x, int y){
+		this.points[x][y].clear();
+		Log.i("","Jerry--cleanPointValue");
 	}
 }

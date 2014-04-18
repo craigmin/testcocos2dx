@@ -58,5 +58,9 @@ int getValue_platform(int x, int y);
 
 int getAnim_platform(int x, int y);
 
+void cleanRect_platform(int x, int y);
+
+void reArrange_platform();
+
 
 #endif /* !LIHUI2048API_INTERNAL_H */

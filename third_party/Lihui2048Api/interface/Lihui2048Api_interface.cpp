@@ -28,6 +28,8 @@ typedef       void(*reset_t)();
 typedef       bool(*isWin_t)();
 typedef        int(*getValue_t)(int x, int y);
 typedef        int(*getAnim_t)(int x, int y);
+typedef       void(*cleanRect_t)(int x, int y);
+typedef       void(*reArrange_t)();
 
 /**
  * struct that gets filled in by Lihui2048ApiRegister
@@ -42,6 +44,8 @@ typedef struct Lihui2048ApiFuncs
     isWin_t m_isWin;
     getValue_t m_getValue;
     getAnim_t m_getAnim;
+    cleanRect_t m_cleanRect;
+    reArrange_t m_reArrange;
 } Lihui2048ApiFuncs;
 
 static Lihui2048ApiFuncs g_Ext;
@@ -245,4 +249,44 @@ int getAnim(int x, int y)
 #endif
 
     return ret;
+}
+
+void cleanRect(int x, int y)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[8] func: cleanRect"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_cleanRect(x, y);
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+void reArrange()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[9] func: reArrange"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_reArrange();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
 }
