@@ -47,6 +47,11 @@ assets
 	
 	"images/gi_background.png"
 	"images/gi_background_2.png"
+
+	"images/gi_background_notitle.png"
+	"images/bomb.png"
+	"images/rearrange.png"
+
 	"images/numb_2.png"
 	"images/numb_4.png"
 	"images/numb_8.png"
@@ -83,6 +88,8 @@ assets
 	"images/share.png"
 	"sunbeams.png"
 	"sounds/swipe.mp3"
+	"sounds/CollisionBomb0.raw"
+	
 	
 	
 	"sounds/plaudit.raw"

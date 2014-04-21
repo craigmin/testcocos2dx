@@ -50,7 +50,7 @@ public class Lihui2048 {
 		return matrix.getPointAnim(x, y);
 	}
 
-	public void cleanPoint(int x, int y) {
+	public void cleanRect(int x, int y) {
 		matrix.cleanPointValue(x, y);
 	}
 

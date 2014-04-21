@@ -56,7 +56,10 @@ public:
 	void backConfirmButtonClick(CCObject *sender);
 	void soundButtonClick(CCObject *sender);
 	void cleancancleClick(CCObject *sender);
+	void bombButtonClick(CCObject *sender);
+	void rearrangeButtonClick(CCObject *sender);
 	void cleanPoint(float x,float y);
+	void updateCoodinates();
 	
 	virtual void onEnter();
     virtual void onExit();

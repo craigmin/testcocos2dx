@@ -37,7 +37,7 @@ if {{ not defined IW_MKF_IWCRT}}
 #Include the extension's jar file during deployment
 deployments
 {
-    android-external-jars="lib/android/LihuiLB.jar"
+    android-external-jars="LihuiLB/bin/LihuiLB.jar"
     android-so="lib/android/libLihuiLB.so"
 	android-external-jars="gson-1.7.1.jar"
 	android-external-jars="lihuileaderboardssdk.jar"

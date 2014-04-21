@@ -138,6 +138,7 @@ bool GameScene::init()
 	topTileScore = 16;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/swipe.mp3");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/plaudit.raw");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("sounds/CollisionBomb0.raw");
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sounds/kick.mp3");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(1);
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
@@ -159,16 +160,16 @@ bool GameScene::init()
 
 	drawMatrix();
 	
-	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",40*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.843));
+	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.89));//SCREEN_WIDTH*0.96
 	scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(scoreLabel, 4);
 
 	char buff[16];
 	*buff = 0;
 	sprintf(buff,"%d",getBestScore());
-	topScoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",40*LL_SCREEN_SCALE_VALUE);
-	topScoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.92));
+	topScoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",36*LL_SCREEN_SCALE_VALUE);
+	topScoreLabel->setPosition(ccp(SCREEN_WIDTH*0.96,SCREEN_HEIGHT*0.95));
 	topScoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(topScoreLabel, 4);	
 
@@ -200,8 +201,24 @@ bool GameScene::init()
     psoundmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* psound2menuMenu = CCMenu::menuWithItems(psoundmenuItemSprite,NULL);
     psound2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.89, SCREEN_HEIGHT*0.16));
+	 this->addChild(psound2menuMenu, 3);
 	
-    this->addChild(psound2menuMenu, 3);
+	CCSprite* bombButtonOff = CCSprite::spriteWithFile("images/bomb.png");
+    CCSprite* bombButtonOn = CCSprite::spriteWithFile("images/bomb.png");
+	CCMenuItemSprite*  pbombmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(bombButtonOff, bombButtonOn, this, menu_selector(GameScene::bombButtonClick));
+    pbombmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* pbomb2menuMenu = CCMenu::menuWithItems(pbombmenuItemSprite,NULL);
+    pbomb2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7, SCREEN_HEIGHT*0.82));
+	 this->addChild(pbomb2menuMenu, 3);
+
+	CCSprite* rearrangeButtonOff = CCSprite::spriteWithFile("images/rearrange.png");
+    CCSprite* rearrangeButtonOn = CCSprite::spriteWithFile("images/rearrange.png");
+	CCMenuItemSprite*  prearrangemenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(rearrangeButtonOff, rearrangeButtonOn, this, menu_selector(GameScene::rearrangeButtonClick));
+    prearrangemenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* prearrange2menuMenu = CCMenu::menuWithItems(prearrangemenuItemSprite,NULL);
+    prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.85 ,SCREEN_HEIGHT*0.82));
+	 this->addChild(prearrange2menuMenu, 3);
+   
 	bMovable = true;
 	bInMoving = false;
 
@@ -276,12 +293,16 @@ void GameScene::moveMatrix(int moveDir){
 	bInMoving = false;
 }
 
-void GameScene::animateMatrix(int moveDir){
+void GameScene::updateCoodinates(){
 	for(int i=0;i<4;i++){
 		for(int j=0;j<4;j++){
 			coodinates_now[i][j] = getValue(i,j);
 		}
 	}
+}
+
+void GameScene::animateMatrix(int moveDir){
+	updateCoodinates();
 
 	float ANIM_TIME = 0.05;
 
@@ -414,7 +435,10 @@ void GameScene::cleanPoint(float x,float y)
 			if(rangXL<x && x<rangXR && rangYU<y && y<rangYB){
 				cleanRect(i,j);
 				//drawMatrix();
-				target->setOpacity(0);
+				//target->setOpacity(0);
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionBomb0.raw");
+				CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
+                target->runAction(fadeOutTRTiles);
 				i=4;
 				break;
 			}
@@ -613,44 +637,21 @@ void GameScene::backConfirmButtonClick(CCObject *sender){
 }
 
 void GameScene::soundButtonClick(CCObject *sender){
+	/*
 	if (bPaused) {
 		return;
 	}
-	bPaused = true;
-	bClean=true;
-
-	CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background_2.png");
-	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
-	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
-	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
-	sprite->setTag(2000);
-	this->addChild(sprite,10);
-	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2menu.png");
-    CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
-    CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
-    CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
-    pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
-	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
-    pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.16));
+	*/
+	soundState=!soundState;
 	
-    sprite->addChild(pback2menuMenu,1);	
+	if(soundState){
+		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_on.png"));
+		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_on.png"));
+	}else{
+		psoundmenuItemSprite->setNormalImage(CCSprite::spriteWithFile("images/sound_off.png"));
+		psoundmenuItemSprite->setSelectedImage(CCSprite::spriteWithFile("images/sound_off.png"));
+	}
 	
-		for(int i=0;i<4;i++)
-		for(int j=0;j<4;j++){
-	
-			if(coodinates_now[i][j] == 0){
-				continue;
-			}
-		CCScaleTo* large=CCScaleTo::create(0.2,1.05);
-		CCScaleTo* small=CCScaleTo::create(0.2,1);
-		CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.2f);
-		CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
-		CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
-		CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
-		target->setOpacity(180);
-		target->stopAllActions();
-		target->runAction(actionShake);
-		}
 }
 
 void GameScene::restartConfirmButtonClick(CCObject *sender){
@@ -702,6 +703,50 @@ void GameScene::back2menuClick(CCObject *sender){
 
 void GameScene::cleancancleClick(CCObject *sender){
 	this->removeChildByTag(2000);
+	this->removeChildByTag(2001);
 	bPaused = false;
 	 bClean=false;
+}
+void GameScene::bombButtonClick(CCObject *sender){
+	bPaused = true;
+	bClean=true;
+
+	CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background_2.png");
+	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
+	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
+	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+	sprite->setTag(2000);
+	this->addChild(sprite,10);
+	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2menu.png");
+    CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
+    CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
+    CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
+    pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
+    pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.16));
+	pback2menuMenu->setTag(2001);
+    this->addChild(pback2menuMenu,11);	
+	
+		for(int i=0;i<4;i++)
+		for(int j=0;j<4;j++){
+	
+			if(coodinates_now[i][j] == 0){
+				continue;
+			}
+		CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
+		CCScaleTo* large=CCScaleTo::actionWithDuration(0.2,1.05*SCREEN_WIDTH/sprite->getContentSize().width);
+		CCScaleTo* small=CCScaleTo::actionWithDuration(0.2,SCREEN_WIDTH/sprite->getContentSize().width);
+		CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.2f);
+		CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
+		CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
+		CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
+		target->setOpacity(180);
+		target->stopAllActions();
+		target->runAction(actionShake);
+		}
+}
+void GameScene::rearrangeButtonClick(CCObject *sender){
+	reArrange();
+	updateCoodinates();
+	drawMatrix();
 }
