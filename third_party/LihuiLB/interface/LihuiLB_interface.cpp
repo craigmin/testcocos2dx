@@ -33,6 +33,7 @@ typedef       void(*setBeijingTime_t)();
 typedef       bool(*notShared_t)();
 typedef       void(*setShareTime_t)();
 typedef const char*(*getNickname_t)();
+typedef const char*(*getNicknameByRank_t)(int rank);
 typedef       void(*updateNickname_t)(const char* nickname);
 
 /**
@@ -53,6 +54,7 @@ typedef struct LihuiLBFuncs
     notShared_t m_notShared;
     setShareTime_t m_setShareTime;
     getNickname_t m_getNickname;
+    getNicknameByRank_t m_getNicknameByRank;
     updateNickname_t m_updateNickname;
 } LihuiLBFuncs;
 
@@ -344,7 +346,7 @@ const char* getNickname()
     IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[12] func: getNickname"));
 
     if (!_extLoad())
-        return 0;
+        return;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
@@ -359,9 +361,29 @@ const char* getNickname()
     return ret;
 }
 
+const char* getNicknameByRank(int rank)
+{
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[13] func: getNicknameByRank"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    const char* ret = g_Ext.m_getNicknameByRank(rank);
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
+}
+
 void updateNickname(const char* nickname)
 {
-    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[13] func: updateNickname"));
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[14] func: updateNickname"));
 
     if (!_extLoad())
         return;

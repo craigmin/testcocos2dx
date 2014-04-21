@@ -57,6 +57,10 @@ class LihuiLB
     {
         
     }
+    public FIXME getNicknameByRank(int rank)
+    {
+        
+    }
     public void updateNickname(String nickname)
     {
         

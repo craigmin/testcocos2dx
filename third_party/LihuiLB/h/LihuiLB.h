@@ -88,6 +88,8 @@ void setShareTime();
 
 const char* getNickname();
 
+const char* getNicknameByRank(int rank);
+
 void updateNickname(const char* nickname);
 
 S3E_END_C_DECL

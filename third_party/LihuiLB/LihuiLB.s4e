@@ -27,4 +27,5 @@ void setBeijingTime() run_on_os_thread
 bool notShared() true run_on_os_thread
 void setShareTime() run_on_os_thread
 const char* getNickname() run_on_os_thread
+const char* getNicknameByRank(int rank) run_on_os_thread
 void updateNickname(const char* nickname) run_on_os_thread

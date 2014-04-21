@@ -25,6 +25,7 @@ static jmethodID g_setBeijingTime;
 static jmethodID g_notShared;
 static jmethodID g_setShareTime;
 static jmethodID g_getNickname;
+static jmethodID g_getNicknameByRank;
 static jmethodID g_updateNickname;
 
 void JNICALL LihuiLB_Receive_SuccessfulCallback(JNIEnv* env, jobject obj, jstring id);
@@ -40,7 +41,7 @@ s3eResult LihuiLBInit_platform()
     jmethodID cons = NULL;
 
     // Get the extension class
-    jclass cls = env->FindClass("cn/lihui/test/LBInterface");
+    jclass cls = env->FindClass("cn/lihui/cocos2dx/LBInterface");
     if (!cls)
         goto fail;
 
@@ -97,6 +98,10 @@ s3eResult LihuiLBInit_platform()
 
     g_getNickname = env->GetMethodID(cls, "getNickname", "()Ljava/lang/String;");
     if (!g_getNickname)
+        goto fail;
+
+    g_getNicknameByRank = env->GetMethodID(cls, "getNicknameByRank", "(I)Ljava/lang/String;");
+    if (!g_getNicknameByRank)
         goto fail;
 
     g_updateNickname = env->GetMethodID(cls, "updateNickname", "(Ljava/lang/String;)V");
@@ -208,6 +213,20 @@ const char* getNickname_platform()
     JNIEnv* env = s3eEdkJNIGetEnv();	
 	jstring s = (jstring)env->CallObjectMethod(g_Obj, g_getNickname);
     const char *str = env->GetStringUTFChars(s, 0);
+    if (str == NULL) { 
+    	sprintf(NickName, "");
+        return NickName;
+    }
+    sprintf(NickName, "%s", str);
+    env->ReleaseStringUTFChars(s, str);  
+    return NickName;
+}
+
+const char* getNicknameByRank_platform(int rank)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    jstring s = (jstring)env->CallObjectMethod(g_Obj, g_getNicknameByRank, rank);
+	const char *str = env->GetStringUTFChars(s, 0);
     if (str == NULL) { 
     	sprintf(NickName, "");
         return NickName;
