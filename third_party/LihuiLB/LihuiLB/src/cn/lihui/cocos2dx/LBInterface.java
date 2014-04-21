@@ -62,14 +62,14 @@ public class LBInterface {
 		return 0;
 	}
 
-	public String getNickname(int rank) {
+	public String getNicknameByRank(int rank) {
 
 		if (rank == -1) {
 			return getNickname();
 		} else if (listener.getRanks() != null
 				&& listener.getRanks().getRanks() != null
 				&& listener.getRanks().getRanks().size() >= rank) {
-			Log.e(TAG, "Execute getScore" + rank);
+			Log.e(TAG, "Execute getNickname" + rank);
 			return listener.getRanks().getRanks().get(rank - 1).getNickname();
 		} else if (rank == 1) {
 			LoaderActivity.m_Activity.runOnUiThread(m_Purchase);
