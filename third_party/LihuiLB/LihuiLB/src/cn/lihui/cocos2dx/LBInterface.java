@@ -1,4 +1,4 @@
-package cn.lihui.test;
+package cn.lihui.cocos2dx;
 
 import java.util.Date;
 
@@ -218,5 +218,13 @@ private final Runnable m_Purchase = new Runnable() {
 	public int getNextWeekLeftSeconds() {
 
 		return lb.getNewWeekLeftSeconds();
+	}
+	
+	public void updateNickname(String nickname){
+		lb.updateNickName(nickname);
+	}
+	
+	public String getNickname(){
+		return lb.getNickName();
 	}
 }

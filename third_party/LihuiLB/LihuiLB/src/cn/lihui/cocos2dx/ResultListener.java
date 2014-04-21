@@ -1,4 +1,4 @@
-package cn.lihui.test;
+package cn.lihui.cocos2dx;
 
 
 

@@ -86,6 +86,10 @@ bool notShared();
 
 void setShareTime();
 
+const char* getNickname();
+
+void updateNickname(const char* nickname);
+
 S3E_END_C_DECL
 
 #endif /* !S3E_EXT_LIHUILB_H */

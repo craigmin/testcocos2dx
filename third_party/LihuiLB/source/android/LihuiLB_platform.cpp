@@ -24,6 +24,8 @@ static jmethodID g_notUnlimetedLives;
 static jmethodID g_setBeijingTime;
 static jmethodID g_notShared;
 static jmethodID g_setShareTime;
+static jmethodID g_getNickname;
+static jmethodID g_updateNickname;
 
 void JNICALL LihuiLB_Receive_SuccessfulCallback(JNIEnv* env, jobject obj, jstring id);
 void JNICALL LihuiLB_Receive_FailedCallback(JNIEnv* env, jobject obj, jstring id);
@@ -92,6 +94,15 @@ s3eResult LihuiLBInit_platform()
     g_setShareTime = env->GetMethodID(cls, "setShareTime", "()V");
     if (!g_setShareTime)
         goto fail;
+
+    g_getNickname = env->GetMethodID(cls, "getNickname", "()Ljava/lang/String;");
+    if (!g_getNickname)
+        goto fail;
+
+    g_updateNickname = env->GetMethodID(cls, "updateNickname", "(Ljava/lang/String;)V");
+    if (!g_updateNickname)
+        goto fail;
+
 	{
         static const JNINativeMethod methods[]=
         {
@@ -190,6 +201,29 @@ void setShareTime_platform()
     JNIEnv* env = s3eEdkJNIGetEnv();
     env->CallVoidMethod(g_Obj, g_setShareTime);
 }
+
+static char NickName[256];
+const char* getNickname_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();	
+	jstring s = (jstring)env->CallObjectMethod(g_Obj, g_getNickname);
+    const char *str = env->GetStringUTFChars(s, 0);
+    if (str == NULL) { 
+    	sprintf(NickName, "");
+        return NickName;
+    }
+    sprintf(NickName, "%s", str);
+    env->ReleaseStringUTFChars(s, str);  
+    return NickName;
+}
+
+void updateNickname_platform(const char* nickname)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    jstring nickname_jstr = env->NewStringUTF(nickname);
+    env->CallVoidMethod(g_Obj, g_updateNickname, nickname_jstr);
+}
+
 void JNICALL LihuiLB_Receive_SuccessfulCallback(JNIEnv* env, jobject obj, jstring id)
 {
     const char* utf = env->GetStringUTFChars(id,NULL);

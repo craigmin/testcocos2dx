@@ -53,4 +53,12 @@ class LihuiLB
     {
         
     }
+    public FIXME getNickname()
+    {
+        
+    }
+    public void updateNickname(String nickname)
+    {
+        
+    }
 }

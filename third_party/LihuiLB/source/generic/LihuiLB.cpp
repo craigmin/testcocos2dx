@@ -72,3 +72,13 @@ void setShareTime()
 {
 	setShareTime_platform();
 }
+
+const char* getNickname()
+{
+	getNickname_platform();
+}
+
+void updateNickname(const char* nickname)
+{
+	updateNickname_platform(nickname);
+}

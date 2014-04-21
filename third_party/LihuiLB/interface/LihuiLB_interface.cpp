@@ -32,6 +32,8 @@ typedef       bool(*notUnlimetedLives_t)();
 typedef       void(*setBeijingTime_t)();
 typedef       bool(*notShared_t)();
 typedef       void(*setShareTime_t)();
+typedef const char*(*getNickname_t)();
+typedef       void(*updateNickname_t)(const char* nickname);
 
 /**
  * struct that gets filled in by LihuiLBRegister
@@ -50,6 +52,8 @@ typedef struct LihuiLBFuncs
     setBeijingTime_t m_setBeijingTime;
     notShared_t m_notShared;
     setShareTime_t m_setShareTime;
+    getNickname_t m_getNickname;
+    updateNickname_t m_updateNickname;
 } LihuiLBFuncs;
 
 static LihuiLBFuncs g_Ext;
@@ -327,6 +331,46 @@ void setShareTime()
 #endif
 
     g_Ext.m_setShareTime();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+const char* getNickname()
+{
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[12] func: getNickname"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    const char* ret = g_Ext.m_getNickname();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
+}
+
+void updateNickname(const char* nickname)
+{
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[13] func: updateNickname"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_updateNickname(nickname);
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);

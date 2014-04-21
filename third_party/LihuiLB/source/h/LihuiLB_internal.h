@@ -62,5 +62,9 @@ bool notShared_platform();
 
 void setShareTime_platform();
 
+const char* getNickname_platform();
+
+void updateNickname_platform(const char* nickname);
+
 
 #endif /* !LIHUILB_INTERNAL_H */

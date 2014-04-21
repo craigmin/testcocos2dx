@@ -84,6 +84,18 @@ static void setShareTime_wrap()
     s3eEdkThreadRunOnOS((s3eEdkThreadFunc)setShareTime, 0);
 }
 
+static const char* getNickname_wrap()
+{
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB func on main thread: getNickname"));
+    return (const char*)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getNickname, 0);
+}
+
+static void updateNickname_wrap(const char* nickname)
+{
+    IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB func on main thread: updateNickname"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)updateNickname, 1, nickname);
+}
+
 #define initLB initLB_wrap
 #define updateScore updateScore_wrap
 #define receiveRank receiveRank_wrap
@@ -94,6 +106,8 @@ static void setShareTime_wrap()
 #define setBeijingTime setBeijingTime_wrap
 #define notShared notShared_wrap
 #define setShareTime setShareTime_wrap
+#define getNickname getNickname_wrap
+#define updateNickname updateNickname_wrap
 
 #endif
 
@@ -110,7 +124,7 @@ s3eResult LihuiLBUnRegister(LihuiLBCallback cbid, s3eCallback fn)
 void LihuiLBRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[12];
+    void* funcPtrs[14];
     funcPtrs[0] = (void*)LihuiLBRegister;
     funcPtrs[1] = (void*)LihuiLBUnRegister;
     funcPtrs[2] = (void*)initLB;
@@ -123,11 +137,13 @@ void LihuiLBRegisterExt()
     funcPtrs[9] = (void*)setBeijingTime;
     funcPtrs[10] = (void*)notShared;
     funcPtrs[11] = (void*)setShareTime;
+    funcPtrs[12] = (void*)getNickname;
+    funcPtrs[13] = (void*)updateNickname;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[12] = { 0 };
+    int flags[14] = { 0 };
 
     /*
      * Register the extension
