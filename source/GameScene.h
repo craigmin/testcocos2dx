@@ -19,14 +19,17 @@ protected:
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
+	bool bValueZero[4][4];
 	bool bPaused;
 	bool bInMoving;
 	bool soundState;
 	bool bClean;
+	bool bCConfrim;
 	int topTileScore;
 	float widoffset;
 	float heioffset;
-
+	int cleanX;
+	int cleanY;
 
 public:
     ~GameScene();
@@ -58,8 +61,11 @@ public:
 	void cleancancleClick(CCObject *sender);
 	void bombButtonClick(CCObject *sender);
 	void rearrangeButtonClick(CCObject *sender);
+	void cleanConfirmButtonClick(CCObject *sender);
+	
 	void cleanPoint(float x,float y);
 	void updateCoodinates();
+	void cleanPointConfirm(int x,int y);
 	
 	virtual void onEnter();
     virtual void onExit();
