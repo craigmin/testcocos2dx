@@ -344,7 +344,7 @@ const char* getNickname()
     IwTrace(LIHUILB_VERBOSE, ("calling LihuiLB[12] func: getNickname"));
 
     if (!_extLoad())
-        return;
+        return 0;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
