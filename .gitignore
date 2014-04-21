@@ -18,3 +18,8 @@
 /third_party/Lihui2048Api/lib/android/lihui2048api.jar
 /third_party/Lihui2048Api/Lihui2048Api/*.log
 /third_party/Lihui2048Api/Lihui2048Api/*.log
+
+/third_party/LihuiLB/LihuiLB/.settings
+/third_party/LihuiLB/LihuiLB/assets
+/third_party/LihuiLB/LihuiLB/bin
+/third_party/LihuiLB/LihuiLB/gen
