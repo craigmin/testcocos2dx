@@ -72,11 +72,14 @@ assets
 	"images/restart.png"
 	"images/back2menu.png"
 	"images/btn_update_nickname.png"
+	"images/back2game.png"
 
 	"images/splashscreen_css.jpg"
 	"images/dialog_bk.png"
 	"images/dialog_intro.png"
 	"images/restart_dialog_bk.png"
+	"images/dialog_bomb.png"
+	"images/dialog_rearrange.png"
 
 	"images/btn_cancel.png"
 	"images/btn_confirm.png"
