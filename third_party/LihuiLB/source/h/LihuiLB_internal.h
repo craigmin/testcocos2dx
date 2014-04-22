@@ -64,6 +64,8 @@ void setShareTime_platform();
 
 const char* getNickname_platform();
 
+const char* getNicknameByRank_platform(int rank);
+
 void updateNickname_platform(const char* nickname);
 
 

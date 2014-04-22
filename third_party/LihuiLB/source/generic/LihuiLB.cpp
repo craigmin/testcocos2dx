@@ -78,6 +78,11 @@ const char* getNickname()
 	getNickname_platform();
 }
 
+const char* getNicknameByRank(int rank)
+{
+	getNicknameByRank_platform(rank);
+}
+
 void updateNickname(const char* nickname)
 {
 	updateNickname_platform(nickname);
