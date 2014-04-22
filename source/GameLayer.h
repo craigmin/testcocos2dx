@@ -5,11 +5,7 @@
 #define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
 
 #include "cocos2d.h"
-#include "Box2D\Box2D.h"
-
 using namespace cocos2d;
-
-
 class GameLayer : public cocos2d::CCLayer
 {
 protected:
@@ -22,12 +18,6 @@ public:
     
     // Init method
     virtual bool init();
-
-	// Draw method
-	virtual void draw();
-
-	// Main update loop
-	void update(float dt);
 
     // Create instance of scene
     static CCScene* scene();

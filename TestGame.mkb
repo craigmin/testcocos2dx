@@ -71,6 +71,7 @@ assets
 	"images/numb_what.png"
 	"images/restart.png"
 	"images/back2menu.png"
+	"images/btn_update_nickname.png"
 
 	"images/splashscreen_css.jpg"
 	"images/dialog_bk.png"
@@ -108,6 +109,7 @@ subprojects
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
+	#third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
 }
 
 deployment
@@ -121,6 +123,6 @@ deployments
 	icon = "data/icons/icon170.png"
 	name = "Daily2048"
 	android-manifest='AndroidManifest.xml'
-	android-custom-activity='com.lihui.bubblebirds.LihuiMain'
+	android-custom-activity='com.lihui.daily2048.LihuiMain'
 	android-external-jars=marmaladecustom.jar
 }

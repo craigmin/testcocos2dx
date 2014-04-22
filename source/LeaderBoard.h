@@ -28,6 +28,7 @@ public:
     CREATE_FUNC(LeaderBoard);
 
     void back2menuClick(CCObject *sender);
+	void updateNicknameClick(CCObject *sender);
 };
 
 #endif // __LeaderBoard_H__

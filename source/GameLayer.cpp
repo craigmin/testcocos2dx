@@ -1,13 +1,12 @@
 #include "SimpleAudioEngine.h"
+
 #include "GameLayer.h"
 #include "GameScene.h"
-#include "LeaderBoard.h"LL_BUTTON_SCALE_VALUE
+#include "LeaderBoard.h"
 #include "Lihui2048Api.h"
 #include "LihuiAD_Baidu.h"
 #include "LihuiLB.h"
 
-#define LL_SCREEN_SCALE_VALUE (CCDirector::sharedDirector()->getWinSize().height/1024)
-#define LL_BUTTON_SCALE_VALUE (0.6*LL_SCREEN_SCALE_VALUE)
 
 GameLayer::~GameLayer()
 {
@@ -108,65 +107,29 @@ bool GameLayer::init()
     this->addChild(plbMenu, 3);
 
 	
-    /*CCSprite* zero = CCSprite::spriteWithFile("images/name_0.png");
-    zero->setPosition(ccp(SCREEN_WIDTH*0.397, SCREEN_HEIGHT*0.84));
-	zero->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
-    this->addChild(zero,1);
-	
-    CCSprite* two = CCSprite::spriteWithFile("images/name_2.png");
-    two->setPosition(ccp(SCREEN_WIDTH*0.25, SCREEN_HEIGHT*0.788));
-	two->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
-    this->addChild(two, 2);
-	
-    CCSprite* four = CCSprite::spriteWithFile("images/name_4.png");
-    four->setPosition(ccp(SCREEN_WIDTH*0.57, SCREEN_HEIGHT*0.75));
-	four->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
-    this->addChild(four, 2);
+    //updateNickname(NULL);
 
-    CCSprite* eight = CCSprite::spriteWithFile("images/name_8.png");
-    eight->setPosition(ccp(SCREEN_WIDTH*0.756, SCREEN_HEIGHT*0.804));
-	eight->setScale(SCREEN_WIDTH/sprite->getContentSize().width);
-    this->addChild(eight, 1);*/
-
-    // Create main loop
-    //this->schedule(schedule_selector(GameLayer::update));
-
-    // COCOS2D TIP
-    // Create Cocos2D objects here
-
-	// Create Box2D world
-	//world = new b2World(b2Vec2(0, 100));
-
-    // BOX2D TIP
-    // Create Box2D objects here
 	InitBdAd();
     return true;
 }
 
-void GameLayer::draw()
-{
-}
-
-void GameLayer::update(float dt)
-{
-	// Update Box2D world
-	//world->Step(dt, 6, 3);
-
-    // BOX2D TIP
-    // Update objects from box2d coordinates here
-}
 void GameLayer::startButtonClick(CCObject *sender){
 	if (bPaused) {
 		return;
 	}
+
 	reset();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
 }
+
+
 //Jerry--Code
 void GameLayer::leaderboardButtonClick(CCObject *sender){
 	
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f, LeaderBoard::scene()));
 }
+
+
 
 void GameLayer::instructionButtonClick(CCObject *sender){
 	if (bPaused) {
