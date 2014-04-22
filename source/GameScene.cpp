@@ -173,6 +173,18 @@ bool GameScene::init()
 	topScoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(topScoreLabel, 4);	
 
+	sprintf(buff,"x%d",getBombs());
+	bombLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",36*LL_SCREEN_SCALE_VALUE);
+	bombLabel->setPosition(ccp(SCREEN_WIDTH*0.87,SCREEN_HEIGHT*0.82));
+	bombLabel->setColor(ccc3(0xEE,0xEE,0xEE));
+	this->addChild(bombLabel, 4);
+
+	sprintf(buff,"x%d",getRearranges());
+	rearrangeLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,"arial",36*LL_SCREEN_SCALE_VALUE);
+	rearrangeLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.82));
+	rearrangeLabel->setColor(ccc3(0xEE,0xEE,0xEE));
+	this->addChild(rearrangeLabel, 4);
+
 	CCSprite* restartNormal = CCSprite::spriteWithFile("images/restart.png");
 	CCSprite* restartSelected = CCSprite::spriteWithFile("images/restart.png");
 	CCSprite* restartDisabled = CCSprite::spriteWithFile("images/restart.png");
@@ -208,7 +220,7 @@ bool GameScene::init()
 	CCMenuItemSprite*  pbombmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(bombButtonOff, bombButtonOn, this, menu_selector(GameScene::bombButtonClick));
 	pbombmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pbomb2menuMenu = CCMenu::menuWithItems(pbombmenuItemSprite,NULL);
-	pbomb2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7, SCREEN_HEIGHT*0.82));
+	pbomb2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.82));
 	this->addChild(pbomb2menuMenu, 3);
 
 	CCSprite* rearrangeButtonOff = CCSprite::spriteWithFile("images/rearrange.png");
@@ -216,7 +228,7 @@ bool GameScene::init()
 	CCMenuItemSprite*  prearrangemenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(rearrangeButtonOff, rearrangeButtonOn, this, menu_selector(GameScene::rearrangeButtonClick));
 	prearrangemenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* prearrange2menuMenu = CCMenu::menuWithItems(prearrangemenuItemSprite,NULL);
-	prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.85 ,SCREEN_HEIGHT*0.82));
+	prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.8 ,SCREEN_HEIGHT*0.82));
 	this->addChild(prearrange2menuMenu, 3);
 
 	bMovable = true;
@@ -230,12 +242,17 @@ void GameScene::drawScore(){
 	char buff[16];
 	*buff = 0;
 	sprintf(buff,"%d",getCurrentScore());
-
 	scoreLabel->setString(buff);
-
 	sprintf(buff,"%d",getBestScore());
-
 	topScoreLabel->setString(buff);
+}
+void GameScene::drawProperty(){
+	char buff[16];
+	*buff = 0;
+	sprintf(buff,"x%d",getBombs());
+	bombLabel->setString(buff);
+	sprintf(buff,"x%d",getRearranges());
+	rearrangeLabel->setString(buff);
 }
 
 int bAnimFinished = true;
@@ -415,7 +432,7 @@ void GameScene::cleanPointConfirm(int x,int y){
 		return;
 	cleanX=x;
 	cleanY=y;
-	pauseGame(3);
+	pauseGame(USEBOMB);
 }
 void GameScene::cleanPoint(float x,float y)
 {
@@ -423,7 +440,7 @@ void GameScene::cleanPoint(float x,float y)
 		for(int j=0;j<4;j++){
 			CCSprite* target=(CCSprite*)this->getChildByTag(i*4+j+100);
 			if(target!=NULL){
-				
+
 				/*
 				char buff[16];
 				*buff = 0;
@@ -464,33 +481,17 @@ void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
 
 	if(bClean){
+		if(empty>14){
+			
+				return;
+		}
+		if((getBombs()<0)||(getBombs()==0)) {
+			pauseGame(BUYBOMB);
+			return;
+		}
 		CCPoint	touch = pTouch->getLocationInView();
 		touch = CCDirector::sharedDirector()->convertToGL(touch);
 		cleanPoint(touch.x,touch.y);
-		/*
-		int i,j;
-		if(0.0333*SCREEN_WIDTH<ccp_now.x<0.2416*SCREEN_WIDTH){
-		i=2;
-		}else if(0.0333*SCREEN_WIDTH+widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+widoffset){
-		i=1;
-		}else if(0.0333*SCREEN_WIDTH+2*widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+2*widoffset){
-		i=2;
-		}else if(0.0333*SCREEN_WIDTH+3*widoffset<ccp_now.x<0.2416*SCREEN_WIDTH+3*widoffset){
-		i=3;
-		}
-		if(0.6489*SCREEN_HEIGHT<ccp_now.y<0.7661*SCREEN_HEIGHT){
-		j=3;
-		}else if(0.6489*SCREEN_HEIGHT-heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-heioffset){
-		j=1;
-		}else if(0.6489*SCREEN_HEIGHT-2*heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-2*heioffset){
-		j=2;
-		}
-		else if(0.6489*SCREEN_HEIGHT-3*heioffset<ccp_now.y<0.7661*SCREEN_HEIGHT-3*heioffset){
-		j=3;
-		}
-		this->removeChildByTag(4*i+j+100);
-		*/
-
 		return;
 
 	}
@@ -575,7 +576,7 @@ void GameScene::gameOver(){
 
 }
 
-void GameScene::pauseGame(int pauseType){ 
+void GameScene::pauseGame(pausetype Type){ 
 	//Jerry--LB
 	updateScore(getBestScore());
 	if (bPaused) {
@@ -596,15 +597,20 @@ void GameScene::pauseGame(int pauseType){
 	CCLayer *layer2 = new CCLayer();
 
 	CCSprite* dialog_bk;
-	if(pauseType == 1){
+	if(Type == BACK2MENU){
 		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
-	}if(pauseType == 2) {
+	}if(Type == RESTART) {
 		dialog_bk= CCSprite::spriteWithFile("images/restart_dialog_bk.png");
-	}if(pauseType == 3) {
+	}if(Type == USEBOMB) {
 		dialog_bk= CCSprite::spriteWithFile("images/dialog_bomb.png");
-	}if(pauseType == 4) {
+	}if(Type == USEREARRANGE) {
 		dialog_bk= CCSprite::spriteWithFile("images/dialog_rearrange.png");
+	}if(Type == BUYBOMB){
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
+	}if(Type == BUYREARRANGE){
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
 	}
+
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
 	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
 	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
@@ -615,14 +621,18 @@ void GameScene::pauseGame(int pauseType){
 	CCSprite* confirmSelected = CCSprite::spriteWithFile("images/btn_confirm.png");
 	CCSprite* confirmDisabled = CCSprite::spriteWithFile("images/btn_confirm.png");
 	CCMenuItemSprite* pconfirmNormalItemSprite;
-	if(pauseType == 1){
+	if(Type == BACK2MENU){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
-	} if(pauseType == 2) {
+	} if(Type == RESTART) {
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::restartConfirmButtonClick));
-	}if(pauseType == 3){
+	}if(Type == USEBOMB){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::cleanConfirmButtonClick));
-	}if(pauseType == 4){
+	}if(Type == USEREARRANGE){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::rearrangeConfirmButtonClick));
+	}if(Type == BUYBOMB){
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
+	}if(Type == BUYREARRANGE){
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
 	}
 
 
@@ -710,7 +720,7 @@ void GameScene::restartClick(CCObject *sender){
 		return;
 	}
 	//connectToWX();
-	pauseGame(2);
+	pauseGame(RESTART);
 }
 
 void GameScene::back2menuClick(CCObject *sender){
@@ -720,7 +730,7 @@ void GameScene::back2menuClick(CCObject *sender){
 		return;
 	}
 
-	pauseGame(1);
+	pauseGame(BACK2MENU);
 
 }
 
@@ -735,56 +745,65 @@ void GameScene::cleancancleClick(CCObject *sender){
 			CCSprite* target=(CCSprite*)this->getChildByTag(i*4+j+100);
 			if(target!=NULL)
 
-		    //target->setOpacity(255);
-			target->stopAllActions();
+				//target->setOpacity(255);
+					target->stopAllActions();
 		}
 }
 void GameScene::bombButtonClick(CCObject *sender){
 	//bPaused = true;
+	if(bClean)
+		return;
+	if((getBombs()==0)||(getBombs()<0)){
+		pauseGame(BUYBOMB);
+		return;
+	}
+	empty=getEmptyPoints();
 	bClean=true;
 	for(int i=0;i<4;i++)
 		for(int j=0;j<4;j++){
-	bValueZero[i][j]=false;
+			bValueZero[i][j]=false;
 		}
-	CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background_2.png");
-	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
-	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
-	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
-	sprite->setTag(2000);
-	this->addChild(sprite,10);
-	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2game.png");
-	CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2game.png");
-	CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2game.png");
-	CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
-	pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
-	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
-	pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.16));
-	pback2menuMenu->setTag(2001);
-	this->addChild(pback2menuMenu,11);	
+		CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background_2.png");
+		sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
+		sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
+		sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+		sprite->setTag(2000);
+		this->addChild(sprite,10);
+		CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2game.png");
+		CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2game.png");
+		CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2game.png");
+		CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
+		pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
+		pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.16));
+		pback2menuMenu->setTag(2001);
+		this->addChild(pback2menuMenu,11);	
 
-	for(int i=0;i<4;i++)
-		for(int j=0;j<4;j++){
+		for(int i=0;i<4;i++)
+			for(int j=0;j<4;j++){
 
-			if(coodinates_now[i][j] == 0){
-				continue;
+				if(coodinates_now[i][j] == 0){
+					continue;
+				}
+				CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
+				CCScaleTo* large=CCScaleTo::actionWithDuration(0.2,1.05*SCREEN_WIDTH/sprite->getContentSize().width);
+				CCScaleTo* small=CCScaleTo::actionWithDuration(0.2,SCREEN_WIDTH/sprite->getContentSize().width);
+				CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.2f);
+				CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
+				CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
+				CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
+				//target->setOpacity(100);
+				target->stopAllActions();
+				target->runAction(actionShake);
 			}
-			CCSprite* sprite = CCSprite::spriteWithFile("images/gi_background.png");
-			CCScaleTo* large=CCScaleTo::actionWithDuration(0.2,1.05*SCREEN_WIDTH/sprite->getContentSize().width);
-			CCScaleTo* small=CCScaleTo::actionWithDuration(0.2,SCREEN_WIDTH/sprite->getContentSize().width);
-			CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.2f);
-			CCFiniteTimeAction* action= CCSequence::actions(waiting,large,small,waiting,NULL);
-			CCActionInterval* actionShake=CCRepeatForever::actionWithAction((CCActionInterval*)action);
-			CCSprite *target = (CCSprite*)this->getChildByTag(i*4+j+100);
-			//target->setOpacity(100);
-			target->stopAllActions();
-			target->runAction(actionShake);
-		}
 }
 void GameScene::rearrangeButtonClick(CCObject *sender){
 	if (bPaused||bClean) {
-	return;
+		return;
 	}
-	pauseGame(4);
+	if(getRearranges()>0)
+		pauseGame(USEREARRANGE);
+	else pauseGame(BUYREARRANGE);
 	/*
 	reArrange();
 	updateCoodinates();
@@ -793,6 +812,11 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 }
 void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	cleanRect(cleanX,cleanY);
+	coodinates_last[cleanX][cleanY]=0;
+	empty++;
+	useBombs();
+	//addBombs();
+	drawProperty();
 	bValueZero[cleanX][cleanY]=true;
 	bCConfrim=true;
 	this->removeChildByTag(1000);
@@ -801,15 +825,36 @@ void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	CCSprite* target=(CCSprite*)this->getChildByTag(cleanX*4+cleanY+100);
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionBomb0.raw");
 	CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
-	target->runAction(fadeOutTRTiles);
-
-}
+	CCFiniteTimeAction* fadeOutDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::fadeOutCallback)); 
+	target->runAction( CCSequence::create(fadeOutTRTiles,fadeOutDone, NULL) );
+	}
 void GameScene::rearrangeConfirmButtonClick(CCObject *sender){ 
 	this->removeChildByTag(1000);
+	useRearranges();
+
+	drawProperty();
 	bPaused = false;
 	reArrange();
 	updateCoodinates();
 	drawMatrix();
 
-	
+
+}
+void GameScene::fadeOutCallback(CCNode *sender){
+	this->removeChildByTag(cleanX*4+cleanY+100);
+	if(empty==15){
+		this->removeChildByTag(2000);
+			this->removeChildByTag(2001);
+			bPaused = false;
+			bClean=false;
+			bCConfrim=false;
+			for(int i=0;i<4;i++)
+				for(int j=0;j<4;j++){
+					CCSprite* target=(CCSprite*)this->getChildByTag(i*4+j+100);
+					if(target!=NULL)
+
+						//target->setOpacity(255);
+							target->stopAllActions();
+				}
+	}
 }

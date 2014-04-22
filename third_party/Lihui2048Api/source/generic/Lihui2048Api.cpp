@@ -72,3 +72,38 @@ void reArrange()
 {
 	reArrange_platform();
 }
+
+int getBombs()
+{
+	return getBombs_platform();
+}
+
+int getRearranges()
+{
+	return getRearranges_platform();
+}
+
+void addBombs()
+{
+	addBombs_platform();
+}
+
+void addRearranges()
+{
+	addRearranges_platform();
+}
+
+void useBombs()
+{
+	useBombs_platform();
+}
+
+void useRearranges()
+{
+	useRearranges_platform();
+}
+
+int getEmptyPoints()
+{
+	getEmptyPoints_platform();
+}

@@ -84,6 +84,48 @@ static void reArrange_wrap()
     s3eEdkThreadRunOnOS((s3eEdkThreadFunc)reArrange, 0);
 }
 
+static int getBombs_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: getBombs"));
+    return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getBombs, 0);
+}
+
+static int getRearranges_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: getRearranges"));
+    return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getRearranges, 0);
+}
+
+static void addBombs_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: addBombs"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addBombs, 0);
+}
+
+static void addRearranges_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: addRearranges"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addRearranges, 0);
+}
+
+static void useBombs_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: useBombs"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)useBombs, 0);
+}
+
+static void useRearranges_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: useRearranges"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)useRearranges, 0);
+}
+
+static int getEmptyPoints_wrap()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: getEmptyPoints"));
+    return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getEmptyPoints, 0);
+}
+
 #define isMovable isMovable_wrap
 #define move move_wrap
 #define getCurrentScore getCurrentScore_wrap
@@ -94,13 +136,20 @@ static void reArrange_wrap()
 #define getAnim getAnim_wrap
 #define cleanRect cleanRect_wrap
 #define reArrange reArrange_wrap
+#define getBombs getBombs_wrap
+#define getRearranges getRearranges_wrap
+#define addBombs addBombs_wrap
+#define addRearranges addRearranges_wrap
+#define useBombs useBombs_wrap
+#define useRearranges useRearranges_wrap
+#define getEmptyPoints getEmptyPoints_wrap
 
 #endif
 
 void Lihui2048ApiRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[10];
+    void* funcPtrs[17];
     funcPtrs[0] = (void*)isMovable;
     funcPtrs[1] = (void*)move;
     funcPtrs[2] = (void*)getCurrentScore;
@@ -111,11 +160,18 @@ void Lihui2048ApiRegisterExt()
     funcPtrs[7] = (void*)getAnim;
     funcPtrs[8] = (void*)cleanRect;
     funcPtrs[9] = (void*)reArrange;
+    funcPtrs[10] = (void*)getBombs;
+    funcPtrs[11] = (void*)getRearranges;
+    funcPtrs[12] = (void*)addBombs;
+    funcPtrs[13] = (void*)addRearranges;
+    funcPtrs[14] = (void*)useBombs;
+    funcPtrs[15] = (void*)useRearranges;
+    funcPtrs[16] = (void*)getEmptyPoints;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[10] = { 0 };
+    int flags[17] = { 0 };
 
     /*
      * Register the extension

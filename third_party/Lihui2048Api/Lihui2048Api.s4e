@@ -23,3 +23,17 @@ int getAnim(int x,int y) 0 run_on_os_thread
 void cleanRect(int x,int y) run_on_os_thread
 
 void reArrange() run_on_os_thread
+
+int getBombs() 0 run_on_os_thread
+
+int getRearranges() 0 run_on_os_thread
+
+void addBombs() run_on_os_thread
+
+void addRearranges() run_on_os_thread
+
+void useBombs() run_on_os_thread
+
+void useRearranges() run_on_os_thread
+
+int getEmptyPoints() run_on_os_thread

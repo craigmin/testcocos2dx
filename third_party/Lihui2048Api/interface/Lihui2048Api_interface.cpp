@@ -30,6 +30,13 @@ typedef        int(*getValue_t)(int x, int y);
 typedef        int(*getAnim_t)(int x, int y);
 typedef       void(*cleanRect_t)(int x, int y);
 typedef       void(*reArrange_t)();
+typedef        int(*getBombs_t)();
+typedef        int(*getRearranges_t)();
+typedef       void(*addBombs_t)();
+typedef       void(*addRearranges_t)();
+typedef       void(*useBombs_t)();
+typedef       void(*useRearranges_t)();
+typedef        int(*getEmptyPoints_t)();
 
 /**
  * struct that gets filled in by Lihui2048ApiRegister
@@ -46,6 +53,13 @@ typedef struct Lihui2048ApiFuncs
     getAnim_t m_getAnim;
     cleanRect_t m_cleanRect;
     reArrange_t m_reArrange;
+    getBombs_t m_getBombs;
+    getRearranges_t m_getRearranges;
+    addBombs_t m_addBombs;
+    addRearranges_t m_addRearranges;
+    useBombs_t m_useBombs;
+    useRearranges_t m_useRearranges;
+    getEmptyPoints_t m_getEmptyPoints;
 } Lihui2048ApiFuncs;
 
 static Lihui2048ApiFuncs g_Ext;
@@ -289,4 +303,144 @@ void reArrange()
 #endif
 
     return;
+}
+
+int getBombs()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[10] func: getBombs"));
+
+    if (!_extLoad())
+        return 0;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    int ret = g_Ext.m_getBombs();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
+}
+
+int getRearranges()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[11] func: getRearranges"));
+
+    if (!_extLoad())
+        return 0;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    int ret = g_Ext.m_getRearranges();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
+}
+
+void addBombs()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[12] func: addBombs"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_addBombs();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+void addRearranges()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[13] func: addRearranges"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_addRearranges();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+void useBombs()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[14] func: useBombs"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_useBombs();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+void useRearranges()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[15] func: useRearranges"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_useRearranges();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+int getEmptyPoints()
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[16] func: getEmptyPoints"));
+
+    if (!_extLoad())
+        return 16;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    int ret = g_Ext.m_getEmptyPoints();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
 }

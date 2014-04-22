@@ -14,6 +14,8 @@ protected:
 	int SCREEN_HEIGHT;
 	CCLabelTTF* scoreLabel;
 	CCLabelTTF* topScoreLabel;
+	CCLabelTTF* bombLabel;
+	CCLabelTTF* rearrangeLabel;
 	CCMenuItemSprite *psoundmenuItemSprite;
 	//CCSprite* rect[16];
 	bool bMovable;
@@ -30,6 +32,16 @@ protected:
 	float heioffset;
 	int cleanX;
 	int cleanY;
+	int empty;
+typedef enum
+{
+    RESTART,
+    BACK2MENU,
+    USEBOMB,
+	USEREARRANGE,
+	BUYBOMB,
+	BUYREARRANGE
+} pausetype;
 
 public:
     ~GameScene();
@@ -47,12 +59,14 @@ public:
 	void restartClick(CCObject *sender);	
 	void back2menuClick(CCObject *sender);
 	void animCallback(CCNode *sender);
+	void fadeOutCallback(CCNode *sender);		
 	void drawScore();
+	void drawProperty();
 	void moveMatrix(int moveDir);
 	void gameOver();
 	void animateMatrix(int moveDir);
 	int* trackMovementPath(const int before[],const int after[], bool b);
-	void pauseGame(int pauseType);
+	void pauseGame(pausetype Type);
 	void shareButtonClick(CCObject *sender);
 	void cancelButtonClick(CCObject *sender);
 	void restartConfirmButtonClick(CCObject *sender);

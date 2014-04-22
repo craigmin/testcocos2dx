@@ -1,5 +1,9 @@
 package cn.lihui.game.object;
 
+import com.ideaworks3d.marmalade.LoaderActivity;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import cn.lihui.game.consts.MatrixSize;
 import cn.lihui.game.consts.MoveTypes;
@@ -14,11 +18,16 @@ public class Matrix {
 	private Score score;
 	private int emptyPoints;
 	private IArrangeOperation arrangeOpt;
-
+	private SharedPreferences mSharedPreferences;
+    private int bombs;
+    private int rearranges;
 	public Matrix() {
+		mSharedPreferences = LoaderActivity.m_Activity.getSharedPreferences(
+				"cn.lihui.2048.properties", LoaderActivity.m_Activity.MODE_PRIVATE);
 		arrangeOpt = new RandomArrangeOperation();
 		score = new Score();
-
+		bombs=mSharedPreferences.getInt("BOMB", 3);
+		rearranges=mSharedPreferences.getInt("REARRANGE", 1);
 		init();
 	}
 
@@ -199,5 +208,38 @@ public class Matrix {
 	public void cleanPointValue(int x, int y){
 		this.points[x][y].clear();
 		Log.i("","Jerry--cleanPointValue");
+	}
+	public int getBombs(){
+	   return this.bombs;
+	}
+	public int getRearranges(){
+	   return this.rearranges;
+		}
+	public void addBombs(){
+		this.bombs=this.bombs+3;
+		Editor editor = mSharedPreferences.edit();
+		editor.putInt("BOMB", this.bombs);
+		editor.commit();
+	}
+	public void addRearranges(){
+		this.rearranges=this.rearranges+1;
+		Editor editor = mSharedPreferences.edit();
+		editor.putInt("REARRANGE", this.rearranges);
+		editor.commit();
+	}
+	public void useBombs(){
+		this.bombs=this.bombs-1;
+		Editor editor = mSharedPreferences.edit();
+		editor.putInt("BOMB", this.bombs);
+		editor.commit();
+	}
+	public void useRearranges(){
+		this.rearranges=this.rearranges-1;
+		Editor editor = mSharedPreferences.edit();
+		editor.putInt("REARRANGE", this.rearranges);
+		editor.commit();
+	}
+	public int getEmptyPoints(){
+		return this.emptyPoints;
 	}
 }

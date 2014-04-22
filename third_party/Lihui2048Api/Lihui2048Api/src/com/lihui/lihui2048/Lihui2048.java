@@ -57,4 +57,25 @@ public class Lihui2048 {
 	public void reArrange() {
 		matrix.rearrangeMatrix();
 	}
+	public int getBombs(){
+		return matrix.getBombs();
+	}
+	public int getRearranges(){
+		return matrix.getRearranges();
+	}
+	public void addBombs(){
+		matrix.addBombs();
+	}
+	public void addRearranges(){
+		matrix.addRearranges();
+	}
+	public void useBombs(){
+		matrix.useBombs();
+	}
+	public void useRearranges(){
+		matrix.useRearranges();
+	}
+	public int getEmptyPoints(){
+		return matrix.getEmptyPoints();
+	}
 }
