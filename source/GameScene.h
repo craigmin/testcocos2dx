@@ -62,6 +62,7 @@ public:
 	void bombButtonClick(CCObject *sender);
 	void rearrangeButtonClick(CCObject *sender);
 	void cleanConfirmButtonClick(CCObject *sender);
+	void rearrangeConfirmButtonClick(CCObject *sender);
 	
 	void cleanPoint(float x,float y);
 	void updateCoodinates();

@@ -598,8 +598,12 @@ void GameScene::pauseGame(int pauseType){
 	CCSprite* dialog_bk;
 	if(pauseType == 1){
 		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
-	} else {
+	}if(pauseType == 2) {
 		dialog_bk= CCSprite::spriteWithFile("images/restart_dialog_bk.png");
+	}if(pauseType == 3) {
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_bomb.png");
+	}if(pauseType == 4) {
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_rearrange.png");
 	}
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
 	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
@@ -617,7 +621,10 @@ void GameScene::pauseGame(int pauseType){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::restartConfirmButtonClick));
 	}if(pauseType == 3){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::cleanConfirmButtonClick));
+	}if(pauseType == 4){
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::rearrangeConfirmButtonClick));
 	}
+
 
 	pconfirmNormalItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pconfirmMenu = CCMenu::menuWithItems(pconfirmNormalItemSprite,NULL);
@@ -745,9 +752,9 @@ void GameScene::bombButtonClick(CCObject *sender){
 	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	sprite->setTag(2000);
 	this->addChild(sprite,10);
-	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2menu.png");
-	CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2menu.png");
-	CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2menu.png");
+	CCSprite* back2menuNormal = CCSprite::spriteWithFile("images/back2game.png");
+	CCSprite* back2menuSelected = CCSprite::spriteWithFile("images/back2game.png");
+	CCSprite* back2menuDisabled = CCSprite::spriteWithFile("images/back2game.png");
 	CCMenuItemSprite* pback2menuItemSprite = CCMenuItemSprite::itemWithNormalSprite(back2menuNormal, back2menuSelected, back2menuDisabled, this, menu_selector(GameScene::cleancancleClick));
 	pback2menuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSprite,NULL);
@@ -774,9 +781,15 @@ void GameScene::bombButtonClick(CCObject *sender){
 		}
 }
 void GameScene::rearrangeButtonClick(CCObject *sender){
+	if (bPaused||bClean) {
+	return;
+	}
+	pauseGame(4);
+	/*
 	reArrange();
 	updateCoodinates();
 	drawMatrix();
+	*/
 }
 void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	cleanRect(cleanX,cleanY);
@@ -790,4 +803,13 @@ void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
 	target->runAction(fadeOutTRTiles);
 
+}
+void GameScene::rearrangeConfirmButtonClick(CCObject *sender){ 
+	this->removeChildByTag(1000);
+	bPaused = false;
+	reArrange();
+	updateCoodinates();
+	drawMatrix();
+
+	
 }
