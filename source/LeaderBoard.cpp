@@ -3,6 +3,7 @@
 #include "GameLayer.h"
 #include "Lihui2048Api.h"
 #include "LihuiLB.h"
+#include "ThemeManager.h"
 
 LeaderBoard::~LeaderBoard()
 {
@@ -65,25 +66,25 @@ bool LeaderBoard::init()
 	*buff = 0;
 
 	for(int i=0;i<6;i++){
-		scoreLabel=CCLabelTTF::labelWithString(getNicknameByRank(i+1),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,"arial",36*LL_SCREEN_SCALE_VALUE);
+		scoreLabel=CCLabelTTF::labelWithString(getNicknameByRank(i+1),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.50,SCREEN_HEIGHT*(0.63125-0.0583*i)));
 		scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
 		this->addChild(scoreLabel, 4);
 
 		sprintf(buff,"%d ",getScore(i+1));
-		scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,"arial",36*LL_SCREEN_SCALE_VALUE);
+		scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.63125-0.0583*i)));
 		scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 		this->addChild(scoreLabel, 4);
 	}
 
-	scoreLabel=CCLabelTTF::labelWithString(getNickname(),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,"arial",36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel=CCLabelTTF::labelWithString(getNickname(),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.52,SCREEN_HEIGHT*(0.62700-0.0583*6)));
 	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
 	this->addChild(scoreLabel, 4);
 
 	sprintf(buff,"%d ",getBestScore());
-	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,"arial",36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.62700-0.0583*6)));
 	scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(scoreLabel, 4);
