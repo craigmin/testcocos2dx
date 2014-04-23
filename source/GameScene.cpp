@@ -606,9 +606,9 @@ void GameScene::pauseGame(pausetype Type){
 	}if(Type == USEREARRANGE) {
 		dialog_bk= CCSprite::spriteWithFile("images/dialog_rearrange.png");
 	}if(Type == BUYBOMB){
-		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_buy_bomb.png");
 	}if(Type == BUYREARRANGE){
-		dialog_bk= CCSprite::spriteWithFile("images/dialog_bk.png");
+		dialog_bk= CCSprite::spriteWithFile("images/dialog_buy_rearrange.png");
 	}
 
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
@@ -630,9 +630,9 @@ void GameScene::pauseGame(pausetype Type){
 	}if(Type == USEREARRANGE){
 		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::rearrangeConfirmButtonClick));
 	}if(Type == BUYBOMB){
-		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::buyBombButtonClick));
 	}if(Type == BUYREARRANGE){
-		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::backConfirmButtonClick));
+		pconfirmNormalItemSprite = CCMenuItemSprite::itemWithNormalSprite(confirmNormal, confirmSelected, confirmDisabled, this, menu_selector(GameScene::buyRearrangeButtonClick));
 	}
 
 
@@ -823,6 +823,7 @@ void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	bPaused = false;
 	//bClean=false;
 	CCSprite* target=(CCSprite*)this->getChildByTag(cleanX*4+cleanY+100);
+
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionBomb0.raw");
 	CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
 	CCFiniteTimeAction* fadeOutDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::fadeOutCallback)); 
@@ -857,4 +858,16 @@ void GameScene::fadeOutCallback(CCNode *sender){
 							target->stopAllActions();
 				}
 	}
+}
+void GameScene::buyBombButtonClick(CCObject *sender){ 
+	addBombs();
+	drawProperty();
+	this->removeChildByTag(1000);
+	bPaused = false;
+}
+void GameScene::buyRearrangeButtonClick(CCObject *sender){ 
+	addRearranges();
+	drawProperty();
+	this->removeChildByTag(1000);
+	bPaused = false;
 }

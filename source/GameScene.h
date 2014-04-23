@@ -77,6 +77,8 @@ public:
 	void rearrangeButtonClick(CCObject *sender);
 	void cleanConfirmButtonClick(CCObject *sender);
 	void rearrangeConfirmButtonClick(CCObject *sender);
+	void buyBombButtonClick(CCObject *sender);
+	void buyRearrangeButtonClick(CCObject *sender);
 	
 	void cleanPoint(float x,float y);
 	void updateCoodinates();

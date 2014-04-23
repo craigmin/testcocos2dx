@@ -80,6 +80,8 @@ assets
 	"images/restart_dialog_bk.png"
 	"images/dialog_bomb.png"
 	"images/dialog_rearrange.png"
+	"images/dialog_buy_bomb.png"
+	"images/dialog_buy_rearrange.png"
 
 	"images/btn_cancel.png"
 	"images/btn_confirm.png"
