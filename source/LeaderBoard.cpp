@@ -78,27 +78,34 @@ bool LeaderBoard::init()
 		this->addChild(scoreLabel, 4);
 	}
 
-	scoreLabel=CCLabelTTF::labelWithString(getNickname(),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.52,SCREEN_HEIGHT*(0.62700-0.0583*6)));
-	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
-	this->addChild(scoreLabel, 4);
-
 	sprintf(buff,"%d ",getBestScore());
 	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.62700-0.0583*6)));
 	scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 	this->addChild(scoreLabel, 4);
 
+	scoreLabel=CCLabelTTF::labelWithString(getNickname(),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.52,SCREEN_HEIGHT*(0.62700-0.0583*6)));
+	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
+	this->addChild(scoreLabel, 4);
+
+	this->schedule(schedule_selector(LeaderBoard::update), 2, kCCRepeatForever, 0);
+
 	return true;
 }
 
 void LeaderBoard::back2menuClick(CCObject *sender){
-
+	this->unscheduleAllSelectors();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
 }
 
 void LeaderBoard::updateNicknameClick(CCObject *sender){
-
-	 updateNickname(NULL);
+	updateNickname(NULL);
 }
 
+void LeaderBoard::update(float dt)
+{
+	if(scoreLabel){
+		scoreLabel->setString(getNickname());
+	}
+}

@@ -29,6 +29,7 @@ public:
 
     void back2menuClick(CCObject *sender);
 	void updateNicknameClick(CCObject *sender);
+	void update(float dt);
 };
 
 #endif // __LeaderBoard_H__
