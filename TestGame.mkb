@@ -22,6 +22,8 @@ files
     SplashScreen.h
 	LeaderBoard.cpp
     LeaderBoard.h
+    ThemeManager.cpp
+    ThemeManager.h
 	[Object]
 	Point.cpp
 	Point.h

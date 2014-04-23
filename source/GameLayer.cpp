@@ -6,7 +6,7 @@
 #include "Lihui2048Api.h"
 #include "LihuiAD_Baidu.h"
 #include "LihuiLB.h"
-
+#include "ThemeManager.h"
 
 GameLayer::~GameLayer()
 {
@@ -37,9 +37,9 @@ bool GameLayer::init()
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
 	bPaused = false;
 	//Jerry--LB
-		receiveRank();
+	receiveRank();
 
-	CCSprite* sprite = CCSprite::spriteWithFile("images/background.png");
+	CCSprite* sprite = ThemeManager::sharedInstance()->spriteWithImageFile("background.png");//CCSprite::spriteWithFile("images/background.png");
 	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
 	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
 	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
