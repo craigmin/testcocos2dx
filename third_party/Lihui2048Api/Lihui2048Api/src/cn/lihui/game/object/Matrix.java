@@ -100,7 +100,7 @@ public class Matrix {
 		return false;
 	}
 
-	private void recountEmptyPoints() {
+	public int recountEmptyPoints() {
 		emptyPoints = 0;
 		for (int x = 0; x < MatrixSize.X_SIZE; x++)
 			for (int y = 0; y < MatrixSize.Y_SIZE; y++) {
@@ -108,6 +108,7 @@ public class Matrix {
 					emptyPoints++;
 				}
 			}
+		return emptyPoints;
 	}
 
 	private boolean addPoint() {

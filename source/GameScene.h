@@ -17,7 +17,10 @@ protected:
 	CCLabelTTF* bombLabel;
 	CCLabelTTF* rearrangeLabel;
 	CCMenuItemSprite *psoundmenuItemSprite;
+	CCMenuItemSprite*  pbombmenuItemSprite; 
+	CCMenuItemSprite*  prearrangemenuItemSprite;
 	//CCSprite* rect[16];
+	bool bGameOver;
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
@@ -27,6 +30,7 @@ protected:
 	bool soundState;
 	bool bClean;
 	bool bCConfrim;
+	bool bInMovable;
 	int topTileScore;
 	float widoffset;
 	float heioffset;
@@ -40,7 +44,8 @@ typedef enum
     USEBOMB,
 	USEREARRANGE,
 	BUYBOMB,
-	BUYREARRANGE
+	BUYREARRANGE,
+	INMOVABLE
 } pausetype;
 
 public:
@@ -61,6 +66,7 @@ public:
 	void animCallback(CCNode *sender);
 	void fadeOutCallback(CCNode *sender);		
 	void drawScore();
+	void inMovable();
 	void drawProperty();
 	void moveMatrix(int moveDir);
 	void gameOver();
@@ -79,7 +85,7 @@ public:
 	void rearrangeConfirmButtonClick(CCObject *sender);
 	void buyBombButtonClick(CCObject *sender);
 	void buyRearrangeButtonClick(CCObject *sender);
-	
+	void gameoverButtonClick(CCObject *sender);
 	void cleanPoint(float x,float y);
 	void updateCoodinates();
 	void cleanPointConfirm(int x,int y);

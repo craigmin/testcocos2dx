@@ -76,6 +76,6 @@ public class Lihui2048 {
 		matrix.useRearranges();
 	}
 	public int getEmptyPoints(){
-		return matrix.getEmptyPoints();
+		return matrix.recountEmptyPoints();
 	}
 }

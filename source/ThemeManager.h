@@ -24,6 +24,9 @@ public:
 	void setTheme(int type);
 	CCSprite* spriteWithImageFile(const char* imageName);
 	const char* getFontName();
+	const char* getPath();
+	ccColor3B getColor();
+	int getTheme();
 };
 
 #endif // __ThemeManager_H__

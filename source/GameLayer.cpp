@@ -39,20 +39,20 @@ bool GameLayer::init()
 	//Jerry--LB
 	receiveRank();
 
-	CCSprite* sprite = ThemeManager::sharedInstance()->spriteWithImageFile("background.png");//CCSprite::spriteWithFile("images/background.png");
+	CCSprite* sprite = ThemeManager::sharedInstance()->spriteWithImageFile("background.png");//ThemeManager::sharedInstance()->spriteWithImageFile("background.png");
 	sprite->setScaleX(SCREEN_WIDTH/sprite->getContentSize().width);
 	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
 	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	this->addChild(sprite,1);
 
 	float iMenuWidthOffset = 0.55;
-	CCSprite* startNormal = CCSprite::spriteWithFile("images/menu_start.png");
-    CCSprite* startSelected = CCSprite::spriteWithFile("images/menu_start.png");
-    CCSprite* startDisabled = CCSprite::spriteWithFile("images/menu_start.png");
+	CCSprite* startNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_start.png");
+    CCSprite* startSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_start.png");
+    CCSprite* startDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("menu_start.png");
     CCMenuItemSprite* pStartItemSprite = CCMenuItemSprite::itemWithNormalSprite(startNormal, startSelected, startDisabled, this, menu_selector(GameLayer::startButtonClick));
 	
 	CCMenu* pStartMenu = CCMenu::menuWithItems(pStartItemSprite,NULL);
-	pStartMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.5));
+	pStartMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.6));
 	pStartItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 
 	//Jerry--Action
@@ -66,9 +66,9 @@ bool GameLayer::init()
    
     this->addChild(pStartMenu, 3);
 
-	/*CCSprite* leaderboardNormal = CCSprite::spriteWithFile("images/menu_leaderboard.png");
-    CCSprite* leaderboardSelected = CCSprite::spriteWithFile("images/menu_leaderboard.png");
-    CCSprite* leaderboardDisabled = CCSprite::spriteWithFile("images/menu_leaderboard.png");
+	/*CCSprite* leaderboardNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
+    CCSprite* leaderboardSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
+    CCSprite* leaderboardDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
     CCMenuItemSprite* pleaderboardItemSprite = CCMenuItemSprite::itemWithNormalSprite(leaderboardNormal, leaderboardSelected, leaderboardDisabled, this, menu_selector(GameLayer::levelButtonClick));
     pleaderboardItemSprite->setScale(0.8);
 	CCMenu* pleaderboardMenu = CCMenu::menuWithItems(pleaderboardItemSprite,NULL);
@@ -76,19 +76,19 @@ bool GameLayer::init()
 	
     this->addChild(pleaderboardMenu, 3);*/
 
-	CCSprite* instructionNormal = CCSprite::spriteWithFile("images/menu_instruction.png");
-    CCSprite* instructionSelected = CCSprite::spriteWithFile("images/menu_instruction.png");
-    CCSprite* instructionDisabled = CCSprite::spriteWithFile("images/menu_instruction.png");
+	CCSprite* instructionNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_instruction.png");
+    CCSprite* instructionSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_instruction.png");
+    CCSprite* instructionDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("menu_instruction.png");
     CCMenuItemSprite* pinstructionItemSprite = CCMenuItemSprite::itemWithNormalSprite(instructionNormal, instructionSelected, instructionDisabled, this, menu_selector(GameLayer::instructionButtonClick));
     pinstructionItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pinstructionMenu = CCMenu::menuWithItems(pinstructionItemSprite,NULL);
-    pinstructionMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.4));
+    pinstructionMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.5));
 	
     this->addChild(pinstructionMenu, 3);
 
-	CCSprite* quitNormal = CCSprite::spriteWithFile("images/menu_quit.png");
-    CCSprite* quitSelected = CCSprite::spriteWithFile("images/menu_quit.png");
-    CCSprite* quitDisabled = CCSprite::spriteWithFile("images/menu_quit.png");
+	CCSprite* quitNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_quit.png");
+    CCSprite* quitSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_quit.png");
+    CCSprite* quitDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("menu_quit.png");
     CCMenuItemSprite* pquitItemSprite = CCMenuItemSprite::itemWithNormalSprite(quitNormal, quitSelected, quitDisabled, this, menu_selector(GameLayer::finishButtonClick));
     pquitItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pquitMenu = CCMenu::menuWithItems(pquitItemSprite,NULL);
@@ -96,20 +96,29 @@ bool GameLayer::init()
 	
     this->addChild(pquitMenu, 3);
 	//Jerry--Code
-    CCSprite* lbNormal = CCSprite::spriteWithFile("images/menu_leaderboard.png");
-    CCSprite* lbSelected = CCSprite::spriteWithFile("images/menu_leaderboard.png");
-    CCSprite* lbDisabled = CCSprite::spriteWithFile("images/menu_leaderboard.png");
+    CCSprite* lbNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
+    CCSprite* lbSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
+    CCSprite* lbDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("menu_leaderboard.png");
     CCMenuItemSprite* plbItemSprite = CCMenuItemSprite::itemWithNormalSprite(lbNormal, lbSelected, lbDisabled, this, menu_selector(GameLayer::leaderboardButtonClick));
     plbItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* plbMenu = CCMenu::menuWithItems(plbItemSprite,NULL);
-    plbMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
+    plbMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.4));
 	
     this->addChild(plbMenu, 3);
 
+	//Jerry--Code
+    CCSprite* thNormal = ThemeManager::sharedInstance()->spriteWithImageFile("menu_theme.png");
+    CCSprite* thSelected = ThemeManager::sharedInstance()->spriteWithImageFile("menu_theme.png");
+    CCMenuItemSprite* pthItemSprite = CCMenuItemSprite::itemWithNormalSprite(thNormal, thSelected, this, menu_selector(GameLayer::themeButtonClick));
+    pthItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	CCMenu* pthMenu = CCMenu::menuWithItems(pthItemSprite,NULL);
+    pthMenu->setPosition(ccp(SCREEN_WIDTH*iMenuWidthOffset, SCREEN_HEIGHT*0.3));
+	
+    this->addChild(pthMenu, 3);
 	
     //updateNickname(NULL);
 
-	InitBdAd();
+	//InitBdAd();
     return true;
 }
 
@@ -139,15 +148,15 @@ void GameLayer::instructionButtonClick(CCObject *sender){
 	bPaused = true;
 	CCLayer *layer2 = new CCLayer();
 
-	CCSprite* dialog_bk = CCSprite::spriteWithFile("images/dialog_intro.png");
+	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("dialog_intro.png");
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
 	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
 	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	layer2->addChild(dialog_bk,11);
 
-	CCSprite* cancelNormal = CCSprite::spriteWithFile("images/btn_know.png");
-    CCSprite* cancelSelected = CCSprite::spriteWithFile("images/btn_know.png");
-    CCSprite* cancelDisabled = CCSprite::spriteWithFile("images/btn_know.png");
+	CCSprite* cancelNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_know.png");
+    CCSprite* cancelSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_know.png");
+    CCSprite* cancelDisabled = ThemeManager::sharedInstance()->spriteWithImageFile("btn_know.png");
     CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, cancelDisabled, this, menu_selector(GameLayer::cancelButtonClick));
     pcancelItemSprite->setScale(0.6*LL_SCREEN_SCALE_VALUE);
 	CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
@@ -173,4 +182,13 @@ void GameLayer::cancelButtonClick(CCObject *sender){
 	this->removeChildByTag(1000);
 	bPaused = false;
 	//CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
+}
+void GameLayer::themeButtonClick(CCObject *sender){
+	if(ThemeManager::sharedInstance()->getTheme()==themeCandy){
+	ThemeManager::sharedInstance()->setTheme(themePlain);
+		CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5,GameLayer::scene()));
+	}else{ ThemeManager::sharedInstance()->setTheme(themeCandy);
+	
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5,GameLayer::scene()));
+	}
 }
