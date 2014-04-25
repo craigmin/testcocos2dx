@@ -114,7 +114,7 @@ subprojects
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
-	#third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
+	third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
 }
 
 deployment

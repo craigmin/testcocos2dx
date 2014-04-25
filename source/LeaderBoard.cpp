@@ -65,7 +65,13 @@ bool LeaderBoard::init()
 	char buff[16];
 	*buff = 0;
 
-	for(int i=0;i<6;i++){
+	for(int i=0;i<10;i++){
+		sprintf(buff,"%d ",i+1);
+		scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.20,SCREEN_HEIGHT*(0.63125-0.0583*i)));
+		scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
+		this->addChild(scoreLabel, 4);
+
 		scoreLabel=CCLabelTTF::labelWithString(getNicknameByRank(i+1),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.50,SCREEN_HEIGHT*(0.63125-0.0583*i)));
 		scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
@@ -77,6 +83,12 @@ bool LeaderBoard::init()
 		scoreLabel->setColor(ccc3(0xEE,0xEE,0xEE));
 		this->addChild(scoreLabel, 4);
 	}
+
+	sprintf(buff,"%d ",getScore(-1));
+	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.20,SCREEN_HEIGHT*(0.63125-0.0583*i)));
+	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
+	this->addChild(scoreLabel, 4);
 
 	sprintf(buff,"%d ",getBestScore());
 	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
