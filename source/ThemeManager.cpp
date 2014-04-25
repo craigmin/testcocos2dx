@@ -39,7 +39,7 @@ const char* ThemeManager::getFontName() {
 	case themePlain:
 		return "arial";
 	case themeCandy:
-		return "candy";
+		return "arial";
 	default:
 		//sprintf(buff,"themePlain/");
 		break;
