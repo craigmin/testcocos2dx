@@ -46,6 +46,20 @@ void cleanRect(int x,int y);
 
 void reArrange();
 
+int getBombs();
+
+int getRearranges();
+
+void addBombs();
+
+void addRearranges();
+
+void useBombs();
+
+void useRearranges();
+
+int getEmptyPoints();
+
 S3E_END_C_DECL
 
 #endif /* !S3E_EXT_LIHUI2048API_H */

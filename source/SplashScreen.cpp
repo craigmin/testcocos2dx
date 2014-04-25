@@ -2,7 +2,7 @@
 #include "SplashScreen.h"
 #include "GameLayer.h"
 #include "LihuiLB.h"
-
+#include "ThemeManager.h"
 SplashScreen::~SplashScreen()
 {
 }
@@ -34,7 +34,7 @@ bool SplashScreen::init()
 	initLB();
 	receiveRank();
 
-	CCSprite* bg = CCSprite::spriteWithFile("images/splashscreen_css.jpg");
+	CCSprite* bg = ThemeManager::sharedInstance()->spriteWithImageFile("splashscreen_css.jpg");
 	float scale = SCREEN_HEIGHT/bg->getContentSize().height;
 	bg->setScaleX(scale);
 	bg->setScaleY(scale);

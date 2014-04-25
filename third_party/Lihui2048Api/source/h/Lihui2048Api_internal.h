@@ -62,5 +62,19 @@ void cleanRect_platform(int x, int y);
 
 void reArrange_platform();
 
+int getBombs_platform();
+
+int getRearranges_platform();
+
+void addBombs_platform();
+
+void addRearranges_platform();
+
+void useBombs_platform();
+
+void useRearranges_platform();
+
+int getEmptyPoints_platform();
+
 
 #endif /* !LIHUI2048API_INTERNAL_H */

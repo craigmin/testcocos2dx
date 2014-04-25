@@ -14,8 +14,13 @@ protected:
 	int SCREEN_HEIGHT;
 	CCLabelTTF* scoreLabel;
 	CCLabelTTF* topScoreLabel;
+	CCLabelTTF* bombLabel;
+	CCLabelTTF* rearrangeLabel;
 	CCMenuItemSprite *psoundmenuItemSprite;
+	CCMenuItemSprite*  pbombmenuItemSprite; 
+	CCMenuItemSprite*  prearrangemenuItemSprite;
 	//CCSprite* rect[16];
+	bool bGameOver;
 	bool bMovable;
     CCPoint ccp_last,ccp_now;       //记录起始、当前坐标
 	int coodinates_last[4][4], coodinates_now[4][4];
@@ -25,11 +30,23 @@ protected:
 	bool soundState;
 	bool bClean;
 	bool bCConfrim;
+	bool bInMovable;
 	int topTileScore;
 	float widoffset;
 	float heioffset;
 	int cleanX;
 	int cleanY;
+	int empty;
+typedef enum
+{
+    RESTART,
+    BACK2MENU,
+    USEBOMB,
+	USEREARRANGE,
+	BUYBOMB,
+	BUYREARRANGE,
+	INMOVABLE
+} pausetype;
 
 public:
     ~GameScene();
@@ -47,12 +64,15 @@ public:
 	void restartClick(CCObject *sender);	
 	void back2menuClick(CCObject *sender);
 	void animCallback(CCNode *sender);
+	void fadeOutCallback(CCNode *sender);		
 	void drawScore();
+	void inMovable();
+	void drawProperty();
 	void moveMatrix(int moveDir);
 	void gameOver();
 	void animateMatrix(int moveDir);
 	int* trackMovementPath(const int before[],const int after[], bool b);
-	void pauseGame(int pauseType);
+	void pauseGame(pausetype Type);
 	void shareButtonClick(CCObject *sender);
 	void cancelButtonClick(CCObject *sender);
 	void restartConfirmButtonClick(CCObject *sender);
@@ -63,7 +83,9 @@ public:
 	void rearrangeButtonClick(CCObject *sender);
 	void cleanConfirmButtonClick(CCObject *sender);
 	void rearrangeConfirmButtonClick(CCObject *sender);
-	
+	void buyBombButtonClick(CCObject *sender);
+	void buyRearrangeButtonClick(CCObject *sender);
+	void gameoverButtonClick(CCObject *sender);
 	void cleanPoint(float x,float y);
 	void updateCoodinates();
 	void cleanPointConfirm(int x,int y);

@@ -53,4 +53,32 @@ class Lihui2048Api
     {
         
     }
+    public int getBombs()
+    {
+        return 0;
+    }
+    public int getRearranges()
+    {
+        return 0;
+    }
+    public void addBombs()
+    {
+        
+    }
+    public void addRearranges()
+    {
+        
+    }
+    public void useBombs()
+    {
+        
+    }
+    public void useRearranges()
+    {
+        
+    }
+    public int getEmptyPoints()
+    {
+        return 0;
+    }
 }

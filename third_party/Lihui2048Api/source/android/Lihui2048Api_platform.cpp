@@ -24,6 +24,13 @@ static jmethodID g_getValue;
 static jmethodID g_getAnim;
 static jmethodID g_cleanRect;
 static jmethodID g_reArrange;
+static jmethodID g_getBombs;
+static jmethodID g_getRearranges;
+static jmethodID g_addBombs;
+static jmethodID g_addRearranges;
+static jmethodID g_useBombs;
+static jmethodID g_useRearranges;
+static jmethodID g_getEmptyPoints;
 
 s3eResult Lihui2048ApiInit_platform()
 {
@@ -86,6 +93,34 @@ s3eResult Lihui2048ApiInit_platform()
 
     g_reArrange = env->GetMethodID(cls, "reArrange", "()V");
     if (!g_reArrange)
+        goto fail;
+
+    g_getBombs = env->GetMethodID(cls, "getBombs", "()I");
+    if (!g_getBombs)
+        goto fail;
+
+    g_getRearranges = env->GetMethodID(cls, "getRearranges", "()I");
+    if (!g_getRearranges)
+        goto fail;
+
+    g_addBombs = env->GetMethodID(cls, "addBombs", "()V");
+    if (!g_addBombs)
+        goto fail;
+
+    g_addRearranges = env->GetMethodID(cls, "addRearranges", "()V");
+    if (!g_addRearranges)
+        goto fail;
+
+    g_useBombs = env->GetMethodID(cls, "useBombs", "()V");
+    if (!g_useBombs)
+        goto fail;
+
+    g_useRearranges = env->GetMethodID(cls, "useRearranges", "()V");
+    if (!g_useRearranges)
+        goto fail;
+
+    g_getEmptyPoints = env->GetMethodID(cls, "getEmptyPoints", "()I");
+    if (!g_getEmptyPoints)
         goto fail;
 
 
@@ -173,4 +208,46 @@ void reArrange_platform()
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     env->CallVoidMethod(g_Obj, g_reArrange);
+}
+
+int getBombs_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    return (int)env->CallIntMethod(g_Obj, g_getBombs);
+}
+
+int getRearranges_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    return (int)env->CallIntMethod(g_Obj, g_getRearranges);
+}
+
+void addBombs_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_addBombs);
+}
+
+void addRearranges_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_addRearranges);
+}
+
+void useBombs_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_useBombs);
+}
+
+void useRearranges_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_useRearranges);
+}
+
+int getEmptyPoints_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    return (int)env->CallIntMethod(g_Obj, g_getEmptyPoints);
 }
