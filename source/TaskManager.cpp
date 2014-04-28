@@ -32,6 +32,9 @@ TaskManager* TaskManager::sharedInstance()
 void TaskManager::initTask(CCLayer* cl) {
 	clayer = cl;
 	if(taskId == task_all_finished) {
+		CCString* cstr = CCString::createWithFormat("task_all_finished TaskID: %d ", taskId);
+		showInfo(cstr);
+
 		bTaskFinished = true;
 		return;
 	}
@@ -46,11 +49,14 @@ void TaskManager::initTask(CCLayer* cl) {
 			taskId = i;
 			bTaskFinished = false;
 
-			CCString* cstr = CCString::createWithFormat("TaskID: %d ", taskId);
-			showInfo(cstr);
+			//CCString* cstr = CCString::createWithFormat("TaskID: %d ", taskId);
+			//showInfo(cstr);
 			break;
 		}
 	}
+
+	CCString* cstr = CCString::createWithFormat("TaskID: %d ; bTaskFinished: %s", taskId, bTaskFinished ? "true" : "false");
+	showInfo(cstr);
 
 	if(bTaskFinished) {
 		taskId = generateRandomTask();
