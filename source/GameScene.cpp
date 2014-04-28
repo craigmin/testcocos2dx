@@ -122,7 +122,8 @@ void GameScene::drawMatrix(float dt){
 			}*/
 
 			this->addChild(rect[i*4+j],2);
-
+			if(TaskManager::sharedInstance()->processTask((int*)coodinates_now,getCurrentScore()))
+				Taskfinish();
 		}
 
 		if(isGood&&soundState) {
@@ -134,6 +135,7 @@ bool GameScene::init()
 {
 	if (!CCLayer::init())
 		return false;
+
 	bGameOver=false;
 	soundState=true;
 	topTileScore = 16;
@@ -325,7 +327,7 @@ void GameScene::moveMatrix(int moveDir){
 			inMovable();
 			bInMovable=true;
 		} else {
-			TaskManager::sharedInstance()->processTask((int*)coodinates_now, getCurrentScore());
+			//TaskManager::sharedInstance()->processTask((int*)coodinates_now, getCurrentScore());
 		}
 	}
 	//bInMovable=false;
@@ -1072,4 +1074,21 @@ void GameScene::buy5ResButtonClick(CCObject *sender){
 	addRearranges(5);
 	this->removeChildByTag(1000);
 	bPaused = false;	
+}
+void GameScene::Taskfinish(){
+	TaskAward* award=TaskManager::sharedInstance()->getCurrentTaskAward();
+		//Jerry--Action
+	CCScaleTo* large=CCScaleTo::actionWithDuration(0.1,1.2);
+	CCScaleTo* small=CCScaleTo::actionWithDuration(0.1,1);
+	CCFiniteTimeAction* action= CCSequence::actions(large,small,NULL);
+	if(award->bombNum!=0){
+		addBombs(award->bombNum);
+		drawProperty();
+		bombLabel->runAction(action);
+	}
+	if(award->rearrangeNum!=0){
+		addRearranges(award->rearrangeNum);
+		drawProperty();
+		rearrangeLabel->runAction(action);
+	}
 }

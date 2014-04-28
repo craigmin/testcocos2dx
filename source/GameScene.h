@@ -100,6 +100,8 @@ public:
 	void updateCoodinates();
 	void cleanPointConfirm(int x,int y);
 	
+	void Taskfinish(); 
+
 	virtual void onEnter();
     virtual void onExit();
 
