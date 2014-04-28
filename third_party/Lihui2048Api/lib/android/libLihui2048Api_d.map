@@ -153,7 +153,7 @@ Memory map
 .plt            0x00000888       0xc8
  ** PLT         0x00000888       0xc8
 
-.text           0x00000950     0x3094
+.text           0x00000950     0x30e4
  .text.exit     0x00000950       0x10 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
                 0x00000950                __on_dlclose
  .text._ZN7_JNIEnv9FindClassEPKc
@@ -246,169 +246,169 @@ Memory map
  .text._Z22getRearranges_platformv
                 0x000019e4       0x50 debug\Lihui2048Api_platform.os
                 0x000019e4                getRearranges_platform()
- .text._Z17addBombs_platformv
-                0x00001a34       0x48 debug\Lihui2048Api_platform.os
-                0x00001a34                addBombs_platform()
- .text._Z22addRearranges_platformv
-                0x00001a7c       0x48 debug\Lihui2048Api_platform.os
-                0x00001a7c                addRearranges_platform()
+ .text._Z17addBombs_platformi
+                0x00001a34       0x50 debug\Lihui2048Api_platform.os
+                0x00001a34                addBombs_platform(int)
+ .text._Z22addRearranges_platformi
+                0x00001a84       0x50 debug\Lihui2048Api_platform.os
+                0x00001a84                addRearranges_platform(int)
  .text._Z17useBombs_platformv
-                0x00001ac4       0x48 debug\Lihui2048Api_platform.os
-                0x00001ac4                useBombs_platform()
+                0x00001ad4       0x48 debug\Lihui2048Api_platform.os
+                0x00001ad4                useBombs_platform()
  .text._Z22useRearranges_platformv
-                0x00001b0c       0x48 debug\Lihui2048Api_platform.os
-                0x00001b0c                useRearranges_platform()
+                0x00001b1c       0x48 debug\Lihui2048Api_platform.os
+                0x00001b1c                useRearranges_platform()
  .text._Z23getEmptyPoints_platformv
-                0x00001b54       0x50 debug\Lihui2048Api_platform.os
-                0x00001b54                getEmptyPoints_platform()
+                0x00001b64       0x50 debug\Lihui2048Api_platform.os
+                0x00001b64                getEmptyPoints_platform()
  .text._Z17setFlags_platformPKci
-                0x00001ba4       0x6c debug\Lihui2048Api_platform.os
-                0x00001ba4                setFlags_platform(char const*, int)
+                0x00001bb4       0x6c debug\Lihui2048Api_platform.os
+                0x00001bb4                setFlags_platform(char const*, int)
  .text._Z17getFlags_platformPKc
-                0x00001c10       0x68 debug\Lihui2048Api_platform.os
-                0x00001c10                getFlags_platform(char const*)
+                0x00001c20       0x68 debug\Lihui2048Api_platform.os
+                0x00001c20                getFlags_platform(char const*)
  .text._Z16Lihui2048ApiInitv
-                0x00001c78       0x14 debug\Lihui2048Api.os
-                0x00001c78                Lihui2048ApiInit()
+                0x00001c88       0x14 debug\Lihui2048Api.os
+                0x00001c88                Lihui2048ApiInit()
  .text._Z21Lihui2048ApiTerminatev
-                0x00001c8c        0xc debug\Lihui2048Api.os
-                0x00001c8c                Lihui2048ApiTerminate()
+                0x00001c9c        0xc debug\Lihui2048Api.os
+                0x00001c9c                Lihui2048ApiTerminate()
  .text.isMovable
-                0x00001c98       0x14 debug\Lihui2048Api.os
-                0x00001c98                isMovable
- .text.move     0x00001cac       0x1c debug\Lihui2048Api.os
-                0x00001cac                move
+                0x00001ca8       0x14 debug\Lihui2048Api.os
+                0x00001ca8                isMovable
+ .text.move     0x00001cbc       0x1c debug\Lihui2048Api.os
+                0x00001cbc                move
  .text.getCurrentScore
-                0x00001cc8       0x14 debug\Lihui2048Api.os
-                0x00001cc8                getCurrentScore
+                0x00001cd8       0x14 debug\Lihui2048Api.os
+                0x00001cd8                getCurrentScore
  .text.getBestScore
-                0x00001cdc       0x14 debug\Lihui2048Api.os
-                0x00001cdc                getBestScore
- .text.reset    0x00001cf0        0xc debug\Lihui2048Api.os
-                0x00001cf0                reset
- .text.isWin    0x00001cfc       0x14 debug\Lihui2048Api.os
-                0x00001cfc                isWin
+                0x00001cec       0x14 debug\Lihui2048Api.os
+                0x00001cec                getBestScore
+ .text.reset    0x00001d00        0xc debug\Lihui2048Api.os
+                0x00001d00                reset
+ .text.isWin    0x00001d0c       0x14 debug\Lihui2048Api.os
+                0x00001d0c                isWin
  .text.getValue
-                0x00001d10       0x2c debug\Lihui2048Api.os
-                0x00001d10                getValue
- .text.getAnim  0x00001d3c       0x2c debug\Lihui2048Api.os
-                0x00001d3c                getAnim
+                0x00001d20       0x2c debug\Lihui2048Api.os
+                0x00001d20                getValue
+ .text.getAnim  0x00001d4c       0x2c debug\Lihui2048Api.os
+                0x00001d4c                getAnim
  .text.cleanRect
-                0x00001d68       0x24 debug\Lihui2048Api.os
-                0x00001d68                cleanRect
+                0x00001d78       0x24 debug\Lihui2048Api.os
+                0x00001d78                cleanRect
  .text.reArrange
-                0x00001d8c        0xc debug\Lihui2048Api.os
-                0x00001d8c                reArrange
+                0x00001d9c        0xc debug\Lihui2048Api.os
+                0x00001d9c                reArrange
  .text.getBombs
-                0x00001d98       0x14 debug\Lihui2048Api.os
-                0x00001d98                getBombs
+                0x00001da8       0x14 debug\Lihui2048Api.os
+                0x00001da8                getBombs
  .text.getRearranges
-                0x00001dac       0x14 debug\Lihui2048Api.os
-                0x00001dac                getRearranges
+                0x00001dbc       0x14 debug\Lihui2048Api.os
+                0x00001dbc                getRearranges
  .text.addBombs
-                0x00001dc0        0xc debug\Lihui2048Api.os
-                0x00001dc0                addBombs
+                0x00001dd0       0x1c debug\Lihui2048Api.os
+                0x00001dd0                addBombs
  .text.addRearranges
-                0x00001dcc        0xc debug\Lihui2048Api.os
-                0x00001dcc                addRearranges
+                0x00001dec       0x1c debug\Lihui2048Api.os
+                0x00001dec                addRearranges
  .text.useBombs
-                0x00001dd8        0xc debug\Lihui2048Api.os
-                0x00001dd8                useBombs
+                0x00001e08        0xc debug\Lihui2048Api.os
+                0x00001e08                useBombs
  .text.useRearranges
-                0x00001de4        0xc debug\Lihui2048Api.os
-                0x00001de4                useRearranges
+                0x00001e14        0xc debug\Lihui2048Api.os
+                0x00001e14                useRearranges
  .text.getEmptyPoints
-                0x00001df0       0x10 debug\Lihui2048Api.os
-                0x00001df0                getEmptyPoints
+                0x00001e20       0x10 debug\Lihui2048Api.os
+                0x00001e20                getEmptyPoints
  .text.setFlags
-                0x00001e00       0x24 debug\Lihui2048Api.os
-                0x00001e00                setFlags
+                0x00001e30       0x24 debug\Lihui2048Api.os
+                0x00001e30                setFlags
  .text.getFlags
-                0x00001e24       0x20 debug\Lihui2048Api.os
-                0x00001e24                getFlags
+                0x00001e54       0x20 debug\Lihui2048Api.os
+                0x00001e54                getFlags
  .text._ZL14isMovable_wrapv
-                0x00001e44       0xa0 debug\Lihui2048Api_register.os
+                0x00001e74       0xa0 debug\Lihui2048Api_register.os
  .text._ZL9move_wrapi
-                0x00001ee4       0x98 debug\Lihui2048Api_register.os
+                0x00001f14       0x98 debug\Lihui2048Api_register.os
  .text._ZL20getCurrentScore_wrapv
-                0x00001f7c       0x90 debug\Lihui2048Api_register.os
+                0x00001fac       0x90 debug\Lihui2048Api_register.os
  .text._ZL17getBestScore_wrapv
-                0x0000200c       0x90 debug\Lihui2048Api_register.os
+                0x0000203c       0x90 debug\Lihui2048Api_register.os
  .text._ZL10reset_wrapv
-                0x0000209c       0x88 debug\Lihui2048Api_register.os
+                0x000020cc       0x88 debug\Lihui2048Api_register.os
  .text._ZL10isWin_wrapv
-                0x00002124       0xa0 debug\Lihui2048Api_register.os
+                0x00002154       0xa0 debug\Lihui2048Api_register.os
  .text._ZL13getValue_wrapii
-                0x000021c4       0xa8 debug\Lihui2048Api_register.os
+                0x000021f4       0xa8 debug\Lihui2048Api_register.os
  .text._ZL12getAnim_wrapii
-                0x0000226c       0xa8 debug\Lihui2048Api_register.os
+                0x0000229c       0xa8 debug\Lihui2048Api_register.os
  .text._ZL14cleanRect_wrapii
-                0x00002314       0xa0 debug\Lihui2048Api_register.os
+                0x00002344       0xa0 debug\Lihui2048Api_register.os
  .text._ZL14reArrange_wrapv
-                0x000023b4       0x88 debug\Lihui2048Api_register.os
+                0x000023e4       0x88 debug\Lihui2048Api_register.os
  .text._ZL13getBombs_wrapv
-                0x0000243c       0x90 debug\Lihui2048Api_register.os
+                0x0000246c       0x90 debug\Lihui2048Api_register.os
  .text._ZL18getRearranges_wrapv
-                0x000024cc       0x90 debug\Lihui2048Api_register.os
- .text._ZL13addBombs_wrapv
-                0x0000255c       0x88 debug\Lihui2048Api_register.os
- .text._ZL18addRearranges_wrapv
-                0x000025e4       0x88 debug\Lihui2048Api_register.os
+                0x000024fc       0x90 debug\Lihui2048Api_register.os
+ .text._ZL13addBombs_wrapi
+                0x0000258c       0x98 debug\Lihui2048Api_register.os
+ .text._ZL18addRearranges_wrapi
+                0x00002624       0x98 debug\Lihui2048Api_register.os
  .text._ZL13useBombs_wrapv
-                0x0000266c       0x88 debug\Lihui2048Api_register.os
+                0x000026bc       0x88 debug\Lihui2048Api_register.os
  .text._ZL18useRearranges_wrapv
-                0x000026f4       0x88 debug\Lihui2048Api_register.os
+                0x00002744       0x88 debug\Lihui2048Api_register.os
  .text._ZL19getEmptyPoints_wrapv
-                0x0000277c       0x90 debug\Lihui2048Api_register.os
+                0x000027cc       0x90 debug\Lihui2048Api_register.os
  .text._ZL13setFlags_wrapPKci
-                0x0000280c       0xa0 debug\Lihui2048Api_register.os
+                0x0000285c       0xa0 debug\Lihui2048Api_register.os
  .text._ZL13getFlags_wrapPKc
-                0x000028ac       0xa0 debug\Lihui2048Api_register.os
+                0x000028fc       0xa0 debug\Lihui2048Api_register.os
  .text._Z23Lihui2048ApiRegisterExtv
-                0x0000294c      0x1a8 debug\Lihui2048Api_register.os
-                0x0000294c                Lihui2048ApiRegisterExt()
+                0x0000299c      0x1a8 debug\Lihui2048Api_register.os
+                0x0000299c                Lihui2048ApiRegisterExt()
  .text.RegisterExt
-                0x00002af4        0xc debug\Lihui2048Api_register.os
-                0x00002af4                RegisterExt
+                0x00002b44        0xc debug\Lihui2048Api_register.os
+                0x00002b44                RegisterExt
  .text.IwDebugTraceSetTraceChannel
-                0x00002b00       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x00002b00                IwDebugTraceSetTraceChannel
+                0x00002b50       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00002b50                IwDebugTraceSetTraceChannel
  .text._GLOBAL__I_Z__sdk_modules_iwcore_source_IwDebug.cpp
-                0x00002b1c       0xa4 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00002b6c       0xa4 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
  .text.IwDebugTraceIsChannelOn
-                0x00002bc0      0x2b8 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x00002bc0                IwDebugTraceIsChannelOn
+                0x00002c10      0x2b8 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00002c10                IwDebugTraceIsChannelOn
  .text.IwDebugTraceLinePrintf
-                0x00002e78      0x10c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x00002e78                IwDebugTraceLinePrintf
+                0x00002ec8      0x10c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00002ec8                IwDebugTraceLinePrintf
  .text.s3eEdkThreadRunOnOS
-                0x00002f84       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
-                0x00002f84                s3eEdkThreadRunOnOS
- .text          0x00002fb4       0x44 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
-                0x00002fb4                __aeabi_ldivmod
- .text          0x00002ff8       0x10 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
-                0x00002ff8                __aeabi_idiv0
-                0x00002ff8                __aeabi_ldiv0
- .text          0x00003008       0x78 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
-                0x00003008                __gnu_ldivmod_helper
-                0x00003044                __gnu_uldivmod_helper
- .text          0x00003080      0x498 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
-                0x00003080                __divdi3
- .text          0x00003518      0x404 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
-                0x00003518                __udivdi3
+                0x00002fd4       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                0x00002fd4                s3eEdkThreadRunOnOS
+ .text          0x00003004       0x44 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x00003004                __aeabi_ldivmod
+ .text          0x00003048       0x10 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x00003048                __aeabi_idiv0
+                0x00003048                __aeabi_ldiv0
+ .text          0x00003058       0x78 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x00003058                __gnu_ldivmod_helper
+                0x00003094                __gnu_uldivmod_helper
+ .text          0x000030d0      0x498 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x000030d0                __divdi3
+ .text          0x00003568      0x404 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00003568                __udivdi3
  .text          0xffffffffffffffff       0xc8 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
-                0x0000391c                __udivsi3
-                0x0000391c                __aeabi_uidiv
-                0x000039c4                __aeabi_uidivmod
+                0x0000396c                __udivsi3
+                0x0000396c                __aeabi_uidiv
+                0x00003a14                __aeabi_uidivmod
 
-.rodata         0x000039e4      0x704
- .rodata        0x000039e4      0x1d0 debug\Lihui2048Api_platform.os
- .rodata        0x00003bb4      0x418 debug\Lihui2048Api_register.os
+.rodata         0x00003a34      0x704
+ .rodata        0x00003a34      0x1d0 debug\Lihui2048Api_platform.os
+ .rodata        0x00003c04      0x418 debug\Lihui2048Api_register.os
  ** merge strings
-                0x00003fcc      0x11c
+                0x0000401c      0x11c
 
-.ARM.exidx      0x000040e8        0x8
- .ARM.exidx     0x000040e8        0x8 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+.ARM.exidx      0x00004138        0x8
+ .ARM.exidx     0x00004138        0x8 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
 
 .fini_array     0x00005e74        0x8
  .fini_array    0x00005e74        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o

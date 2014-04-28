@@ -32,8 +32,8 @@ typedef       void(*cleanRect_t)(int x, int y);
 typedef       void(*reArrange_t)();
 typedef        int(*getBombs_t)();
 typedef        int(*getRearranges_t)();
-typedef       void(*addBombs_t)();
-typedef       void(*addRearranges_t)();
+typedef       void(*addBombs_t)(int i);
+typedef       void(*addRearranges_t)(int i);
 typedef       void(*useBombs_t)();
 typedef       void(*useRearranges_t)();
 typedef        int(*getEmptyPoints_t)();
@@ -349,7 +349,7 @@ int getRearranges()
     return ret;
 }
 
-void addBombs()
+void addBombs(int i)
 {
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[12] func: addBombs"));
 
@@ -360,7 +360,7 @@ void addBombs()
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_addBombs();
+    g_Ext.m_addBombs(i);
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -369,7 +369,7 @@ void addBombs()
     return;
 }
 
-void addRearranges()
+void addRearranges(int i)
 {
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[13] func: addRearranges"));
 
@@ -380,7 +380,7 @@ void addRearranges()
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_addRearranges();
+    g_Ext.m_addRearranges(i);
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -434,7 +434,7 @@ int getEmptyPoints()
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[16] func: getEmptyPoints"));
 
     if (!_extLoad())
-        return 0;
+        return;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
@@ -474,7 +474,7 @@ int getFlags(const char* key)
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[18] func: getFlags"));
 
     if (!_extLoad())
-        return 0;
+        return;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);

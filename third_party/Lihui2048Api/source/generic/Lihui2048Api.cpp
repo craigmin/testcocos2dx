@@ -83,14 +83,14 @@ int getRearranges()
 	return getRearranges_platform();
 }
 
-void addBombs()
+void addBombs(int i)
 {
-	addBombs_platform();
+	addBombs_platform(i);
 }
 
-void addRearranges()
+void addRearranges(int i)
 {
-	addRearranges_platform();
+	addRearranges_platform(i);
 }
 
 void useBombs()

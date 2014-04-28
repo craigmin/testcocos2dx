@@ -50,9 +50,9 @@ int getBombs();
 
 int getRearranges();
 
-void addBombs();
+void addBombs(int i);
 
-void addRearranges();
+void addRearranges(int i);
 
 void useBombs();
 

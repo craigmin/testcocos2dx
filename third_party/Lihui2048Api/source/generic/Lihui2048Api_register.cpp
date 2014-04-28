@@ -96,16 +96,16 @@ static int getRearranges_wrap()
     return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getRearranges, 0);
 }
 
-static void addBombs_wrap()
+static void addBombs_wrap(int i)
 {
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: addBombs"));
-    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addBombs, 0);
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addBombs, 1, i);
 }
 
-static void addRearranges_wrap()
+static void addRearranges_wrap(int i)
 {
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: addRearranges"));
-    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addRearranges, 0);
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)addRearranges, 1, i);
 }
 
 static void useBombs_wrap()

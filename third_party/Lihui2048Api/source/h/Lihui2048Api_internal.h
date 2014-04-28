@@ -66,9 +66,9 @@ int getBombs_platform();
 
 int getRearranges_platform();
 
-void addBombs_platform();
+void addBombs_platform(int i);
 
-void addRearranges_platform();
+void addRearranges_platform(int i);
 
 void useBombs_platform();
 

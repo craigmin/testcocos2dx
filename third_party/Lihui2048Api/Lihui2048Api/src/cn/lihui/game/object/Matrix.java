@@ -216,14 +216,14 @@ public class Matrix {
 	public int getRearranges(){
 	   return this.rearranges;
 		}
-	public void addBombs(){
-		this.bombs=this.bombs+3;
+	public void addBombs(int i){
+		this.bombs=this.bombs+i;
 		Editor editor = mSharedPreferences.edit();
 		editor.putInt("BOMB", this.bombs);
 		editor.commit();
 	}
-	public void addRearranges(){
-		this.rearranges=this.rearranges+1;
+	public void addRearranges(int i){
+		this.rearranges=this.rearranges+i;
 		Editor editor = mSharedPreferences.edit();
 		editor.putInt("REARRANGE", this.rearranges);
 		editor.commit();

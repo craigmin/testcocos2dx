@@ -105,11 +105,11 @@ s3eResult Lihui2048ApiInit_platform()
     if (!g_getRearranges)
         goto fail;
 
-    g_addBombs = env->GetMethodID(cls, "addBombs", "()V");
+    g_addBombs = env->GetMethodID(cls, "addBombs", "(I)V");
     if (!g_addBombs)
         goto fail;
 
-    g_addRearranges = env->GetMethodID(cls, "addRearranges", "()V");
+    g_addRearranges = env->GetMethodID(cls, "addRearranges", "(I)V");
     if (!g_addRearranges)
         goto fail;
 
@@ -232,16 +232,16 @@ int getRearranges_platform()
     return (int)env->CallIntMethod(g_Obj, g_getRearranges);
 }
 
-void addBombs_platform()
+void addBombs_platform(int i)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
-    env->CallVoidMethod(g_Obj, g_addBombs);
+    env->CallVoidMethod(g_Obj, g_addBombs, i);
 }
 
-void addRearranges_platform()
+void addRearranges_platform(int i)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
-    env->CallVoidMethod(g_Obj, g_addRearranges);
+    env->CallVoidMethod(g_Obj, g_addRearranges, i);
 }
 
 void useBombs_platform()
