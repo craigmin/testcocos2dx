@@ -7,8 +7,8 @@
 static TaskManager * sInstance = NULL;
 static int task_all_finished = -1;
 
-static int task_mission[task_fixed_list_max] = {8,16,32,64,32,128,4096,200,300,400,500,600,700,800};
-//static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
+//static int task_mission[task_fixed_list_max] = {8,16,32,64,32,64,32,200,250,300,350,400,450,500};
+static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
 
 TaskManager::~TaskManager()
 {
@@ -87,8 +87,6 @@ bool TaskManager::isTaskFinished(int id){
 
 bool TaskManager::processTask(int* coodinates, int score){
 	if(taskId == task_all_finished || bTaskFinished) {
-		CCString* cstr = CCString::createWithFormat("TaskID: %d has been finished", taskId);
-		showInfo(cstr);
 		return false;
 	}
 
@@ -107,7 +105,7 @@ bool TaskManager::processTask(int* coodinates, int score){
 		}
 	} else	if(taskId <= task_fixed_block_4096) {
 		bRes = hasNumber(coodinates, task_mission[taskId]);
-	} else if(score > task_mission[taskId]){
+	} else if(score >= task_mission[taskId]){
 		bRes = true;
 	}
 
@@ -115,9 +113,6 @@ bool TaskManager::processTask(int* coodinates, int score){
 		setFlags(formatTaskNameById(taskId)->getCString(), 1);
 		bTaskFinished = true;
 	}
-
-	CCString* cstr = CCString::createWithFormat("TaskID: %d , Res: %s", taskId, bRes ? "true" : "false");
-	showInfo(cstr);
 
 	return bRes;
 }
@@ -177,12 +172,22 @@ CCString* TaskManager::formatTaskNameById(int id) {
 	return CCString::createWithFormat("TASK_2048_ID_%d", id);
 }
 
-void TaskManager::showInfo(CCString* cstr){
-	clayer->removeChildByTag(3000);
+void TaskManager::showInfo(CCString* cstr) {
 
-	CCLabelTTF* scoreLabel=CCLabelTTF::labelWithString(cstr->getCString(),CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.5,SCREEN_HEIGHT*0.5));//SCREEN_WIDTH*0.96
-	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
+	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("dialog_intro.png");
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.2));
+	dialog_bk->setTag(4000);
 
-	clayer->addChild(scoreLabel, 2000, 3000);
+	CCActionInterval* largeto = CCScaleBy::create(0.5, 2,2);
+	dialog_bk->setScaleX(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
+	dialog_bk->setScaleY(0.1);
+	dialog_bk->runAction(largeto);
+
+	clayer->addChild(dialog_bk,2000);
+	clayer->schedule(schedule_selector(TaskManager::update), 1, 0, 3);
+}
+
+void TaskManager::update(CCNode *sender)
+{
+	TaskManager::sharedInstance()->clayer->removeChildByTag(4000);
 }

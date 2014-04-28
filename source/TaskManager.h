@@ -53,6 +53,7 @@ public:
 	void initTask(CCLayer* cl);
 	bool processTask(int* coodinates = NULL, int score = 0);
 	TaskAward* getCurrentTaskAward();
+	void update(CCNode *sender);
 };
 
 #endif // __TaskManager_H__
