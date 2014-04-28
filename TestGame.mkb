@@ -17,16 +17,6 @@ files
     TestGame.cpp
     AppDelegate.cpp
     AppDelegate.h
-    GameLayer.cpp
-    GameLayer.h
-	GameScene.cpp
-    GameScene.h
-	SplashScreen.cpp
-    SplashScreen.h
-	LeaderBoard.cpp
-    LeaderBoard.h
-    ThemeManager.cpp
-    ThemeManager.h
 
 	[Object]
 	Point.cpp
@@ -39,8 +29,19 @@ files
 	[UI]
 	JerryScene.cpp
 	JerryScene.h
-
-	[Tools]
+	GameLayer.cpp
+    GameLayer.h
+	GameScene.cpp
+    GameScene.h
+	SplashScreen.cpp
+    SplashScreen.h
+	LeaderBoard.cpp
+    LeaderBoard.h
+	[UI/Tools]
+	TaskManager.cpp
+	TaskManager.h
+	ThemeManager.cpp
+    ThemeManager.h
 	#AppSettings.h
 	#AppSettings.cpp
 
@@ -53,6 +54,7 @@ files
 	tinyxmlerror.cpp
 	tinyxmlparser.cpp
 }
+
 assets 
 {
 	(data)
@@ -65,11 +67,8 @@ assets
 	"images/themeCandy/menu_start.png"
 	"images/themeCandy/menu_theme.png"
 
-
-	
 	"images/themeCandy/gi_background.png"
 	"images/themeCandy/gi_background_2.png"
-
 	
 	"images/themeCandy/bomb.png"
 	"images/themeCandy/rearrange.png"
@@ -203,7 +202,7 @@ subprojects
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
-	#third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
+	third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
 	tinyxml
 }
 
