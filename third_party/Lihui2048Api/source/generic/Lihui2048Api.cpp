@@ -107,3 +107,13 @@ int getEmptyPoints()
 {
 	getEmptyPoints_platform();
 }
+
+void setFlags(const char* key, int flag)
+{
+	setFlags_platform(key, flag);
+}
+
+int getFlags(const char* key)
+{
+	getFlags_platform(key);
+}

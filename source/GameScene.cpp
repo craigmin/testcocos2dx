@@ -175,13 +175,13 @@ bool GameScene::init()
 
 	sprintf(buff,"x%d",getBombs());
 	bombLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	bombLabel->setPosition(ccp(SCREEN_WIDTH*0.87,SCREEN_HEIGHT*0.82));
+	bombLabel->setPosition(ccp(SCREEN_WIDTH*0.8,SCREEN_HEIGHT*0.82));
 	bombLabel->setColor(ThemeManager::sharedInstance()->getColor());
 	this->addChild(bombLabel, 4);
 
 	sprintf(buff,"x%d",getRearranges());
 	rearrangeLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	rearrangeLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.82));
+	rearrangeLabel->setPosition(ccp(SCREEN_WIDTH*0.98,SCREEN_HEIGHT*0.82));
 	rearrangeLabel->setColor(ThemeManager::sharedInstance()->getColor());
 	this->addChild(rearrangeLabel, 4);
 
@@ -217,21 +217,33 @@ bool GameScene::init()
 
 	CCSprite* bombButtonOff = ThemeManager::sharedInstance()->spriteWithImageFile("bomb.png");
 	CCSprite* bombButtonOn = ThemeManager::sharedInstance()->spriteWithImageFile("bomb.png");
+	bombButtonOn->setScale(1.1);
 	pbombmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(bombButtonOff, bombButtonOn, this, menu_selector(GameScene::bombButtonClick));
 	pbombmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	//pbombmenuItemSprite->setTag(3001);
 	CCMenu* pbomb2menuMenu = CCMenu::menuWithItems(pbombmenuItemSprite,NULL);
-	pbomb2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.82));
+	pbomb2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.55, SCREEN_HEIGHT*0.82));
 	this->addChild(pbomb2menuMenu, 3);
 
 	CCSprite* rearrangeButtonOff = ThemeManager::sharedInstance()->spriteWithImageFile("rearrange.png");
 	CCSprite* rearrangeButtonOn = ThemeManager::sharedInstance()->spriteWithImageFile("rearrange.png");
+	rearrangeButtonOn->setScale(1.1);
 	prearrangemenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(rearrangeButtonOff, rearrangeButtonOn, this, menu_selector(GameScene::rearrangeButtonClick));
 	prearrangemenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	//prearrangemenuItemSprite->setTag(3002);
 	CCMenu* prearrange2menuMenu = CCMenu::menuWithItems(prearrangemenuItemSprite,NULL);
-	prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.8 ,SCREEN_HEIGHT*0.82));
+	prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.72,SCREEN_HEIGHT*0.82));
 	this->addChild(prearrange2menuMenu, 3);
+
+	CCSprite* shopButtonOff = ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
+	CCSprite* shopButtonOn = ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
+	shopButtonOn->setScale(1.1);
+	CCMenuItemSprite* pshopmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(shopButtonOff, shopButtonOn, this, menu_selector(GameScene::shopButtonClick));
+	pshopmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+	//pshopmenuItemSprite->setTag(3002);
+	CCMenu* pshop2menuMenu = CCMenu::menuWithItems(pshopmenuItemSprite,NULL);
+	pshop2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.9,SCREEN_HEIGHT*0.82));
+	this->addChild(pshop2menuMenu, 3);
 
 	bMovable = true;
 	bInMoving = false;
@@ -959,4 +971,7 @@ void GameScene::gameoverButtonClick(CCObject *sender){
 	pbombmenuItemSprite->stopAllActions();
 	prearrangemenuItemSprite->stopAllActions();
 	bPaused = false;
+}
+void GameScene::shopButtonClick(CCObject *sender){ 
+	//TODO
 }

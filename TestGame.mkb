@@ -7,7 +7,10 @@ options
 	module_path="third_party/LihuiLB/"
 	module_path="third_party/LihuiSocial/"		
 }
-
+packages
+{
+	tinyxml
+}
 files
 {
     (source)
@@ -24,24 +27,43 @@ files
     LeaderBoard.h
     ThemeManager.cpp
     ThemeManager.h
+
 	[Object]
 	Point.cpp
 	Point.h
+	Score.cpp
+	Score.h
+	#Matrix.cpp
+	#Matrix.h
+
 	[UI]
 	JerryScene.cpp
 	JerryScene.h
+
+	[Tools]
+	#AppSettings.h
+	#AppSettings.cpp
+
+	[TinyXML]
+	(source/TinyXML)
+	tinystr.cpp
+	tinystr.h
+	tinyxml.cpp
+	tinyxml.h
+	tinyxmlerror.cpp
+	tinyxmlparser.cpp
 }
 assets 
 {
 	(data)
-	"BB3Share.jpg"
+	#"BB3Share.jpg"
 	"images/themeCandy/background.png"
 	"images/themeCandy/gameover.png"
 	"images/themeCandy/menu_instruction.png"
 	"images/themeCandy/menu_leaderboard.png"
 	"images/themeCandy/menu_quit.png"
 	"images/themeCandy/menu_start.png"
-		"images/themeCandy/menu_theme.png"
+	"images/themeCandy/menu_theme.png"
 
 
 	
@@ -51,6 +73,7 @@ assets
 	
 	"images/themeCandy/bomb.png"
 	"images/themeCandy/rearrange.png"
+	"images/themeCandy/shop.png"
 
 	"images/themeCandy/numb_2.png"
 	"images/themeCandy/numb_4.png"
@@ -111,6 +134,7 @@ assets
 	
 	"images/themePlain/bomb.png"
 	"images/themePlain/rearrange.png"
+	"images/themePlain/shop.png"
 
 	"images/themePlain/numb_2.png"
 	"images/themePlain/numb_4.png"
@@ -164,7 +188,7 @@ assets
 	"sounds/plaudit.raw"
 	
 	"fonts/arial.ttf"
-	"fonts/candy.ttf"
+	#"fonts/candy.ttf"
 	
 }
 
@@ -180,6 +204,7 @@ subprojects
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
 	#third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
+	tinyxml
 }
 
 deployment

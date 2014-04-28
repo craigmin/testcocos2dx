@@ -45,7 +45,8 @@ typedef enum
 	USEREARRANGE,
 	BUYBOMB,
 	BUYREARRANGE,
-	INMOVABLE
+	INMOVABLE,
+	SHOP
 } pausetype;
 
 public:
@@ -86,6 +87,8 @@ public:
 	void buyBombButtonClick(CCObject *sender);
 	void buyRearrangeButtonClick(CCObject *sender);
 	void gameoverButtonClick(CCObject *sender);
+	void shopButtonClick(CCObject *sender);
+	
 	void cleanPoint(float x,float y);
 	void updateCoodinates();
 	void cleanPointConfirm(int x,int y);

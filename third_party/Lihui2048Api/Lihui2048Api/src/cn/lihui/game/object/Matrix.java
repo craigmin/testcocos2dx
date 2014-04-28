@@ -243,4 +243,5 @@ public class Matrix {
 	public int getEmptyPoints(){
 		return this.emptyPoints;
 	}
+
 }

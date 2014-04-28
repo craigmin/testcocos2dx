@@ -76,5 +76,9 @@ void useRearranges_platform();
 
 int getEmptyPoints_platform();
 
+void setFlags_platform(const char* key, int flag);
+
+int getFlags_platform(const char* key);
+
 
 #endif /* !LIHUI2048API_INTERNAL_H */

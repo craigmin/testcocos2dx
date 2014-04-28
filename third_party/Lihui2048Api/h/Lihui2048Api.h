@@ -60,6 +60,10 @@ void useRearranges();
 
 int getEmptyPoints();
 
+void setFlags(const char* key,int flag);
+
+int getFlags(const char* key);
+
 S3E_END_C_DECL
 
 #endif /* !S3E_EXT_LIHUI2048API_H */

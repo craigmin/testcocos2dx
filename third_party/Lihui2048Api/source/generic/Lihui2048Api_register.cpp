@@ -126,6 +126,18 @@ static int getEmptyPoints_wrap()
     return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getEmptyPoints, 0);
 }
 
+static void setFlags_wrap(const char* key, int flag)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: setFlags"));
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)setFlags, 2, key, flag);
+}
+
+static int getFlags_wrap(const char* key)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api func on main thread: getFlags"));
+    return (int)(intptr_t)s3eEdkThreadRunOnOS((s3eEdkThreadFunc)getFlags, 1, key);
+}
+
 #define isMovable isMovable_wrap
 #define move move_wrap
 #define getCurrentScore getCurrentScore_wrap
@@ -143,13 +155,15 @@ static int getEmptyPoints_wrap()
 #define useBombs useBombs_wrap
 #define useRearranges useRearranges_wrap
 #define getEmptyPoints getEmptyPoints_wrap
+#define setFlags setFlags_wrap
+#define getFlags getFlags_wrap
 
 #endif
 
 void Lihui2048ApiRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[17];
+    void* funcPtrs[19];
     funcPtrs[0] = (void*)isMovable;
     funcPtrs[1] = (void*)move;
     funcPtrs[2] = (void*)getCurrentScore;
@@ -167,11 +181,13 @@ void Lihui2048ApiRegisterExt()
     funcPtrs[14] = (void*)useBombs;
     funcPtrs[15] = (void*)useRearranges;
     funcPtrs[16] = (void*)getEmptyPoints;
+    funcPtrs[17] = (void*)setFlags;
+    funcPtrs[18] = (void*)getFlags;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[17] = { 0 };
+    int flags[19] = { 0 };
 
     /*
      * Register the extension

@@ -1,13 +1,21 @@
 package com.lihui.lihui2048;
 
+import com.ideaworks3d.marmalade.LoaderActivity;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import cn.lihui.game.object.Matrix;
 
 public class Lihui2048 {
 	private static Lihui2048 instanse;
 	private Matrix matrix;
+	private SharedPreferences mSharedPreferences;
+	
 
 	Lihui2048() {
 		matrix = new Matrix();
+		mSharedPreferences = LoaderActivity.m_Activity.getSharedPreferences(
+				"cn.lihui.2048.flags", LoaderActivity.m_Activity.MODE_PRIVATE);
 	}
 
 	public static Lihui2048 getInstance() {
@@ -77,5 +85,13 @@ public class Lihui2048 {
 	}
 	public int getEmptyPoints(){
 		return matrix.recountEmptyPoints();
+	}
+	public void setFlags(String key,int flag){
+		Editor editor = mSharedPreferences.edit();
+		editor.putInt(key, flag);
+		editor.commit();
+	}
+	public int getFlags(String key){
+	return mSharedPreferences.getInt(key,0);
 	}
 }

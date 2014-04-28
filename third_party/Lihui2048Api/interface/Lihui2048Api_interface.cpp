@@ -37,6 +37,8 @@ typedef       void(*addRearranges_t)();
 typedef       void(*useBombs_t)();
 typedef       void(*useRearranges_t)();
 typedef        int(*getEmptyPoints_t)();
+typedef       void(*setFlags_t)(const char* key, int flag);
+typedef        int(*getFlags_t)(const char* key);
 
 /**
  * struct that gets filled in by Lihui2048ApiRegister
@@ -60,6 +62,8 @@ typedef struct Lihui2048ApiFuncs
     useBombs_t m_useBombs;
     useRearranges_t m_useRearranges;
     getEmptyPoints_t m_getEmptyPoints;
+    setFlags_t m_setFlags;
+    getFlags_t m_getFlags;
 } Lihui2048ApiFuncs;
 
 static Lihui2048ApiFuncs g_Ext;
@@ -430,13 +434,53 @@ int getEmptyPoints()
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[16] func: getEmptyPoints"));
 
     if (!_extLoad())
-        return 16;
+        return 0;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
     int ret = g_Ext.m_getEmptyPoints();
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
+}
+
+void setFlags(const char* key, int flag)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[17] func: setFlags"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_setFlags(key, flag);
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
+}
+
+int getFlags(const char* key)
+{
+    IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[18] func: getFlags"));
+
+    if (!_extLoad())
+        return 0;
+
+#ifdef LOADER_CALL
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    int ret = g_Ext.m_getFlags(key);
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
