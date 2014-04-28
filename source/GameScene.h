@@ -88,6 +88,13 @@ public:
 	void buyRearrangeButtonClick(CCObject *sender);
 	void gameoverButtonClick(CCObject *sender);
 	void shopButtonClick(CCObject *sender);
+	void buygiftButtonClick(CCObject *sender);
+	void buy3bombsButtonClick(CCObject *sender);
+	void buy5bombsButtonClick(CCObject *sender);
+	void buy10bombsButtonClick(CCObject *sender);
+	void buy1ReButtonClick(CCObject *sender);
+	void buy2ResButtonClick(CCObject *sender);
+	void buy5ResButtonClick(CCObject *sender);
 	
 	void cleanPoint(float x,float y);
 	void updateCoodinates();

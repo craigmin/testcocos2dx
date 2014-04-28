@@ -75,7 +75,7 @@ Memory map
 .plt            0x0000040c       0x50
  ** PLT         0x0000040c       0x50
 
-.text           0x0000045c     0x1248
+.text           0x0000045c     0x126c
  .text.exit     0x0000045c       0x10 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
                 0x0000045c                __on_dlclose
  .text._ZL27s3eEdkAndroidFindClass_realPKc
@@ -93,175 +93,175 @@ Memory map
                 0x000005cc       0x38 release\Lihui2048Api_platform.os
                 0x000005cc                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
  .text._Z25Lihui2048ApiInit_platformv
-                0x00000604      0x548 release\Lihui2048Api_platform.os
+                0x00000604      0x554 release\Lihui2048Api_platform.os
                 0x00000604                Lihui2048ApiInit_platform()
  .text._Z30Lihui2048ApiTerminate_platformv
-                0x00000b4c        0x4 release\Lihui2048Api_platform.os
-                0x00000b4c                Lihui2048ApiTerminate_platform()
+                0x00000b58        0x4 release\Lihui2048Api_platform.os
+                0x00000b58                Lihui2048ApiTerminate_platform()
  .text._Z18isMovable_platformv
-                0x00000b50       0x58 release\Lihui2048Api_platform.os
-                0x00000b50                isMovable_platform()
+                0x00000b5c       0x58 release\Lihui2048Api_platform.os
+                0x00000b5c                isMovable_platform()
  .text._Z13move_platformi
-                0x00000ba8       0x58 release\Lihui2048Api_platform.os
-                0x00000ba8                move_platform(int)
+                0x00000bb4       0x58 release\Lihui2048Api_platform.os
+                0x00000bb4                move_platform(int)
  .text._Z24getCurrentScore_platformv
-                0x00000c00       0x50 release\Lihui2048Api_platform.os
-                0x00000c00                getCurrentScore_platform()
+                0x00000c0c       0x50 release\Lihui2048Api_platform.os
+                0x00000c0c                getCurrentScore_platform()
  .text._Z21getBestScore_platformv
-                0x00000c50       0x50 release\Lihui2048Api_platform.os
-                0x00000c50                getBestScore_platform()
+                0x00000c5c       0x50 release\Lihui2048Api_platform.os
+                0x00000c5c                getBestScore_platform()
  .text._Z14reset_platformv
-                0x00000ca0       0x50 release\Lihui2048Api_platform.os
-                0x00000ca0                reset_platform()
+                0x00000cac       0x50 release\Lihui2048Api_platform.os
+                0x00000cac                reset_platform()
  .text._Z14isWin_platformv
-                0x00000cf0       0x58 release\Lihui2048Api_platform.os
-                0x00000cf0                isWin_platform()
+                0x00000cfc       0x58 release\Lihui2048Api_platform.os
+                0x00000cfc                isWin_platform()
  .text._Z17getValue_platformii
-                0x00000d48       0x60 release\Lihui2048Api_platform.os
-                0x00000d48                getValue_platform(int, int)
+                0x00000d54       0x60 release\Lihui2048Api_platform.os
+                0x00000d54                getValue_platform(int, int)
  .text._Z16getAnim_platformii
-                0x00000da8       0x60 release\Lihui2048Api_platform.os
-                0x00000da8                getAnim_platform(int, int)
+                0x00000db4       0x60 release\Lihui2048Api_platform.os
+                0x00000db4                getAnim_platform(int, int)
  .text._Z18cleanRect_platformii
-                0x00000e08       0x60 release\Lihui2048Api_platform.os
-                0x00000e08                cleanRect_platform(int, int)
+                0x00000e14       0x60 release\Lihui2048Api_platform.os
+                0x00000e14                cleanRect_platform(int, int)
  .text._Z18reArrange_platformv
-                0x00000e68       0x50 release\Lihui2048Api_platform.os
-                0x00000e68                reArrange_platform()
+                0x00000e74       0x50 release\Lihui2048Api_platform.os
+                0x00000e74                reArrange_platform()
  .text._Z17getBombs_platformv
-                0x00000eb8       0x50 release\Lihui2048Api_platform.os
-                0x00000eb8                getBombs_platform()
+                0x00000ec4       0x50 release\Lihui2048Api_platform.os
+                0x00000ec4                getBombs_platform()
  .text._Z22getRearranges_platformv
-                0x00000f08       0x50 release\Lihui2048Api_platform.os
-                0x00000f08                getRearranges_platform()
- .text._Z17addBombs_platformv
-                0x00000f58       0x50 release\Lihui2048Api_platform.os
-                0x00000f58                addBombs_platform()
- .text._Z22addRearranges_platformv
-                0x00000fa8       0x50 release\Lihui2048Api_platform.os
-                0x00000fa8                addRearranges_platform()
+                0x00000f14       0x50 release\Lihui2048Api_platform.os
+                0x00000f14                getRearranges_platform()
+ .text._Z17addBombs_platformi
+                0x00000f64       0x58 release\Lihui2048Api_platform.os
+                0x00000f64                addBombs_platform(int)
+ .text._Z22addRearranges_platformi
+                0x00000fbc       0x58 release\Lihui2048Api_platform.os
+                0x00000fbc                addRearranges_platform(int)
  .text._Z17useBombs_platformv
-                0x00000ff8       0x50 release\Lihui2048Api_platform.os
-                0x00000ff8                useBombs_platform()
+                0x00001014       0x50 release\Lihui2048Api_platform.os
+                0x00001014                useBombs_platform()
  .text._Z22useRearranges_platformv
-                0x00001048       0x50 release\Lihui2048Api_platform.os
-                0x00001048                useRearranges_platform()
+                0x00001064       0x50 release\Lihui2048Api_platform.os
+                0x00001064                useRearranges_platform()
  .text._Z23getEmptyPoints_platformv
-                0x00001098       0x50 release\Lihui2048Api_platform.os
-                0x00001098                getEmptyPoints_platform()
+                0x000010b4       0x50 release\Lihui2048Api_platform.os
+                0x000010b4                getEmptyPoints_platform()
  .text._Z17setFlags_platformPKci
-                0x000010e8       0x78 release\Lihui2048Api_platform.os
-                0x000010e8                setFlags_platform(char const*, int)
+                0x00001104       0x78 release\Lihui2048Api_platform.os
+                0x00001104                setFlags_platform(char const*, int)
  .text._Z17getFlags_platformPKc
-                0x00001160       0x70 release\Lihui2048Api_platform.os
-                0x00001160                getFlags_platform(char const*)
+                0x0000117c       0x70 release\Lihui2048Api_platform.os
+                0x0000117c                getFlags_platform(char const*)
  .text._Z16Lihui2048ApiInitv
-                0x000011d0        0x4 release\Lihui2048Api.os
-                0x000011d0                Lihui2048ApiInit()
+                0x000011ec        0x4 release\Lihui2048Api.os
+                0x000011ec                Lihui2048ApiInit()
  .text._Z21Lihui2048ApiTerminatev
-                0x000011d4        0x4 release\Lihui2048Api.os
-                0x000011d4                Lihui2048ApiTerminate()
- .text.isMovable
-                0x000011d8        0x4 release\Lihui2048Api.os
-                0x000011d8                isMovable
- .text.move     0x000011dc        0x4 release\Lihui2048Api.os
-                0x000011dc                move
- .text.getCurrentScore
-                0x000011e0        0x4 release\Lihui2048Api.os
-                0x000011e0                getCurrentScore
- .text.getBestScore
-                0x000011e4        0x4 release\Lihui2048Api.os
-                0x000011e4                getBestScore
- .text.reset    0x000011e8        0x4 release\Lihui2048Api.os
-                0x000011e8                reset
- .text.isWin    0x000011ec        0x4 release\Lihui2048Api.os
-                0x000011ec                isWin
- .text.getValue
                 0x000011f0        0x4 release\Lihui2048Api.os
-                0x000011f0                getValue
- .text.getAnim  0x000011f4        0x4 release\Lihui2048Api.os
-                0x000011f4                getAnim
- .text.cleanRect
-                0x000011f8        0x4 release\Lihui2048Api.os
-                0x000011f8                cleanRect
- .text.reArrange
+                0x000011f0                Lihui2048ApiTerminate()
+ .text.isMovable
+                0x000011f4        0x4 release\Lihui2048Api.os
+                0x000011f4                isMovable
+ .text.move     0x000011f8        0x4 release\Lihui2048Api.os
+                0x000011f8                move
+ .text.getCurrentScore
                 0x000011fc        0x4 release\Lihui2048Api.os
-                0x000011fc                reArrange
- .text.getBombs
+                0x000011fc                getCurrentScore
+ .text.getBestScore
                 0x00001200        0x4 release\Lihui2048Api.os
-                0x00001200                getBombs
- .text.getRearranges
-                0x00001204        0x4 release\Lihui2048Api.os
-                0x00001204                getRearranges
- .text.addBombs
-                0x00001208        0x4 release\Lihui2048Api.os
-                0x00001208                addBombs
- .text.addRearranges
+                0x00001200                getBestScore
+ .text.reset    0x00001204        0x4 release\Lihui2048Api.os
+                0x00001204                reset
+ .text.isWin    0x00001208        0x4 release\Lihui2048Api.os
+                0x00001208                isWin
+ .text.getValue
                 0x0000120c        0x4 release\Lihui2048Api.os
-                0x0000120c                addRearranges
- .text.useBombs
-                0x00001210        0x4 release\Lihui2048Api.os
-                0x00001210                useBombs
- .text.useRearranges
+                0x0000120c                getValue
+ .text.getAnim  0x00001210        0x4 release\Lihui2048Api.os
+                0x00001210                getAnim
+ .text.cleanRect
                 0x00001214        0x4 release\Lihui2048Api.os
-                0x00001214                useRearranges
- .text.getEmptyPoints
+                0x00001214                cleanRect
+ .text.reArrange
                 0x00001218        0x4 release\Lihui2048Api.os
-                0x00001218                getEmptyPoints
- .text.setFlags
+                0x00001218                reArrange
+ .text.getBombs
                 0x0000121c        0x4 release\Lihui2048Api.os
-                0x0000121c                setFlags
- .text.getFlags
+                0x0000121c                getBombs
+ .text.getRearranges
                 0x00001220        0x4 release\Lihui2048Api.os
-                0x00001220                getFlags
+                0x00001220                getRearranges
+ .text.addBombs
+                0x00001224        0x4 release\Lihui2048Api.os
+                0x00001224                addBombs
+ .text.addRearranges
+                0x00001228        0x4 release\Lihui2048Api.os
+                0x00001228                addRearranges
+ .text.useBombs
+                0x0000122c        0x4 release\Lihui2048Api.os
+                0x0000122c                useBombs
+ .text.useRearranges
+                0x00001230        0x4 release\Lihui2048Api.os
+                0x00001230                useRearranges
+ .text.getEmptyPoints
+                0x00001234        0x4 release\Lihui2048Api.os
+                0x00001234                getEmptyPoints
+ .text.setFlags
+                0x00001238        0x4 release\Lihui2048Api.os
+                0x00001238                setFlags
+ .text.getFlags
+                0x0000123c        0x4 release\Lihui2048Api.os
+                0x0000123c                getFlags
  .text._ZL13getFlags_wrapPKc
-                0x00001224       0x24 release\Lihui2048Api_register.os
+                0x00001240       0x24 release\Lihui2048Api_register.os
  .text._ZL13setFlags_wrapPKci
-                0x00001248       0x28 release\Lihui2048Api_register.os
+                0x00001264       0x28 release\Lihui2048Api_register.os
  .text._ZL19getEmptyPoints_wrapv
-                0x00001270       0x20 release\Lihui2048Api_register.os
+                0x0000128c       0x20 release\Lihui2048Api_register.os
  .text._ZL18useRearranges_wrapv
-                0x00001290       0x20 release\Lihui2048Api_register.os
+                0x000012ac       0x20 release\Lihui2048Api_register.os
  .text._ZL13useBombs_wrapv
-                0x000012b0       0x20 release\Lihui2048Api_register.os
- .text._ZL18addRearranges_wrapv
-                0x000012d0       0x20 release\Lihui2048Api_register.os
- .text._ZL13addBombs_wrapv
-                0x000012f0       0x20 release\Lihui2048Api_register.os
+                0x000012cc       0x20 release\Lihui2048Api_register.os
+ .text._ZL18addRearranges_wrapi
+                0x000012ec       0x24 release\Lihui2048Api_register.os
+ .text._ZL13addBombs_wrapi
+                0x00001310       0x24 release\Lihui2048Api_register.os
  .text._ZL18getRearranges_wrapv
-                0x00001310       0x20 release\Lihui2048Api_register.os
+                0x00001334       0x20 release\Lihui2048Api_register.os
  .text._ZL13getBombs_wrapv
-                0x00001330       0x20 release\Lihui2048Api_register.os
+                0x00001354       0x20 release\Lihui2048Api_register.os
  .text._ZL14reArrange_wrapv
-                0x00001350       0x20 release\Lihui2048Api_register.os
+                0x00001374       0x20 release\Lihui2048Api_register.os
  .text._ZL14cleanRect_wrapii
-                0x00001370       0x28 release\Lihui2048Api_register.os
+                0x00001394       0x28 release\Lihui2048Api_register.os
  .text._ZL12getAnim_wrapii
-                0x00001398       0x28 release\Lihui2048Api_register.os
+                0x000013bc       0x28 release\Lihui2048Api_register.os
  .text._ZL13getValue_wrapii
-                0x000013c0       0x28 release\Lihui2048Api_register.os
+                0x000013e4       0x28 release\Lihui2048Api_register.os
  .text._ZL10isWin_wrapv
-                0x000013e8       0x30 release\Lihui2048Api_register.os
+                0x0000140c       0x30 release\Lihui2048Api_register.os
  .text._ZL10reset_wrapv
-                0x00001418       0x20 release\Lihui2048Api_register.os
+                0x0000143c       0x20 release\Lihui2048Api_register.os
  .text._ZL17getBestScore_wrapv
-                0x00001438       0x20 release\Lihui2048Api_register.os
+                0x0000145c       0x20 release\Lihui2048Api_register.os
  .text._ZL20getCurrentScore_wrapv
-                0x00001458       0x20 release\Lihui2048Api_register.os
+                0x0000147c       0x20 release\Lihui2048Api_register.os
  .text._ZL9move_wrapi
-                0x00001478       0x24 release\Lihui2048Api_register.os
+                0x0000149c       0x24 release\Lihui2048Api_register.os
  .text._ZL14isMovable_wrapv
-                0x0000149c       0x30 release\Lihui2048Api_register.os
+                0x000014c0       0x30 release\Lihui2048Api_register.os
  .text.RegisterExt
-                0x000014cc      0x1a8 release\Lihui2048Api_register.os
-                0x000014cc                RegisterExt
+                0x000014f0      0x1a8 release\Lihui2048Api_register.os
+                0x000014f0                RegisterExt
  .text.s3eEdkThreadRunOnOS
                 0xffffffffffffffff       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
-                0x00001674                s3eEdkThreadRunOnOS
+                0x00001698                s3eEdkThreadRunOnOS
 
-.rodata         0x000016a4      0x175
+.rodata         0x000016c8      0x175
  ** merge strings
-                0x000016a4      0x175
+                0x000016c8      0x175
 
 .fini_array     0x00002ea0        0x8
  .fini_array    0x00002ea0        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o

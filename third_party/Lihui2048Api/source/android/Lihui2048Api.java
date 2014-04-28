@@ -61,11 +61,11 @@ class Lihui2048Api
     {
         return 0;
     }
-    public void addBombs()
+    public void addBombs(int i)
     {
         
     }
-    public void addRearranges()
+    public void addRearranges(int i)
     {
         
     }

@@ -71,11 +71,11 @@ public class Lihui2048 {
 	public int getRearranges(){
 		return matrix.getRearranges();
 	}
-	public void addBombs(){
-		matrix.addBombs();
+	public void addBombs(int i){
+		matrix.addBombs(i);
 	}
-	public void addRearranges(){
-		matrix.addRearranges();
+	public void addRearranges(int i){
+		matrix.addRearranges(i);
 	}
 	public void useBombs(){
 		matrix.useBombs();

@@ -28,9 +28,9 @@ int getBombs() 0 run_on_os_thread
 
 int getRearranges() 0 run_on_os_thread
 
-void addBombs() run_on_os_thread
+void addBombs(int i) run_on_os_thread
 
-void addRearranges() run_on_os_thread
+void addRearranges(int i) run_on_os_thread
 
 void useBombs() run_on_os_thread
 
