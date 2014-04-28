@@ -434,7 +434,7 @@ int getEmptyPoints()
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[16] func: getEmptyPoints"));
 
     if (!_extLoad())
-        return;
+        return 0;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
@@ -474,7 +474,7 @@ int getFlags(const char* key)
     IwTrace(LIHUI2048API_VERBOSE, ("calling Lihui2048Api[18] func: getFlags"));
 
     if (!_extLoad())
-        return;
+        return 0;
 
 #ifdef LOADER_CALL
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
