@@ -20,7 +20,8 @@ typedef enum {
 	task_fixed_score_45000,
 	task_fixed_score_65000,
 	task_fixed_score_80000,
-	task_fixed_score_100000
+	task_fixed_score_100000,
+	task_fixed_list_max
 } TASK_LIST;
 
 struct TaskAward {
@@ -33,19 +34,25 @@ class TaskManager
 protected:
 	int taskId;
 	bool bTaskFinished;
-	
+	int SCREEN_WIDTH;
+	int SCREEN_HEIGHT;	
+	CCLayer* clayer;
+
 	TaskAward* getCurrentTaskAwardById();
+	int generateRandomTask();
+	bool isTaskFinished(int taskId);
+	CCString* formatTaskNameById(int taskId);
+	bool hasNumber(int* coodinates, int number);
+	void showInfo(CCString* cstr);
 
 public:
     ~TaskManager();
     TaskManager();
 	static TaskManager* sharedInstance();
 
-	void initTask();
-	bool isTaskFinished();
-	void processTask(int* coodinates = NULL, int score = 0);
+	void initTask(CCLayer* cl);
+	bool processTask(int* coodinates = NULL, int score = 0);
 	TaskAward* getCurrentTaskAward();
-	
 };
 
 #endif // __TaskManager_H__

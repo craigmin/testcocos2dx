@@ -5,6 +5,7 @@
 #include "LihuiLB.h"
 #include "LihuiSocial.h"
 #include "ThemeManager.h"
+#include "TaskManager.h"
 
 int timeStamp = 0;
 
@@ -248,6 +249,7 @@ bool GameScene::init()
 	bMovable = true;
 	bInMoving = false;
 
+	TaskManager::sharedInstance()->initTask(this);
 	return true;
 }
 
@@ -322,6 +324,8 @@ void GameScene::moveMatrix(int moveDir){
 		if (!bMovable){
 			inMovable();
 			bInMovable=true;
+		} else {
+			TaskManager::sharedInstance()->processTask((int*)coodinates_now, getCurrentScore());
 		}
 	}
 	//bInMovable=false;
@@ -816,7 +820,10 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 	}
 	drawMatrix();
 	drawScore();
+
+	TaskManager::sharedInstance()->initTask(this);
 }
+
 // ShareButtonClick
 void GameScene::shareButtonClick(CCObject *sender){
 	connectToWX();
