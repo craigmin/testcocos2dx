@@ -14,7 +14,13 @@ files
     TestGame.cpp
     AppDelegate.cpp
     AppDelegate.h
-    GameLayer.cpp
+	[Object]
+	Point.cpp
+	Point.h
+	[UI]
+	JerryScene.cpp
+	JerryScene.h
+	GameLayer.cpp
     GameLayer.h
 	GameScene.cpp
     GameScene.h
@@ -22,14 +28,11 @@ files
     SplashScreen.h
 	LeaderBoard.cpp
     LeaderBoard.h
-    ThemeManager.cpp
+	[UI/Tools]
+	TaskManager.cpp
+	TaskManager.h
+	ThemeManager.cpp
     ThemeManager.h
-	[Object]
-	Point.cpp
-	Point.h
-	[UI]
-	JerryScene.cpp
-	JerryScene.h
 }
 assets 
 {

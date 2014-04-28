@@ -28,6 +28,7 @@ bool LeaderBoard::init()
 
 	if (!CCLayer::init())
 		return false;
+	
 	//float iMenuWidthOffset = 0.55;
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
 	SCREEN_HEIGHT = CCDirector::sharedDirector()->getWinSize().height;
@@ -60,46 +61,64 @@ bool LeaderBoard::init()
 	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSpritelb,NULL);
 	pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7, SCREEN_HEIGHT*0.15));
 
-	this->addChild(pback2menuMenu, 3);	
+	this->addChild(pback2menuMenu, 3);
+
+	CCLayer *bg = CCLayer::create();  
+    bg->setContentSize(CCSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT*0.58));  
+    bg->setAnchorPoint(ccp(0,0));  
+    bg->setPosition(ccp(0,0));  
 
 	char buff[16];
 	*buff = 0;
 
 	for(int i=0;i<10;i++){
+		int offsetHeight = SCREEN_HEIGHT*(0.63125-0.0583*i-0.08);
+
 		sprintf(buff,"%d ",i+1);
 		scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.20,SCREEN_HEIGHT*(0.63125-0.0583*i)));
-		scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
-		this->addChild(scoreLabel, 4);
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.43,offsetHeight));
+		scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
+		bg->addChild(scoreLabel, 4);
 
 		scoreLabel=CCLabelTTF::labelWithString(getNicknameByRank(i+1),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.50,SCREEN_HEIGHT*(0.63125-0.0583*i)));
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.50,offsetHeight));
 		scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
-		this->addChild(scoreLabel, 4);
+		bg->addChild(scoreLabel, 4);
 
 		sprintf(buff,"%d ",getScore(i+1));
 		scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.63125-0.0583*i)));
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,offsetHeight));
 		scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
-		this->addChild(scoreLabel, 4);
+		bg->addChild(scoreLabel, 4);
 	}
 
-	sprintf(buff,"%d ",getScore(-1));
-	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.20,SCREEN_HEIGHT*(0.63125-0.0583*i)));
-	scoreLabel->setColor(ccc3(0xFF,0xFF,0xFF));
-	this->addChild(scoreLabel, 4);
+    CCScrollView * view = CCScrollView::create(CCSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT*0.35), bg);
+    view->setDirection(kCCScrollViewDirectionVertical);  
+	view->setContentSize( CCSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT*0.58) );
+	view->setContentOffset(ccp(0,-SCREEN_HEIGHT*0.226));
+    view->setAnchorPoint(ccp(0,0));  
+    view->setPosition(0,SCREEN_HEIGHT*0.305);  
+    this->addChild(view,4);  
+
 
 	sprintf(buff,"%d ",getBestScore());
 	scoreLabel=CCLabelTTF::labelWithString(buff,CCSizeMake(150*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentRight,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.62700-0.0583*6)));
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.78,SCREEN_HEIGHT*(0.62725-0.0583*6)));
 	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
 	this->addChild(scoreLabel, 4);
 
 	scoreLabel=CCLabelTTF::labelWithString(getNickname(),CCSizeMake(300*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.52,SCREEN_HEIGHT*(0.62700-0.0583*6)));
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.51,SCREEN_HEIGHT*(0.62725-0.0583*6)));
 	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
 	this->addChild(scoreLabel, 4);
+
+	/*char buff2[256];
+	*buff2 = 0;
+	sprintf(buff2,"%d %s",getUserRank(), getNickname());
+	scoreLabel=CCLabelTTF::labelWithString(buff2,CCSizeMake(330*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.43,SCREEN_HEIGHT*(0.63125-0.0583*7)));
+	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
+	this->addChild(scoreLabel, 4);*/
 
 	this->schedule(schedule_selector(LeaderBoard::update), 2, kCCRepeatForever, 0);
 
@@ -118,6 +137,9 @@ void LeaderBoard::updateNicknameClick(CCObject *sender){
 void LeaderBoard::update(float dt)
 {
 	if(scoreLabel){
+		/*char buff2[256];
+		*buff2 = 0;
+		sprintf(buff2,"%d %s",getUserRank(), getNickname());*/
 		scoreLabel->setString(getNickname());
 	}
 }

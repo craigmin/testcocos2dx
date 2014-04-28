@@ -3,8 +3,10 @@
 
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
+#include "cocos-ext.h"
 
 using namespace cocos2d;
+using namespace cocos2d::extension;
 
 class LeaderBoard : public cocos2d::CCLayer
 {
