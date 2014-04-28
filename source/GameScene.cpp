@@ -1004,13 +1004,13 @@ void GameScene::fadeOutCallback(CCNode *sender){
 	}
 }
 void GameScene::buyBombButtonClick(CCObject *sender){ 
-	addBombs();
+	addBombs(3);
 	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buyRearrangeButtonClick(CCObject *sender){ 
-	addRearranges();
+	addRearranges(1);
 	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
@@ -1024,25 +1024,52 @@ void GameScene::gameoverButtonClick(CCObject *sender){
 }
 void GameScene::shopButtonClick(CCObject *sender){ 
 	//TODO
+	if (bPaused&&!bInMovable) {
+		return;
+	}
+	if(bClean) return;
+	pauseGame(SHOP);
 }
 void GameScene::buygiftButtonClick(CCObject *sender){ 
 	//TODO
+	addBombs(6);
+	addRearranges(3);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy3bombsButtonClick(CCObject *sender){ 
 	//TODO
+	addBombs(3);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy5bombsButtonClick(CCObject *sender){ 
 	//TODO
+	addBombs(5);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy10bombsButtonClick(CCObject *sender){ 
 	//TODO
+	addBombs(10);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy1ReButtonClick(CCObject *sender){ 
 	//TODO
+	addRearranges(1);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy2ResButtonClick(CCObject *sender){ 
 	//TODO
+	addRearranges(2);
+	this->removeChildByTag(1000);
+	bPaused = false;
 }
 void GameScene::buy5ResButtonClick(CCObject *sender){ 
 	//TODO
+	addRearranges(5);
+	this->removeChildByTag(1000);
+	bPaused = false;	
 }
