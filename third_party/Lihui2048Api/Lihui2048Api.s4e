@@ -37,3 +37,7 @@ void useBombs() run_on_os_thread
 void useRearranges() run_on_os_thread
 
 int getEmptyPoints() run_on_os_thread
+
+void setFlags(const char* key,int flag) run_on_os_thread
+
+int getFlags(const char* key) run_on_os_thread

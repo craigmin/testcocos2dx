@@ -81,4 +81,12 @@ class Lihui2048Api
     {
         return 0;
     }
+    public void setFlags(String key, int flag)
+    {
+        
+    }
+    public int getFlags(String key)
+    {
+        return 0;
+    }
 }

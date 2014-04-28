@@ -31,6 +31,8 @@ static jmethodID g_addRearranges;
 static jmethodID g_useBombs;
 static jmethodID g_useRearranges;
 static jmethodID g_getEmptyPoints;
+static jmethodID g_setFlags;
+static jmethodID g_getFlags;
 
 s3eResult Lihui2048ApiInit_platform()
 {
@@ -121,6 +123,14 @@ s3eResult Lihui2048ApiInit_platform()
 
     g_getEmptyPoints = env->GetMethodID(cls, "getEmptyPoints", "()I");
     if (!g_getEmptyPoints)
+        goto fail;
+
+    g_setFlags = env->GetMethodID(cls, "setFlags", "(Ljava/lang/String;I)V");
+    if (!g_setFlags)
+        goto fail;
+
+    g_getFlags = env->GetMethodID(cls, "getFlags", "(Ljava/lang/String;)I");
+    if (!g_getFlags)
         goto fail;
 
 
@@ -250,4 +260,18 @@ int getEmptyPoints_platform()
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     return (int)env->CallIntMethod(g_Obj, g_getEmptyPoints);
+}
+
+void setFlags_platform(const char* key, int flag)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    jstring key_jstr = env->NewStringUTF(key);
+    env->CallVoidMethod(g_Obj, g_setFlags, key_jstr, flag);
+}
+
+int getFlags_platform(const char* key)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    jstring key_jstr = env->NewStringUTF(key);
+    return (int)env->CallIntMethod(g_Obj, g_getFlags, key_jstr);
 }

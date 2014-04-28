@@ -30,7 +30,7 @@ CCScene* GameLayer::scene()
 // on "init" you need to initialize your instance
 bool GameLayer::init()
 {
-    if (!CCLayer::init())
+	    if (!CCLayer::init())
         return false;
 
 	SCREEN_WIDTH = CCDirector::sharedDirector()->getWinSize().width;
