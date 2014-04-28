@@ -41,9 +41,8 @@ bool LeaderBoard::init()
 
 	CCSprite* updateNicknamelb =ThemeManager::sharedInstance()->spriteWithImageFile("btn_update_nickname.png");
 	CCSprite* updateNicknameSelectedlb =ThemeManager::sharedInstance()->spriteWithImageFile("btn_update_nickname.png");
-	CCSprite* updateNicknameDisabledlb =ThemeManager::sharedInstance()->spriteWithImageFile("btn_update_nickname.png");
-
-	CCMenuItemSprite* pupdateNicknameItemSpritelb = CCMenuItemSprite::itemWithNormalSprite(updateNicknamelb, updateNicknameSelectedlb, updateNicknameDisabledlb, this, menu_selector(LeaderBoard::updateNicknameClick));
+	updateNicknameSelectedlb->setScale(1.1);
+	CCMenuItemSprite* pupdateNicknameItemSpritelb = CCMenuItemSprite::itemWithNormalSprite(updateNicknamelb, updateNicknameSelectedlb, this, menu_selector(LeaderBoard::updateNicknameClick));
 	pupdateNicknameItemSpritelb->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pupdateNicknameMenu = CCMenu::menuWithItems(pupdateNicknameItemSpritelb,NULL);
 	pupdateNicknameMenu->setPosition(ccp(SCREEN_WIDTH*0.3, SCREEN_HEIGHT*0.15));
@@ -53,9 +52,9 @@ bool LeaderBoard::init()
 
 	CCSprite* back2menuNormallb =ThemeManager::sharedInstance()->spriteWithImageFile("back2menu.png");
 	CCSprite* back2menuSelectedlb =ThemeManager::sharedInstance()->spriteWithImageFile("back2menu.png");
-	CCSprite* back2menuDisabledlb =ThemeManager::sharedInstance()->spriteWithImageFile("back2menu.png");
+	back2menuSelectedlb->setScale(1.1);
 
-	CCMenuItemSprite* pback2menuItemSpritelb = CCMenuItemSprite::itemWithNormalSprite(back2menuNormallb, back2menuSelectedlb, back2menuDisabledlb, this, menu_selector(LeaderBoard::back2menuClick));
+	CCMenuItemSprite* pback2menuItemSpritelb = CCMenuItemSprite::itemWithNormalSprite(back2menuNormallb, back2menuSelectedlb, this, menu_selector(LeaderBoard::back2menuClick));
 	pback2menuItemSpritelb->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pback2menuMenu = CCMenu::menuWithItems(pback2menuItemSpritelb,NULL);
 	pback2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.7, SCREEN_HEIGHT*0.15));
