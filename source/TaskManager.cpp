@@ -6,7 +6,9 @@
 
 static TaskManager * sInstance = NULL;
 static int task_all_finished = -1;
-static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
+
+static int task_mission[task_fixed_list_max] = {8,16,32,64,32,128,4096,200,300,400,500,600,700,800};
+//static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
 
 TaskManager::~TaskManager()
 {
@@ -32,31 +34,21 @@ TaskManager* TaskManager::sharedInstance()
 void TaskManager::initTask(CCLayer* cl) {
 	clayer = cl;
 	if(taskId == task_all_finished) {
-		CCString* cstr = CCString::createWithFormat("task_all_finished TaskID: %d ", taskId);
-		showInfo(cstr);
-
 		bTaskFinished = true;
 		return;
 	}
 
 	taskId = task_fixed_block_256;
 	bTaskFinished = true;
-	CCString* cstr = CCString::createWithFormat("TaskID: %d ", taskId);
-	showInfo(cstr);
 	for (int i = task_fixed_block_256; i <= task_fixed_block_2048_rearrange ; ++i){
 		CCString* taskName = formatTaskNameById(i);
 		if(getFlags(taskName->getCString()) == 0) {
 			taskId = i;
 			bTaskFinished = false;
 
-			//CCString* cstr = CCString::createWithFormat("TaskID: %d ", taskId);
-			//showInfo(cstr);
 			break;
 		}
 	}
-
-	CCString* cstr = CCString::createWithFormat("TaskID: %d ; bTaskFinished: %s", taskId, bTaskFinished ? "true" : "false");
-	showInfo(cstr);
 
 	if(bTaskFinished) {
 		taskId = generateRandomTask();
@@ -76,15 +68,16 @@ void TaskManager::initTask(CCLayer* cl) {
 int TaskManager::generateRandomTask() {
 	int id = int(rand()%10)+4;
 	for (int i=id;i<task_fixed_list_max;i++) {
-		if(!isTaskFinished(id)) {
-			return id;
+		if(!isTaskFinished(i)) {
+			return i;
 		}
 	}
 	for (int i=task_fixed_block_1024_2;i<id;i++) {
-		if(!isTaskFinished(id)) {
-			return id;
+		if(!isTaskFinished(i)) {
+			return i;
 		}
 	}
+
 	return task_all_finished;
 }
 
@@ -94,6 +87,8 @@ bool TaskManager::isTaskFinished(int id){
 
 bool TaskManager::processTask(int* coodinates, int score){
 	if(taskId == task_all_finished || bTaskFinished) {
+		CCString* cstr = CCString::createWithFormat("TaskID: %d has been finished", taskId);
+		showInfo(cstr);
 		return false;
 	}
 
@@ -101,10 +96,7 @@ bool TaskManager::processTask(int* coodinates, int score){
 	if (taskId == task_fixed_block_1024_2) {
 		if(hasNumber(coodinates, task_mission[taskId])) {
 			for(int i = 0, j=0; i < 16; i++) {
-				if(coodinates[i] > task_mission[taskId]) {
-					bRes = true;
-					break;
-				} else if (coodinates[i] == task_mission[taskId]) {
+				if (coodinates[i] == task_mission[taskId]) {
 					j++;
 					if (j>1) {
 						bRes = true;
@@ -181,8 +173,8 @@ TaskAward* TaskManager::getCurrentTaskAwardById(){
 	return award;
 }
 
-CCString* TaskManager::formatTaskNameById(int taskId) {
-	return CCString::createWithFormat("TASK_2048_ID_", taskId);
+CCString* TaskManager::formatTaskNameById(int id) {
+	return CCString::createWithFormat("TASK_2048_ID_%d", id);
 }
 
 void TaskManager::showInfo(CCString* cstr){
