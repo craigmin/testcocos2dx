@@ -43,7 +43,7 @@ protected:
 	bool isTaskFinished(int taskId);
 	CCString* formatTaskNameById(int taskId);
 	bool hasNumber(int* coodinates, int number);
-	void showInfo(CCString* cstr);
+	void showInfo();
 
 public:
     ~TaskManager();
