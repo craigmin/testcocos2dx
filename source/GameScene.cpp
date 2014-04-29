@@ -894,6 +894,7 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 // ShareButtonClick
 void GameScene::shareButtonClick(CCObject *sender){
 	connectToWX();
+	//drawScore();
 }
 
 void GameScene::restartClick(CCObject *sender){
@@ -908,8 +909,8 @@ void GameScene::back2menuClick(CCObject *sender){
 	/*
 	inMovable();
 	bInMovable=true;
+	return;
 	*/
-	
 	//bPaused=false;
 
 	if (bPaused||bClean) {
@@ -941,6 +942,7 @@ void GameScene::bombButtonClick(CCObject *sender){
 		return;
 
 	if(bClean) return;
+	if(bGameOver)return;
 	if(bInMovable){
 		this->removeChildByTag(1005);
 		bPaused=false;
@@ -1089,8 +1091,9 @@ void GameScene::buyRearrangeButtonClick(CCObject *sender){
 void GameScene::gameoverButtonClick(CCObject *sender){ 
 	this->removeChildByTag(1005);
 	gameOver();
-	pbombmenuItemSprite->stopAllActions();
-	prearrangemenuItemSprite->stopAllActions();
+	//pbombmenuItemSprite->stopAllActions();
+	//prearrangemenuItemSprite->stopAllActions();
+	bInMovable=true;
 	bPaused = false;
 }
 void GameScene::shopButtonClick(CCObject *sender){ 
