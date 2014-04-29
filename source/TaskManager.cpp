@@ -7,8 +7,8 @@
 static TaskManager * sInstance = NULL;
 static int task_all_finished = -1;
 
-static int task_mission[task_fixed_list_max] = {8,16,32,64,8,128,4096,200,300,400,500,600,700,800};
-//static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
+//static int task_mission[task_fixed_list_max] = {8,16,32,64,32,64,32,200,250,300,350,400,450,500};
+static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
 
 TaskManager::~TaskManager()
 {
@@ -45,7 +45,6 @@ void TaskManager::initTask(CCLayer* cl) {
 		if(getFlags(taskName->getCString()) == 0) {
 			taskId = i;
 			bTaskFinished = false;
-
 			break;
 		}
 	}
@@ -60,8 +59,7 @@ void TaskManager::initTask(CCLayer* cl) {
 	}
 
 	if (!bTaskFinished) {
-		CCString* cstr = CCString::createWithFormat("TaskID: %d ", taskId);
-		showInfo(cstr);
+		showInfo();
 	}
 }
 
@@ -87,8 +85,6 @@ bool TaskManager::isTaskFinished(int id){
 
 bool TaskManager::processTask(int* coodinates, int score){
 	if(taskId == task_all_finished || bTaskFinished) {
-		CCString* cstr = CCString::createWithFormat("TaskID: %d has been finished", taskId);
-		showInfo(cstr);
 		return false;
 	}
 
@@ -107,7 +103,7 @@ bool TaskManager::processTask(int* coodinates, int score){
 		}
 	} else	if(taskId <= task_fixed_block_4096) {
 		bRes = hasNumber(coodinates, task_mission[taskId]);
-	} else if(score > task_mission[taskId]){
+	} else if(score >= task_mission[taskId]){
 		bRes = true;
 	}
 
@@ -115,9 +111,6 @@ bool TaskManager::processTask(int* coodinates, int score){
 		setFlags(formatTaskNameById(taskId)->getCString(), 1);
 		bTaskFinished = true;
 	}
-
-	CCString* cstr = CCString::createWithFormat("TaskID: %d , Res: %s", taskId, bRes ? "true" : "false");
-	showInfo(cstr);
 
 	return bRes;
 }
@@ -177,13 +170,72 @@ CCString* TaskManager::formatTaskNameById(int id) {
 	return CCString::createWithFormat("TASK_2048_ID_%d", id);
 }
 
-void TaskManager::showInfo(CCString* cstr){
-	return;
-	clayer->removeChildByTag(3000);
+void TaskManager::showInfo() {
 
-	CCLabelTTF* scoreLabel=CCLabelTTF::labelWithString(cstr->getCString(),CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setPosition(ccp(SCREEN_WIDTH*0.5,SCREEN_HEIGHT*0.5));//SCREEN_WIDTH*0.96
+	taskId = task_fixed_score_100000;
+
+	CCString* taskBack = CCString::createWithFormat("%d ", task_mission[taskId]);
+	CCLabelTTF* scoreLabel = CCLabelTTF::labelWithString(taskBack->getCString(),CCSizeMake(250*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),72*LL_SCREEN_SCALE_VALUE);
 	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
 
-	clayer->addChild(scoreLabel, 2000, 3000);
+	switch (taskId) {
+	case task_fixed_block_256:
+	case task_fixed_block_1024:
+	case task_fixed_block_2048_bomb:
+		taskBack = CCString::create("task_dialog_bomb_1_1.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_block_1024_2:
+		taskBack = CCString::create("task_dialog_bomb_1_3.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.18,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_block_512:
+	case task_fixed_block_2048_rearrange:
+	case task_fixed_block_4096:
+		taskBack = CCString::create("task_dialog_rearrange_1_1.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_score_20000:
+	case task_fixed_score_25000:
+	case task_fixed_score_35000:
+		taskBack = CCString::create("task_dialog_bomb_1_2.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_score_45000:
+		taskBack = CCString::create("task_dialog_rearrange_1_2.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_score_65000:
+		taskBack = CCString::create("task_dialog_bomb_rearrange_1.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
+		break;
+	case task_fixed_score_80000:
+	case task_fixed_score_100000:
+		taskBack = CCString::create("task_dialog_bomb_rearrange_2.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
+		break;
+	default:
+		taskBack = CCString::create("task_dialog_bomb_1_1.png");
+		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
+		break;
+	}
+
+
+	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile(taskBack->getCString());
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.2));
+	dialog_bk->setTag(4000);
+	dialog_bk->addChild(scoreLabel);
+
+	CCActionInterval* largeto = CCScaleBy::create(0.5, 2,2);
+	dialog_bk->setScaleX(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
+	dialog_bk->setScaleY(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
+	dialog_bk->runAction(largeto);
+
+	clayer->addChild(dialog_bk,2000);
+	clayer->schedule(schedule_selector(TaskManager::update), 1, 0, 3);
+}
+
+void TaskManager::update(CCNode *sender)
+{
+	TaskManager::sharedInstance()->clayer->removeChildByTag(4000);
 }

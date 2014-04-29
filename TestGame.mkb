@@ -116,6 +116,14 @@ assets
 	"images/themeCandy/share.png"
 	"images/themeCandy/dialog_item.png"
 	"images/themeCandy/btn_gameover.png"
+	
+	"images/themeCandy/task_dialog_bomb_1_1.png"
+	"images/themeCandy/task_dialog_bomb_1_2.png"
+	"images/themeCandy/task_dialog_bomb_1_3.png"
+	"images/themeCandy/task_dialog_bomb_rearrange_1.png"
+	"images/themeCandy/task_dialog_bomb_rearrange_2.png"
+	"images/themeCandy/task_dialog_rearrange_1_1.png"
+	"images/themeCandy/task_dialog_rearrange_1_2.png"
 
 	"images/themeCandy/btn_buygift.png"
 	"images/themeCandy/btn_buy3bombs.png"
@@ -204,6 +212,14 @@ assets
 
 	"images/themePlain/chs_theme.png"
 	"images/themePlain/btn_chs.png"
+
+	"images/themePlain/task_dialog_bomb_1_1.png"
+	"images/themePlain/task_dialog_bomb_1_2.png"
+	"images/themePlain/task_dialog_bomb_1_3.png"
+	"images/themePlain/task_dialog_bomb_rearrange_1.png"
+	"images/themePlain/task_dialog_bomb_rearrange_2.png"
+	"images/themePlain/task_dialog_rearrange_1_1.png"
+	"images/themePlain/task_dialog_rearrange_1_2.png"
 
 	"sunbeams.png"
 	"sounds/swipe.mp3"

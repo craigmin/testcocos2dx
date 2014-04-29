@@ -43,7 +43,7 @@ protected:
 	bool isTaskFinished(int taskId);
 	CCString* formatTaskNameById(int taskId);
 	bool hasNumber(int* coodinates, int number);
-	void showInfo(CCString* cstr);
+	void showInfo();
 
 public:
     ~TaskManager();
@@ -53,6 +53,7 @@ public:
 	void initTask(CCLayer* cl);
 	bool processTask(int* coodinates = NULL, int score = 0);
 	TaskAward* getCurrentTaskAward();
+	void update(CCNode *sender);
 };
 
 #endif // __TaskManager_H__
