@@ -710,13 +710,13 @@ void GameScene::pauseGame(pausetype Type){
 	*buff = 0;
 	sprintf(buff,"%d",getBombs());
 	CCSprite* bomb2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.75,SCREEN_HEIGHT*0.513));
+	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.753,SCREEN_HEIGHT*0.513));
 	bomb2use->setColor(ThemeManager::sharedInstance()->getColor());
 	
 
 	sprintf(buff,"%d",getRearranges());
 	CCSprite* Re2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
-	Re2use->setPosition(ccp(SCREEN_WIDTH*0.75,SCREEN_HEIGHT*0.403));
+	Re2use->setPosition(ccp(SCREEN_WIDTH*0.753,SCREEN_HEIGHT*0.408));
 	Re2use->setColor(ThemeManager::sharedInstance()->getColor());
 	
 	/*	
@@ -840,6 +840,7 @@ void GameScene::cancelButtonClick(CCObject *sender){
 void GameScene::backConfirmButtonClick(CCObject *sender){
 	this->removeChildByTag(1000);
 	bPaused = false;
+	bInMovable=false;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
 }
@@ -873,7 +874,7 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 	}
 
 	bInMoving = false;
-
+	bInMovable=false;
 	reset();
 	bGameOver=false;
 
