@@ -122,8 +122,7 @@ void GameScene::drawMatrix(float dt){
 			}*/
 
 			this->addChild(rect[i*4+j],2);
-			if(TaskManager::sharedInstance()->processTask((int*)coodinates_now,getCurrentScore()))
-				Taskfinish();
+							
 		}
 
 		if(isGood&&soundState) {
@@ -160,7 +159,7 @@ bool GameScene::init()
 	sprite->setScaleY(SCREEN_HEIGHT/sprite->getContentSize().height);
 	sprite->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
 	this->addChild(sprite,1);
-
+		TaskManager::sharedInstance()->initTask(this);
 	drawMatrix();
 
 	scoreLabel=CCLabelTTF::labelWithString("0",CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
@@ -238,8 +237,8 @@ bool GameScene::init()
 	prearrange2menuMenu->setPosition(ccp(SCREEN_WIDTH*0.72,SCREEN_HEIGHT*0.82));
 	this->addChild(prearrange2menuMenu, 3);
 
-	CCSprite* shopButtonOff = ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
-	CCSprite* shopButtonOn = ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
+	CCSprite* shopButtonOff = ThemeManager::sharedInstance()->spriteWithImageFile("btn_shop.png");
+	CCSprite* shopButtonOn = ThemeManager::sharedInstance()->spriteWithImageFile("btn_shop.png");
 	shopButtonOn->setScale(1.1);
 	CCMenuItemSprite* pshopmenuItemSprite = CCMenuItemSprite::itemWithNormalSprite(shopButtonOff, shopButtonOn, this, menu_selector(GameScene::shopButtonClick));
 	pshopmenuItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
@@ -251,7 +250,7 @@ bool GameScene::init()
 	bMovable = true;
 	bInMoving = false;
 
-	TaskManager::sharedInstance()->initTask(this);
+
 	return true;
 }
 
@@ -327,7 +326,8 @@ void GameScene::moveMatrix(int moveDir){
 			inMovable();
 			bInMovable=true;
 		} else {
-			//TaskManager::sharedInstance()->processTask((int*)coodinates_now, getCurrentScore());
+			if(TaskManager::sharedInstance()->processTask((int*)coodinates_now,getCurrentScore()))
+				Taskfinish();
 		}
 	}
 	//bInMovable=false;
@@ -456,7 +456,27 @@ void GameScene::cleanPointConfirm(int x,int y){
 		return;
 	cleanX=x;
 	cleanY=y;
-	pauseGame(USEBOMB);
+	//pauseGame(USEBOMB);
+	cleanRect(cleanX,cleanY);
+	coodinates_last[cleanX][cleanY]=0;
+	bInMovable=false;
+	bMovable=true;
+	//empty++;
+	useBombs();
+	//drawScore();
+	//addBombs();
+	drawProperty();
+	bValueZero[cleanX][cleanY]=true;
+	bCConfrim=true;
+	this->removeChildByTag(1000);
+	bPaused = false;
+	//bClean=false;
+	CCSprite* target=(CCSprite*)this->getChildByTag(cleanX*4+cleanY+100);
+
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionBomb0.raw");
+	CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
+	CCFiniteTimeAction* fadeOutDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::fadeOutCallback)); 
+	target->runAction( CCSequence::create(fadeOutTRTiles,fadeOutDone, NULL) );
 }
 void GameScene::cleanPoint(float x,float y)
 {
@@ -638,7 +658,7 @@ void GameScene::pauseGame(pausetype Type){
 	}if(Type == INMOVABLE){
 		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("dialog_item.png");
 	}if(Type == SHOP){
-		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("dialog_item.png");
+		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
 	}
 
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
@@ -670,8 +690,36 @@ void GameScene::pauseGame(pausetype Type){
 		CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, this, menu_selector(GameScene::gameoverButtonClick));
 		pcancelItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 		CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
-		pcancelMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
-		
+		pcancelMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.3));
+
+		CCSprite* buseNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_use.png");
+		CCSprite* buseSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_use.png");
+		CCMenuItemSprite* pbuseItemSprite = CCMenuItemSprite::itemWithNormalSprite(buseNormal, buseSelected, this, menu_selector(GameScene::bombButtonClick));
+		pbuseItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		CCMenu* pbuseMenu = CCMenu::menuWithItems(pbuseItemSprite,NULL);
+		pbuseMenu->setPosition(ccp(SCREEN_WIDTH*0.81, SCREEN_HEIGHT*0.52));
+
+		CCSprite* ruseNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_use.png");
+		CCSprite* ruseSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_use.png");
+		CCMenuItemSprite* pruseItemSprite = CCMenuItemSprite::itemWithNormalSprite(ruseNormal, ruseSelected, this, menu_selector(GameScene::rearrangeButtonClick));
+		pruseItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		CCMenu* pruseMenu = CCMenu::menuWithItems(pruseItemSprite,NULL);
+		pruseMenu->setPosition(ccp(SCREEN_WIDTH*0.81, SCREEN_HEIGHT*0.4));
+
+		char buff[16];
+	*buff = 0;
+	sprintf(buff,"%d",getBombs());
+	CCSprite* bomb2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.75,SCREEN_HEIGHT*0.513));
+	bomb2use->setColor(ThemeManager::sharedInstance()->getColor());
+	
+
+	sprintf(buff,"%d",getRearranges());
+	CCSprite* Re2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
+	Re2use->setPosition(ccp(SCREEN_WIDTH*0.75,SCREEN_HEIGHT*0.403));
+	Re2use->setColor(ThemeManager::sharedInstance()->getColor());
+	
+	/*	
 	CCScaleTo* large=CCScaleTo::actionWithDuration(0.3,1.5*LL_BUTTON_SCALE_VALUE);
 	CCScaleTo* small=CCScaleTo::actionWithDuration(0.3,1*LL_BUTTON_SCALE_VALUE);
 	CCDelayTime *waiting=CCDelayTime::actionWithDuration(0.5f);
@@ -680,8 +728,14 @@ void GameScene::pauseGame(pausetype Type){
 	CCActionInterval* actionShake1=CCRepeatForever::actionWithAction((CCActionInterval*)action);
 	pbombmenuItemSprite->runAction(actionShake1);
 	prearrangemenuItemSprite->runAction(actionShake);
+	*/
 		layer2->addChild(pcancelMenu, 10);
+		layer2->addChild(pbuseMenu, 10);
+		layer2->addChild(pruseMenu, 10);
+		layer2->addChild(bomb2use, 10);	
+		layer2->addChild(Re2use, 10);
 		layer2->setTag(1005);
+		
 		this->addChild(layer2, 10);
 		return;
 	}if(Type == SHOP){
@@ -689,51 +743,59 @@ void GameScene::pauseGame(pausetype Type){
 		CCSprite* buygiftNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buygift.png");
 		CCSprite* buygiftSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buygift.png");
 		CCMenuItemSprite* buygiftSprite = CCMenuItemSprite::itemWithNormalSprite(buygiftNormal, buygiftSelected, this, menu_selector(GameScene::buygiftButtonClick));
-		buygiftSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buygiftSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buygiftMenu = CCMenu::menuWithItems(buygiftSprite,NULL);
-		buygiftMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buygiftMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.7));
 		//buy3bombs
 		CCSprite* buy3bombsNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy3bombs.png");
 		CCSprite* buy3bombsSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy3bombs.png");
 		CCMenuItemSprite* buy3bombsSprite = CCMenuItemSprite::itemWithNormalSprite(buy3bombsNormal, buy3bombsSelected, this, menu_selector(GameScene::buy3bombsButtonClick));
-		buy3bombsSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy3bombsSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy3bombsMenu = CCMenu::menuWithItems(buy3bombsSprite,NULL);
-		buy3bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy3bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.2, SCREEN_HEIGHT*0.56));
 		//buy5bombs
 		CCSprite* buy5bombsNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy5bombs.png");
 		CCSprite* buy5bombsSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy5bombs.png");
 		CCMenuItemSprite* buy5bombsSprite = CCMenuItemSprite::itemWithNormalSprite(buy5bombsNormal, buy5bombsSelected, this, menu_selector(GameScene::buy5bombsButtonClick));
-		buy5bombsSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy5bombsSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy5bombsMenu = CCMenu::menuWithItems(buy5bombsSprite,NULL);
-		buy5bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy5bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.56));
 		//buy10bombs
 		CCSprite* buy10bombsNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy10bombs.png");
 		CCSprite* buy10bombsSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy10bombs.png");
 		CCMenuItemSprite* buy10bombsSprite = CCMenuItemSprite::itemWithNormalSprite(buy10bombsNormal, buy10bombsSelected, this, menu_selector(GameScene::buy10bombsButtonClick));
-		buy10bombsSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy10bombsSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy10bombsMenu = CCMenu::menuWithItems(buy10bombsSprite,NULL);
-		buy10bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy10bombsMenu->setPosition(ccp(SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.56));
 		//buy1Re
 		CCSprite* buy1ReNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy1Re.png");
 		CCSprite* buy1ReSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy1Re.png");
 		CCMenuItemSprite* buy1ReSprite = CCMenuItemSprite::itemWithNormalSprite(buy1ReNormal, buy1ReSelected, this, menu_selector(GameScene::buy1ReButtonClick));
-		buy1ReSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy1ReSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy1ReMenu = CCMenu::menuWithItems(buy1ReSprite,NULL);
-		buy1ReMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy1ReMenu->setPosition(ccp(SCREEN_WIDTH*0.2, SCREEN_HEIGHT*0.41));
 		//buy2Res
 		CCSprite* buy2ResNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy2Res.png");
 		CCSprite* buy2ResSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy2Res.png");
 		CCMenuItemSprite* buy2ResSprite = CCMenuItemSprite::itemWithNormalSprite(buy2ResNormal, buy2ResSelected, this, menu_selector(GameScene::buy2ResButtonClick));
-		buy2ResSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy2ResSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy2ResMenu = CCMenu::menuWithItems(buy2ResSprite,NULL);
-		buy2ResMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy2ResMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.41));
 		//buy5Res
 		CCSprite* buy5ResNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy5Res.png");
 		CCSprite* buy5ResSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buy5Res.png");
 		CCMenuItemSprite* buy5ResSprite = CCMenuItemSprite::itemWithNormalSprite(buy5ResNormal, buy5ResSelected, this, menu_selector(GameScene::buy5ResButtonClick));
-		buy5ResSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		buy5ResSprite->setScale(0.8*LL_BUTTON_SCALE_VALUE);
 		CCMenu* buy5ResMenu = CCMenu::menuWithItems(buy5ResSprite,NULL);
-		buy5ResMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*(1-0.55)));
+		buy5ResMenu->setPosition(ccp(SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.41));
+		//cancel
+		CCSprite* cancelNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_cancel.png");
+		CCSprite* cancelSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_cancel.png");
+		cancelSelected->setScale(1.1);
+		CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, this, menu_selector(GameScene::cancelButtonClick));
+		pcancelItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
+		CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
+		pcancelMenu->setPosition(ccp(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.28));
 
 		layer2->addChild(buygiftMenu, 10);
 		layer2->addChild(buy3bombsMenu, 10);
@@ -742,6 +804,8 @@ void GameScene::pauseGame(pausetype Type){
 		layer2->addChild(buy1ReMenu, 10);
 		layer2->addChild(buy2ResMenu, 10);
 		layer2->addChild(buy5ResMenu, 10);
+		layer2->addChild(pcancelMenu,10);
+		layer2->setTag(1000);
 		this->addChild(layer2, 10);
 		return;
 	}
@@ -840,7 +904,11 @@ void GameScene::restartClick(CCObject *sender){
 }
 
 void GameScene::back2menuClick(CCObject *sender){
-
+	/*
+	inMovable();
+	bInMovable=true;
+	*/
+	
 	//bPaused=false;
 
 	if (bPaused||bClean) {
@@ -848,7 +916,6 @@ void GameScene::back2menuClick(CCObject *sender){
 	}
 
 	pauseGame(BACK2MENU);
-	
 }
 
 void GameScene::cleancancleClick(CCObject *sender){
@@ -876,14 +943,14 @@ void GameScene::bombButtonClick(CCObject *sender){
 	if(bInMovable){
 		this->removeChildByTag(1005);
 		bPaused=false;
-	
+	/*
 			pbombmenuItemSprite->stopAllActions();
 			prearrangemenuItemSprite->stopAllActions();
-		
+		*/
 	}
 	if((getBombs()==0)||(getBombs()<0)){
 		
-		pauseGame(BUYBOMB);
+		pauseGame(SHOP);
 		return;
 	}
 	if(getEmptyPoints()>14) return;
@@ -938,13 +1005,13 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 	if(bInMovable){
 		this->removeChildByTag(1005);
 		bPaused=false;
-			pbombmenuItemSprite->stopAllActions();
-			prearrangemenuItemSprite->stopAllActions();
+			//pbombmenuItemSprite->stopAllActions();
+			//->stopAllActions();
 		
 	}
 	if(getRearranges()>0)
 		pauseGame(USEREARRANGE);
-	else pauseGame(BUYREARRANGE);
+	else pauseGame(SHOP);
 	/*
 	reArrange();
 	updateCoodinates();
@@ -955,6 +1022,7 @@ void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	cleanRect(cleanX,cleanY);
 	coodinates_last[cleanX][cleanY]=0;
 	bInMovable=false;
+	bClean=true;
 	bMovable=true;
 	//empty++;
 	useBombs();
@@ -1029,49 +1097,63 @@ void GameScene::shopButtonClick(CCObject *sender){
 	if (bPaused&&!bInMovable) {
 		return;
 	}
-	if(bClean) return;
+	if(bGameOver)return;
+	if(bClean) return;	
+	if(bInMovable){
+		this->removeChildByTag(1005);
+		bPaused=false;
+			//pbombmenuItemSprite->stopAllActions();
+			//->stopAllActions();
+	}
 	pauseGame(SHOP);
 }
 void GameScene::buygiftButtonClick(CCObject *sender){ 
 	//TODO
 	addBombs(6);
 	addRearranges(3);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy3bombsButtonClick(CCObject *sender){ 
 	//TODO
 	addBombs(3);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy5bombsButtonClick(CCObject *sender){ 
 	//TODO
 	addBombs(5);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy10bombsButtonClick(CCObject *sender){ 
 	//TODO
 	addBombs(10);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy1ReButtonClick(CCObject *sender){ 
 	//TODO
 	addRearranges(1);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy2ResButtonClick(CCObject *sender){ 
 	//TODO
 	addRearranges(2);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;
 }
 void GameScene::buy5ResButtonClick(CCObject *sender){ 
 	//TODO
 	addRearranges(5);
+	drawProperty();
 	this->removeChildByTag(1000);
 	bPaused = false;	
 }

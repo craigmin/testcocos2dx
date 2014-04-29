@@ -182,11 +182,60 @@ void GameLayer::cancelButtonClick(CCObject *sender){
 	//CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameScene::scene()));
 }
 void GameLayer::themeButtonClick(CCObject *sender){
-	if(ThemeManager::sharedInstance()->getTheme()==themeCandy){
+	if (bPaused) {
+		return;
+	}
+
+	bPaused = true;
+	CCLayer *layer2 = new CCLayer();
+
+	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("chs_theme.png");
+	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setScaleY(SCREEN_WIDTH/dialog_bk->getContentSize().width);
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+	layer2->addChild(dialog_bk,11);
+
+	CCSprite* theme1useNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_chs.png");
+	CCSprite* theme1useSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_chs.png");
+	CCMenuItemSprite* ptheme1useItemSprite = CCMenuItemSprite::itemWithNormalSprite(theme1useNormal, theme1useSelected, this, menu_selector(GameLayer::theme1useButtonClick));
+	ptheme1useItemSprite->setScale(0.6*LL_SCREEN_SCALE_VALUE);
+	CCMenu* ptheme1useMenu = CCMenu::menuWithItems(ptheme1useItemSprite,NULL);
+	ptheme1useMenu->setPosition(ccp(SCREEN_WIDTH*0.65, SCREEN_HEIGHT*0.65));
+
+	
+	CCSprite* theme2useNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_chs.png");
+	CCSprite* theme2useSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_chs.png");
+	CCMenuItemSprite* ptheme2useItemSprite = CCMenuItemSprite::itemWithNormalSprite(theme2useNormal, theme2useSelected, this, menu_selector(GameLayer::theme2useButtonClick));
+	ptheme2useItemSprite->setScale(0.6*LL_SCREEN_SCALE_VALUE);
+	CCMenu* ptheme2useMenu = CCMenu::menuWithItems(ptheme2useItemSprite,NULL);
+	ptheme2useMenu->setPosition(ccp(SCREEN_WIDTH*0.65, SCREEN_HEIGHT*0.4));
+
+	layer2->addChild(ptheme1useMenu, 12);
+	layer2->addChild(ptheme2useMenu, 12);
+	layer2->setTag(1000);
+	CCActionInterval* largeto = CCScaleBy::create(0.2, 2);
+	layer2->setScale(0.5);
+	layer2->runAction(largeto);
+	this->addChild(layer2, 10);
+	/*
+		if(ThemeManager::sharedInstance()->getTheme()==themeCandy){
 		ThemeManager::sharedInstance()->setTheme(themePlain);
 		CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5,GameLayer::scene()));
 	}else{ ThemeManager::sharedInstance()->setTheme(themeCandy);
 
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5,GameLayer::scene()));
 	}
+	*/
+}
+void GameLayer::theme1useButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	ThemeManager::sharedInstance()->setTheme(themePlain);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5,GameLayer::scene()));
+}
+void GameLayer::theme2useButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	ThemeManager::sharedInstance()->setTheme(themeCandy);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5,GameLayer::scene()));
 }

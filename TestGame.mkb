@@ -117,6 +117,20 @@ assets
 	"images/themeCandy/dialog_item.png"
 	"images/themeCandy/btn_gameover.png"
 
+	"images/themeCandy/btn_buygift.png"
+	"images/themeCandy/btn_buy3bombs.png"
+	"images/themeCandy/btn_buy5bombs.png"
+	"images/themeCandy/btn_buy10bombs.png"
+	"images/themeCandy/btn_buy1Re.png"
+	"images/themeCandy/btn_buy2Res.png"
+	"images/themeCandy/btn_buy5Res.png"
+	"images/themeCandy/btn_shop.png"
+	"images/themeCandy/btn_use.png"
+	
+	
+	"images/themeCandy/chs_theme.png"
+	"images/themeCandy/btn_chs.png"
+
 	"images/themePlain/background.png"
 	"images/themePlain/gameover.png"
 	"images/themePlain/menu_instruction.png"
@@ -177,6 +191,19 @@ assets
 	"images/themePlain/share.png"
 	"images/themePlain/dialog_item.png"
 	"images/themePlain/btn_gameover.png"
+
+	"images/themePlain/btn_buygift.png"
+	"images/themePlain/btn_buy3bombs.png"
+	"images/themePlain/btn_buy5bombs.png"
+	"images/themePlain/btn_buy10bombs.png"
+	"images/themePlain/btn_buy1Re.png"
+	"images/themePlain/btn_buy2Res.png"
+	"images/themePlain/btn_buy5Res.png"
+	"images/themePlain/btn_shop.png"
+	"images/themePlain/btn_use.png"
+
+	"images/themePlain/chs_theme.png"
+	"images/themePlain/btn_chs.png"
 
 	"sunbeams.png"
 	"sounds/swipe.mp3"

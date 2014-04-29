@@ -1,5 +1,5 @@
 #include "ThemeManager.h"
-
+#include "Lihui2048Api.h"
 static ThemeManager * sInstance = NULL;
 
 ThemeManager::~ThemeManager()
@@ -7,7 +7,7 @@ ThemeManager::~ThemeManager()
 }
 
 ThemeManager::ThemeManager(){
-	type=themeCandy;
+	type=getFlags("Theme");
 }
 
 ThemeManager* ThemeManager::sharedInstance()
@@ -22,6 +22,7 @@ ThemeManager* ThemeManager::sharedInstance()
 
 void ThemeManager::setTheme(int type){
 	ThemeManager::type=type;
+	setFlags("Theme",type);
 }
 
 CCSprite* ThemeManager::spriteWithImageFile(const char* imageName){

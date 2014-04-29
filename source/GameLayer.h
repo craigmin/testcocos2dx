@@ -32,6 +32,8 @@ public:
 	void cancelButtonClick(CCObject *sender);
 	void leaderboardButtonClick(CCObject *sender);
 	void themeButtonClick(CCObject *sender);
+	void theme1useButtonClick(CCObject *sender);
+	void theme2useButtonClick(CCObject *sender);
 };
 
 #endif // __GAMELAYER_H__

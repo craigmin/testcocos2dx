@@ -7,7 +7,7 @@
 static TaskManager * sInstance = NULL;
 static int task_all_finished = -1;
 
-static int task_mission[task_fixed_list_max] = {8,16,32,64,32,128,4096,200,300,400,500,600,700,800};
+static int task_mission[task_fixed_list_max] = {8,16,32,64,8,128,4096,200,300,400,500,600,700,800};
 //static int task_mission[task_fixed_list_max] = {256,512,1024,2048,1024,2048,4096,20000,25000,35000,45000,65000,80000,100000};
 
 TaskManager::~TaskManager()
@@ -178,6 +178,7 @@ CCString* TaskManager::formatTaskNameById(int id) {
 }
 
 void TaskManager::showInfo(CCString* cstr){
+	return;
 	clayer->removeChildByTag(3000);
 
 	CCLabelTTF* scoreLabel=CCLabelTTF::labelWithString(cstr->getCString(),CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
