@@ -41,8 +41,7 @@ void TaskManager::initTask(CCLayer* cl) {
 	taskId = task_fixed_block_256;
 	bTaskFinished = true;
 	for (int i = task_fixed_block_256; i <= task_fixed_block_2048_rearrange ; ++i){
-		CCString* taskName = formatTaskNameById(i);
-		if(getFlags(taskName->getCString()) == 0) {
+		if(!isTaskFinished(i)) {
 			taskId = i;
 			bTaskFinished = false;
 			break;
@@ -90,14 +89,12 @@ bool TaskManager::processTask(int* coodinates, int score){
 
 	bool bRes = false;
 	if (taskId == task_fixed_block_1024_2) {
-		if(hasNumber(coodinates, task_mission[taskId])) {
-			for(int i = 0, j=0; i < 16; i++) {
-				if (coodinates[i] == task_mission[taskId]) {
-					j++;
-					if (j>1) {
-						bRes = true;
-						break;
-					}
+		for(int i = 0, j=0; i < 16; i++) {
+			if (coodinates[i] == task_mission[taskId]) {
+				j++;
+				if (j>1) {
+					bRes = true;
+					break;
 				}
 			}
 		}
@@ -171,71 +168,29 @@ CCString* TaskManager::formatTaskNameById(int id) {
 }
 
 void TaskManager::showInfo() {
-
-	taskId = task_fixed_score_100000;
-
-	CCString* taskBack = CCString::createWithFormat("%d ", task_mission[taskId]);
-	CCLabelTTF* scoreLabel = CCLabelTTF::labelWithString(taskBack->getCString(),CCSizeMake(250*LL_SCREEN_SCALE_VALUE,32), kCCTextAlignmentCenter,kCCVerticalTextAlignmentCenter,ThemeManager::sharedInstance()->getFontName(),72*LL_SCREEN_SCALE_VALUE);
-	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
-
+	CCString* taskBack;
 	switch (taskId) {
-	case task_fixed_block_256:
-	case task_fixed_block_1024:
-	case task_fixed_block_2048_bomb:
-		taskBack = CCString::create("task_dialog_bomb_1_1.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
-		break;
 	case task_fixed_block_1024_2:
-		taskBack = CCString::create("task_dialog_bomb_1_3.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.18,SCREEN_HEIGHT*0.19));
-		break;
-	case task_fixed_block_512:
-	case task_fixed_block_2048_rearrange:
-	case task_fixed_block_4096:
-		taskBack = CCString::create("task_dialog_rearrange_1_1.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
-		break;
-	case task_fixed_score_20000:
-	case task_fixed_score_25000:
-	case task_fixed_score_35000:
-		taskBack = CCString::create("task_dialog_bomb_1_2.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
-		break;
-	case task_fixed_score_45000:
-		taskBack = CCString::create("task_dialog_rearrange_1_2.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
-		break;
-	case task_fixed_score_65000:
-		taskBack = CCString::create("task_dialog_bomb_rearrange_1.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
-		break;
-	case task_fixed_score_80000:
-	case task_fixed_score_100000:
-		taskBack = CCString::create("task_dialog_bomb_rearrange_2.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.01,SCREEN_HEIGHT*0.19));
+	case task_fixed_block_2048_bomb:
+		taskBack = CCString::createWithFormat("task_dialog_%d_2.png ", task_mission[taskId]);
 		break;
 	default:
-		taskBack = CCString::create("task_dialog_bomb_1_1.png");
-		scoreLabel->setPosition(ccp(SCREEN_WIDTH*1.07,SCREEN_HEIGHT*0.19));
+		taskBack = CCString::createWithFormat("task_dialog_%d.png ", task_mission[taskId]);
 		break;
 	}
-
 
 	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile(taskBack->getCString());
 	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.2));
 	dialog_bk->setTag(4000);
-	dialog_bk->addChild(scoreLabel);
 
-	CCActionInterval* largeto = CCScaleBy::create(0.5, 2,2);
-	dialog_bk->setScaleX(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
-	dialog_bk->setScaleY(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
+	CCActionInterval* largeto = CCScaleBy::create(0.5, 2);
+	dialog_bk->setScale(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
 	dialog_bk->runAction(largeto);
 
 	clayer->addChild(dialog_bk,2000);
 	clayer->schedule(schedule_selector(TaskManager::update), 1, 0, 3);
 }
 
-void TaskManager::update(CCNode *sender)
-{
+void TaskManager::update(CCNode *sender) {
 	TaskManager::sharedInstance()->clayer->removeChildByTag(4000);
 }
