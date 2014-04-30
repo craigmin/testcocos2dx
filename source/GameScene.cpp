@@ -134,7 +134,8 @@ bool GameScene::init()
 {
 	if (!CCLayer::init())
 		return false;
-
+	bombsUsed=5;
+	ResUsed=2;
 	bGameOver=false;
 	soundState=true;
 	topTileScore = 16;
@@ -323,8 +324,11 @@ void GameScene::moveMatrix(int moveDir){
 		drawScore();
 		bMovable = isMovable();
 		if (!bMovable){
-			inMovable();
-			bInMovable=true;
+			if(bombsUsed==0&&ResUsed==0) gameOver();
+			else{
+				inMovable();
+				bInMovable=true;
+			}
 		} else {
 			if(TaskManager::sharedInstance()->processTask((int*)coodinates_now,getCurrentScore()))
 				Taskfinish();
@@ -463,6 +467,7 @@ void GameScene::cleanPointConfirm(int x,int y){
 	bMovable=true;
 	//empty++;
 	useBombs();
+	bombsUsed--;
 	//drawScore();
 	//addBombs();
 	drawProperty();
@@ -708,13 +713,13 @@ void GameScene::pauseGame(pausetype Type){
 
 		char buff[16];
 	*buff = 0;
-	sprintf(buff,"%d",getBombs());
+	sprintf(buff,"%d",bombsUsed);
 	CCSprite* bomb2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.753,SCREEN_HEIGHT*0.513));
 	bomb2use->setColor(ThemeManager::sharedInstance()->getColor());
 	
 
-	sprintf(buff,"%d",getRearranges());
+	sprintf(buff,"%d",ResUsed);
 	CCSprite* Re2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),36*LL_SCREEN_SCALE_VALUE);
 	Re2use->setPosition(ccp(SCREEN_WIDTH*0.753,SCREEN_HEIGHT*0.408));
 	Re2use->setColor(ThemeManager::sharedInstance()->getColor());
@@ -877,7 +882,8 @@ void GameScene::restartConfirmButtonClick(CCObject *sender){
 	bInMovable=false;
 	reset();
 	bGameOver=false;
-
+	bombsUsed=5;
+	ResUsed=2;
 	topTileScore = 16;
 
 	for(int i=0;i<16;++i)
@@ -940,7 +946,7 @@ void GameScene::bombButtonClick(CCObject *sender){
 	//bPaused = true;
 	if(bPaused&&!bInMovable)
 		return;
-
+	if(bombsUsed==0)return;
 	if(bClean) return;
 	if(bGameOver)return;
 	if(bInMovable){
@@ -1003,6 +1009,7 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 	if (bPaused&&!bInMovable) {
 		return;
 	}
+	if(ResUsed==0)return;
 	if(bGameOver)return;
 	if(bClean) return;
 	if(bInMovable){
@@ -1013,7 +1020,21 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 		
 	}
 	if(getRearranges()>0)
-		pauseGame(USEREARRANGE);
+		//pauseGame(USEREARRANGE);
+	{
+	this->removeChildByTag(1000);
+	useRearranges();
+	ResUsed--;
+	bInMovable=false;
+	bMovable=true;
+	drawProperty();
+	bPaused = false;
+	reArrange();
+	drawProperty();
+	updateCoodinates();
+	drawMatrix();
+
+	}
 	else pauseGame(SHOP);
 	/*
 	reArrange();
