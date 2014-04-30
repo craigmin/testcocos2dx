@@ -107,6 +107,7 @@ bool TaskManager::processTask(int* coodinates, int score){
 	if(bRes) {
 		setFlags(formatTaskNameById(taskId)->getCString(), 1);
 		bTaskFinished = true;
+		showDone();
 	}
 
 	return bRes;
@@ -181,7 +182,22 @@ void TaskManager::showInfo() {
 	}
 
 	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile(taskBack->getCString());
-	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.2));
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.5));
+	dialog_bk->setTag(4000);
+
+	CCActionInterval* largeto = CCScaleBy::create(0.5, 2);
+	dialog_bk->setScale(SCREEN_WIDTH*0.5/dialog_bk->getContentSize().width);
+	dialog_bk->runAction(largeto);
+
+	clayer->addChild(dialog_bk,2000);
+	clayer->schedule(schedule_selector(TaskManager::update), 1, 0, 3);
+}
+
+void TaskManager::showDone() {
+	TaskManager::sharedInstance()->clayer->removeChildByTag(4000);
+
+	CCSprite* dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("task_dialog_done.png");
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.5));
 	dialog_bk->setTag(4000);
 
 	CCActionInterval* largeto = CCScaleBy::create(0.5, 2);

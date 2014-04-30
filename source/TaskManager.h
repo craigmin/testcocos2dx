@@ -44,6 +44,7 @@ protected:
 	CCString* formatTaskNameById(int taskId);
 	bool hasNumber(int* coodinates, int number);
 	void showInfo();
+	void showDone();
 
 public:
     ~TaskManager();

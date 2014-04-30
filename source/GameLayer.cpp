@@ -116,7 +116,7 @@ bool GameLayer::init()
 	this->addChild(pthMenu, 3);
 
 	if(getFlags("INPUT_NICKNAME_FLAG") == 0) {
-		updateNicknameClick(NULL);
+		updateNickname(NULL);
 		setFlags("INPUT_NICKNAME_FLAG", 1);
 	}
 

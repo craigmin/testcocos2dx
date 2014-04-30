@@ -131,6 +131,7 @@ assets
 	"images/themeCandy/task_dialog_65000.png"
 	"images/themeCandy/task_dialog_80000.png"
 	"images/themeCandy/task_dialog_100000.png"
+	"images/themeCandy/task_dialog_done.png"
 
 	"images/themeCandy/btn_buygift.png"
 	"images/themeCandy/btn_buy3bombs.png"
@@ -234,6 +235,7 @@ assets
 	"images/themePlain/task_dialog_65000.png"
 	"images/themePlain/task_dialog_80000.png"
 	"images/themePlain/task_dialog_100000.png"
+	"images/themePlain/task_dialog_done.png"
 
 	"sunbeams.png"
 	"sounds/swipe.mp3"

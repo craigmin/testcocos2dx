@@ -2,6 +2,9 @@
 #include "CCEGLView.h"
 #include "AppDelegate.h"
 #include "SplashScreen.h"
+#include "GameLayer.h"
+
+#include "LihuiLB.h"
 
 USING_NS_CC;
 
@@ -28,8 +31,12 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// Set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
 
-	// Create a scene
-	CCScene *pScene = SplashScreen::scene();
+	// Create a scene :È¥µôSplashScreen
+	//CCScene *pScene = SplashScreen::scene();
+	//Jerry--Init LB
+	initLB();
+	receiveRank();
+	CCScene *pScene = GameLayer::scene();
 
 	// Run
 	pDirector->runWithScene(pScene);
