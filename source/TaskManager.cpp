@@ -168,6 +168,7 @@ CCString* TaskManager::formatTaskNameById(int id) {
 }
 
 void TaskManager::showInfo() {
+	TaskManager::sharedInstance()->clayer->removeChildByTag(4000);
 	CCString* taskBack;
 	switch (taskId) {
 	case task_fixed_block_1024_2:

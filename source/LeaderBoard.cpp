@@ -119,18 +119,22 @@ bool LeaderBoard::init()
 	scoreLabel->setColor(ThemeManager::sharedInstance()->getColor());
 	this->addChild(scoreLabel, 4);*/
 
-	this->schedule(schedule_selector(LeaderBoard::update), 2, kCCRepeatForever, 0);
-
 	return true;
 }
 
+bool bScheduled = false;
 void LeaderBoard::back2menuClick(CCObject *sender){
 	this->unscheduleAllSelectors();
+	bScheduled = false;
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInL::transitionWithDuration(0.5f,  GameLayer::scene()));
 }
 
 void LeaderBoard::updateNicknameClick(CCObject *sender){
 	updateNickname(NULL);
+	if(!bScheduled) {
+		this->schedule(schedule_selector(LeaderBoard::update), 2, kCCRepeatForever, 0);
+		bScheduled = true;
+	}
 }
 
 void LeaderBoard::update(float dt)
