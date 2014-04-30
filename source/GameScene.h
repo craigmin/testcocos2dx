@@ -37,6 +37,8 @@ protected:
 	int cleanX;
 	int cleanY;
 	int empty;
+	int bombsUsed;
+	int ResUsed;
 typedef enum
 {
     RESTART,
