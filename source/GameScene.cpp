@@ -535,10 +535,12 @@ void GameScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 
 			return;
 		}
+		/*
 		if((getBombs()<0)||(getBombs()==0)) {
 			pauseGame(BUYBOMB);
 			return;
 		}
+		*/
 		CCPoint	touch = pTouch->getLocationInView();
 		touch = CCDirector::sharedDirector()->convertToGL(touch);
 		cleanPoint(touch.x,touch.y);
@@ -946,7 +948,11 @@ void GameScene::bombButtonClick(CCObject *sender){
 	//bPaused = true;
 	if(bPaused&&!bInMovable)
 		return;
-	if(bombsUsed==0)return;
+	if(bombsUsed==0){
+		//TODO
+		ShowRunOut(1);
+		return;
+	}
 	if(bClean) return;
 	if(bGameOver)return;
 	if(bInMovable){
@@ -964,6 +970,7 @@ void GameScene::bombButtonClick(CCObject *sender){
 	}
 	if(getEmptyPoints()>14) return;
 	//empty=getEmptyPoints();
+	ShowRunOut(2);
 	bClean=true;
 	for(int i=0;i<4;i++)
 		for(int j=0;j<4;j++){
@@ -1009,7 +1016,11 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 	if (bPaused&&!bInMovable) {
 		return;
 	}
-	if(ResUsed==0)return;
+	if(ResUsed==0){
+		//TODO
+		ShowRunOut(1);
+		return;
+	}
 	if(bGameOver)return;
 	if(bClean) return;
 	if(bInMovable){
@@ -1017,14 +1028,15 @@ void GameScene::rearrangeButtonClick(CCObject *sender){
 		bPaused=false;
 			//pbombmenuItemSprite->stopAllActions();
 			//->stopAllActions();
-		
 	}
 	if(getRearranges()>0)
 		//pauseGame(USEREARRANGE);
 	{
+  
 	this->removeChildByTag(1000);
 	useRearranges();
 	ResUsed--;
+	 ShowRunOut(3);
 	bInMovable=false;
 	bMovable=true;
 	drawProperty();
@@ -1059,7 +1071,6 @@ void GameScene::cleanConfirmButtonClick(CCObject *sender){
 	bPaused = false;
 	//bClean=false;
 	CCSprite* target=(CCSprite*)this->getChildByTag(cleanX*4+cleanY+100);
-
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sounds/CollisionBomb0.raw");
 	CCActionInterval * fadeOutTRTiles = CCFadeOutTRTiles::create(ccg(5, 5), 0.5);
 	CCFiniteTimeAction* fadeOutDone = CCCallFuncN::create( this, callfuncN_selector(GameScene::fadeOutCallback)); 
@@ -1076,8 +1087,6 @@ void GameScene::rearrangeConfirmButtonClick(CCObject *sender){
 	drawProperty();
 	updateCoodinates();
 	drawMatrix();
-
-
 }
 void GameScene::fadeOutCallback(CCNode *sender){
 	this->removeChildByTag(cleanX*4+cleanY+100);
@@ -1198,4 +1207,48 @@ void GameScene::Taskfinish(){
 		drawProperty();
 		rearrangeLabel->runAction(action);
 	}
+}
+void GameScene::ShowRunOut(int type){
+	this->removeChildByTag(4001);
+	this->removeChildByTag(4002);
+	CCSprite* dialog_bk;
+	if(type==1){
+		dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("dialog_runout.png");
+	}
+	if(type==2){
+		dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("dialog_left.png");
+	char buff[16];
+	*buff = 0;
+	sprintf(buff,"%d",bombsUsed);
+	CCSprite* bomb2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),40*LL_SCREEN_SCALE_VALUE);
+	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.97,SCREEN_HEIGHT*0.5));
+	bomb2use->setTag(4002);
+	bomb2use->setColor(ThemeManager::sharedInstance()->getColor());
+	this->addChild(bomb2use,2001);
+	}
+	if(type==3){
+		dialog_bk = ThemeManager::sharedInstance()->spriteWithImageFile("dialog_left.png");
+	char buff[16];
+	*buff = 0;
+	sprintf(buff,"%d",ResUsed);
+	CCSprite* bomb2use=CCLabelTTF::labelWithString(buff,CCSizeMake(256*LL_SCREEN_SCALE_VALUE,32),kCCTextAlignmentRight,ThemeManager::sharedInstance()->getFontName(),40*LL_SCREEN_SCALE_VALUE);
+	bomb2use->setPosition(ccp(SCREEN_WIDTH*0.97,SCREEN_HEIGHT*0.5));
+	bomb2use->setTag(4002);
+	bomb2use->setColor(ThemeManager::sharedInstance()->getColor());
+	this->addChild(bomb2use,2001);
+	}
+	dialog_bk->setScale(0.6*LL_SCREEN_SCALE_VALUE);
+	dialog_bk->setPosition(ccp(SCREEN_WIDTH/2, SCREEN_HEIGHT*0.5));
+	dialog_bk->setTag(4001);
+/*  
+	CCActionInterval* largeto = CCScaleBy::create(0.5, 2);      
+	dialog_bk->setScale(SCREEN_WIDTH*0.5/dialog_bk->getConten   tSize().width);
+	dialog_bk->runAction(largeto);
+*/
+	this->addChild(dialog_bk,2000);
+	this->schedule(schedule_selector(GameScene::update), 1,0,1.5);
+}
+void GameScene::update(CCNode *sender) { 
+	this->removeChildByTag(4001);
+	this->removeChildByTag(4002);
 }

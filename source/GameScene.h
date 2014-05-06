@@ -103,6 +103,8 @@ public:
 	void cleanPointConfirm(int x,int y);
 	
 	void Taskfinish(); 
+	void ShowRunOut(int type); 
+	void update(CCNode *sender);
 
 	virtual void onEnter();
     virtual void onExit();

@@ -7,6 +7,7 @@
 #include "LihuiAD_Baidu.h"
 #include "LihuiLB.h"
 #include "ThemeManager.h"
+#include "LihuiDomod.h"
 
 GameLayer::~GameLayer()
 {
@@ -121,6 +122,8 @@ bool GameLayer::init()
 	}
 
 	//InitBdAd();
+	//showDoSplash();
+	showDoBanner();
 	return true;
 }
 
@@ -136,7 +139,7 @@ void GameLayer::startButtonClick(CCObject *sender){
 
 //Jerry--Code
 void GameLayer::leaderboardButtonClick(CCObject *sender){
-
+	showDoInter();
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f, LeaderBoard::scene()));
 }
 

@@ -5,7 +5,9 @@ options
 	module_path="third_party/Lihui2048Api/"
 	module_path="third_party/LihuiAD_Baidu/"
 	module_path="third_party/LihuiLB/"
-	module_path="third_party/LihuiSocial/"		
+	module_path="third_party/LihuiSocial/"	
+	module_path="third_party/LihuiDomod/"	
+		
 }
 packages
 {
@@ -133,6 +135,9 @@ assets
 	"images/themeCandy/task_dialog_100000.png"
 	"images/themeCandy/task_dialog_done.png"
 
+	"images/themeCandy/dialog_runout.png"
+	"images/themeCandy/dialog_left.png"
+
 	"images/themeCandy/btn_buygift.png"
 	"images/themeCandy/btn_buy3bombs.png"
 	"images/themeCandy/btn_buy5bombs.png"
@@ -237,6 +242,8 @@ assets
 	"images/themePlain/task_dialog_100000.png"
 	"images/themePlain/task_dialog_done.png"
 
+	"images/themePlain/dialog_runout.png"
+
 	"sunbeams.png"
 	"sounds/swipe.mp3"
 	"sounds/CollisionBomb0.raw"
@@ -258,6 +265,7 @@ subprojects
 	LihuiAD_Baidu
 	LihuiLB
 	LihuiSocial
+	LihuiDomod
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
@@ -278,4 +286,5 @@ deployments
 	android-manifest='AndroidManifest.xml'
 	android-custom-activity='com.lihui.daily2048.LihuiMain'
 	android-external-jars=marmaladecustom.jar
+	android-external-res="resEx/"
 }
