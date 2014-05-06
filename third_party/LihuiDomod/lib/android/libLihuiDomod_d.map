@@ -1,0 +1,299 @@
+Archive member included because of file (symbol)
+
+E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                              debug\LihuiDomod_platform.os (IwDebugTraceSetTraceChannel)
+E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                              debug\LihuiDomod_platform.os (s3eEdkThreadRunOnOS)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                              E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o) (__aeabi_ldivmod)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                              d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                              d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                              d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o) (__divdi3)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                              d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o) (__udivdi3)
+d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                              d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o) (__aeabi_uidiv)
+
+Discarded input sections
+
+ .text          0x00000000       0x14 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .bss           0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .note.GNU-stack
+                0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .group         0x00000000        0x8 debug\LihuiDomod_platform.os
+ .text          0x00000000        0x0 debug\LihuiDomod_platform.os
+ .data          0x00000000        0x0 debug\LihuiDomod_platform.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\LihuiDomod_platform.os
+ .text          0x00000000        0x0 debug\LihuiDomod.os
+ .data          0x00000000        0x0 debug\LihuiDomod.os
+ .bss           0x00000000        0x0 debug\LihuiDomod.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\LihuiDomod.os
+ .text          0x00000000        0x0 debug\LihuiDomod_register.os
+ .data          0x00000000        0x0 debug\LihuiDomod_register.os
+ .bss           0x00000000        0x0 debug\LihuiDomod_register.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\LihuiDomod_register.os
+ .text          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .data          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwAssertRegisterTextCallback
+                0x00000000       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwAssertRegisterCallback
+                0x00000000       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugErrorRegisterCallback
+                0x00000000       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetUID
+                0x00000000       0x14 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugClearConfigCache
+                0x00000000       0x80 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugErrorShow
+                0x00000000       0xec E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceLineVPrintf
+                0x00000000       0xfc E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertIsChannelOn
+                0x00000000      0x204 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceDisable
+                0x00000000       0x10 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetMessage
+                0x00000000       0xfc E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetSolution
+                0x00000000       0xa0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertShow
+                0x00000000      0x2d0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceChannelSwitch
+                0x00000000      0x4c4 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .note.GNU-stack
+                0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .data          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .bss           0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkThreadRunOnOSAsync
+                0x00000000       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkErrorSetString
+                0x00000000       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .note.GNU-stack
+                0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .ARM.extab     0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .text          0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .data          0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .bss           0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .note.GNU-stack
+                0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+Memory map
+
+ ** file header
+                0x00000000       0x34
+ ** segment headers
+                0x00000034      0x100
+
+.interp         0x00000134       0x13
+ ** fill        0x00000134       0x13
+
+.dynsym         0x00000148      0x280
+ ** dynsym      0x00000148      0x280
+
+.dynstr         0x000003c8      0x253
+ ** string table
+                0x000003c8      0x253
+
+.hash           0x0000061c      0x13c
+ ** hash        0x0000061c      0x13c
+
+.rel.dyn        0x00000758       0x38
+ ** dynamic relocs
+                0x00000758       0x38
+
+.rel.plt        0x00000790       0x78
+ ** dynamic relocs
+                0x00000790       0x78
+
+.plt            0x00000808       0xc8
+ ** PLT         0x00000808       0xc8
+
+.text           0x000008d0     0x18d8
+ .text.exit     0x000008d0       0x10 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x000008d0                __on_dlclose
+ .text._ZN7_JNIEnv9FindClassEPKc
+                0x000008e0       0x38 debug\LihuiDomod_platform.os
+                0x000008e0                _JNIEnv::FindClass(char const*)
+ .text._ZN7_JNIEnv17ExceptionOccurredEv
+                0x00000918       0x30 debug\LihuiDomod_platform.os
+                0x00000918                _JNIEnv::ExceptionOccurred()
+ .text._ZN7_JNIEnv17ExceptionDescribeEv
+                0x00000948       0x28 debug\LihuiDomod_platform.os
+                0x00000948                _JNIEnv::ExceptionDescribe()
+ .text._ZN7_JNIEnv14ExceptionClearEv
+                0x00000970       0x28 debug\LihuiDomod_platform.os
+                0x00000970                _JNIEnv::ExceptionClear()
+ .text._ZN7_JNIEnv12NewGlobalRefEP8_jobject
+                0x00000998       0x38 debug\LihuiDomod_platform.os
+                0x00000998                _JNIEnv::NewGlobalRef(_jobject*)
+ .text._ZN7_JNIEnv15DeleteGlobalRefEP8_jobject
+                0x000009d0       0x30 debug\LihuiDomod_platform.os
+                0x000009d0                _JNIEnv::DeleteGlobalRef(_jobject*)
+ .text._ZN7_JNIEnv14DeleteLocalRefEP8_jobject
+                0x00000a00       0x30 debug\LihuiDomod_platform.os
+                0x00000a00                _JNIEnv::DeleteLocalRef(_jobject*)
+ .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
+                0x00000a30       0x58 debug\LihuiDomod_platform.os
+                0x00000a30                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
+ .text._ZN7_JNIEnv11GetMethodIDEP7_jclassPKcS3_
+                0x00000a88       0x48 debug\LihuiDomod_platform.os
+                0x00000a88                _JNIEnv::GetMethodID(_jclass*, char const*, char const*)
+ .text._ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
+                0x00000ad0       0x4c debug\LihuiDomod_platform.os
+                0x00000ad0                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
+ .text._ZN7_JavaVM6GetEnvEPPvi
+                0x00000b1c       0x40 debug\LihuiDomod_platform.os
+                0x00000b1c                _JavaVM::GetEnv(void**, int)
+ .text._ZL15s3eEdkJNIGetEnvv
+                0x00000b5c       0x40 debug\LihuiDomod_platform.os
+ .text._ZL27s3eEdkAndroidFindClass_realPKc
+                0x00000b9c       0x8c debug\LihuiDomod_platform.os
+ .text._ZL22s3eEdkAndroidFindClassPKc
+                0x00000c28       0x38 debug\LihuiDomod_platform.os
+ .text._Z23LihuiDomodInit_platformv
+                0x00000c60      0x2e0 debug\LihuiDomod_platform.os
+                0x00000c60                LihuiDomodInit_platform()
+ .text._Z28LihuiDomodTerminate_platformv
+                0x00000f40        0x4 debug\LihuiDomod_platform.os
+                0x00000f40                LihuiDomodTerminate_platform()
+ .text._Z21showDoBanner_platformv
+                0x00000f44       0x48 debug\LihuiDomod_platform.os
+                0x00000f44                showDoBanner_platform()
+ .text._Z20showDoInter_platformv
+                0x00000f8c       0x48 debug\LihuiDomod_platform.os
+                0x00000f8c                showDoInter_platform()
+ .text._Z21showDoSplash_platformv
+                0x00000fd4       0x48 debug\LihuiDomod_platform.os
+                0x00000fd4                showDoSplash_platform()
+ .text._Z14LihuiDomodInitv
+                0x0000101c       0x14 debug\LihuiDomod.os
+                0x0000101c                LihuiDomodInit()
+ .text._Z19LihuiDomodTerminatev
+                0x00001030        0xc debug\LihuiDomod.os
+                0x00001030                LihuiDomodTerminate()
+ .text.showDoBanner
+                0x0000103c        0xc debug\LihuiDomod.os
+                0x0000103c                showDoBanner
+ .text.showDoInter
+                0x00001048        0xc debug\LihuiDomod.os
+                0x00001048                showDoInter
+ .text.showDoSplash
+                0x00001054        0xc debug\LihuiDomod.os
+                0x00001054                showDoSplash
+ .text._ZL17showDoBanner_wrapv
+                0x00001060       0x88 debug\LihuiDomod_register.os
+ .text._ZL16showDoInter_wrapv
+                0x000010e8       0x88 debug\LihuiDomod_register.os
+ .text._ZL17showDoSplash_wrapv
+                0x00001170       0x88 debug\LihuiDomod_register.os
+ .text._Z21LihuiDomodRegisterExtv
+                0x000011f8       0xc0 debug\LihuiDomod_register.os
+                0x000011f8                LihuiDomodRegisterExt()
+ .text.RegisterExt
+                0x000012b8        0xc debug\LihuiDomod_register.os
+                0x000012b8                RegisterExt
+ .text.IwDebugTraceSetTraceChannel
+                0x000012c4       0x1c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x000012c4                IwDebugTraceSetTraceChannel
+ .text._GLOBAL__I_Z__sdk_modules_iwcore_source_IwDebug.cpp
+                0x000012e0       0xa4 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceIsChannelOn
+                0x00001384      0x2b8 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001384                IwDebugTraceIsChannelOn
+ .text.IwDebugTraceLinePrintf
+                0x0000163c      0x10c E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x0000163c                IwDebugTraceLinePrintf
+ .text.s3eEdkThreadRunOnOS
+                0x00001748       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                0x00001748                s3eEdkThreadRunOnOS
+ .text          0x00001778       0x44 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x00001778                __aeabi_ldivmod
+ .text          0x000017bc       0x10 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x000017bc                __aeabi_idiv0
+                0x000017bc                __aeabi_ldiv0
+ .text          0x000017cc       0x78 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x000017cc                __gnu_ldivmod_helper
+                0x00001808                __gnu_uldivmod_helper
+ .text          0x00001844      0x498 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x00001844                __divdi3
+ .text          0x00001cdc      0x404 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00001cdc                __udivdi3
+ .text          0xffffffffffffffff       0xc8 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                0x000020e0                __udivsi3
+                0x000020e0                __aeabi_uidiv
+                0x00002188                __aeabi_uidivmod
+
+.rodata         0x000021a8      0x290
+ .rodata        0x000021a8       0xb0 debug\LihuiDomod_platform.os
+ .rodata        0x00002258       0xc4 debug\LihuiDomod_register.os
+ ** merge strings
+                0x0000231c      0x11c
+
+.ARM.exidx      0x00002438        0x8
+ .ARM.exidx     0x00002438        0x8 d:/users/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+
+.fini_array     0x00003eb4        0x8
+ .fini_array    0x00003eb4        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .fini_array    0x00003eb8        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.init_array     0x00003ebc        0x8
+ .init_array    0x00003ebc        0x4 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .init_array    0x00003ec0        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.dynamic        0x00003ec4       0xe0
+ ** dynamic     0x00003ec4       0xe0
+
+.got            0x00003fa4       0x5c
+ ** GOT         0x00003fa4       0x14
+ ** GOT PLT     0x00003fb8       0x48
+
+.data           0x00004000        0x4
+ .data          0x00004000        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x00004000                __dso_handle
+
+.bss            0x00004004     0x1a38
+ .bss           0x00004004       0x10 debug\LihuiDomod_platform.os
+ .bss           0x00004014     0x1a28 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00004014                g_DebugGlobals

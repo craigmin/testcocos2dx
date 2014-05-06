@@ -1,0 +1,153 @@
+Archive member included because of file (symbol)
+
+E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                              release\LihuiDomod_platform.os (s3eEdkThreadRunOnOS)
+
+Discarded input sections
+
+ .text          0x00000000       0x14 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .bss           0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .note.GNU-stack
+                0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .group         0x00000000        0x8 release\LihuiDomod_platform.os
+ .group         0x00000000        0x8 release\LihuiDomod_platform.os
+ .text          0x00000000        0x0 release\LihuiDomod_platform.os
+ .data          0x00000000        0x0 release\LihuiDomod_platform.os
+ .note.GNU-stack
+                0x00000000        0x0 release\LihuiDomod_platform.os
+ .text          0x00000000        0x0 release\LihuiDomod.os
+ .data          0x00000000        0x0 release\LihuiDomod.os
+ .bss           0x00000000        0x0 release\LihuiDomod.os
+ .note.GNU-stack
+                0x00000000        0x0 release\LihuiDomod.os
+ .text          0x00000000        0x0 release\LihuiDomod_register.os
+ .data          0x00000000        0x0 release\LihuiDomod_register.os
+ .bss           0x00000000        0x0 release\LihuiDomod_register.os
+ .text._Z21LihuiDomodRegisterExtv
+                0x00000000       0x98 release\LihuiDomod_register.os
+ .note.GNU-stack
+                0x00000000        0x0 release\LihuiDomod_register.os
+ .text          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .data          0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .bss           0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkThreadRunOnOSAsync
+                0x00000000       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkErrorSetString
+                0x00000000       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .note.GNU-stack
+                0x00000000        0x0 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text          0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .data          0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .bss           0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .note.GNU-stack
+                0x00000000        0x0 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+Memory map
+
+ ** file header
+                0x00000000       0x34
+ ** segment headers
+                0x00000034       0xe0
+
+.interp         0x00000114       0x13
+ ** fill        0x00000114       0x13
+
+.dynsym         0x00000128       0xc0
+ ** dynsym      0x00000128       0xc0
+
+.dynstr         0x000001e8       0xea
+ ** string table
+                0x000001e8       0xea
+
+.hash           0x000002d4       0x44
+ ** hash        0x000002d4       0x44
+
+.rel.dyn        0x00000318       0x30
+ ** dynamic relocs
+                0x00000318       0x30
+
+.rel.plt        0x00000348       0x20
+ ** dynamic relocs
+                0x00000348       0x20
+
+.plt            0x00000368       0x44
+ ** PLT         0x00000368       0x44
+
+.text           0x000003ac      0x53c
+ .text.exit     0x000003ac       0x10 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x000003ac                __on_dlclose
+ .text._ZL27s3eEdkAndroidFindClass_realPKc
+                0x000003bc       0xb8 release\LihuiDomod_platform.os
+ .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
+                0x00000474       0x38 release\LihuiDomod_platform.os
+                0x00000474                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
+ .text._ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
+                0x000004ac       0x38 release\LihuiDomod_platform.os
+                0x000004ac                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
+ .text._Z23LihuiDomodInit_platformv
+                0x000004e4      0x1d4 release\LihuiDomod_platform.os
+                0x000004e4                LihuiDomodInit_platform()
+ .text._Z28LihuiDomodTerminate_platformv
+                0x000006b8        0x4 release\LihuiDomod_platform.os
+                0x000006b8                LihuiDomodTerminate_platform()
+ .text._Z21showDoBanner_platformv
+                0x000006bc       0x50 release\LihuiDomod_platform.os
+                0x000006bc                showDoBanner_platform()
+ .text._Z20showDoInter_platformv
+                0x0000070c       0x50 release\LihuiDomod_platform.os
+                0x0000070c                showDoInter_platform()
+ .text._Z21showDoSplash_platformv
+                0x0000075c       0x50 release\LihuiDomod_platform.os
+                0x0000075c                showDoSplash_platform()
+ .text._Z14LihuiDomodInitv
+                0x000007ac        0x4 release\LihuiDomod.os
+                0x000007ac                LihuiDomodInit()
+ .text._Z19LihuiDomodTerminatev
+                0x000007b0        0x4 release\LihuiDomod.os
+                0x000007b0                LihuiDomodTerminate()
+ .text.showDoBanner
+                0x000007b4        0x4 release\LihuiDomod.os
+                0x000007b4                showDoBanner
+ .text.showDoInter
+                0x000007b8        0x4 release\LihuiDomod.os
+                0x000007b8                showDoInter
+ .text.showDoSplash
+                0x000007bc        0x4 release\LihuiDomod.os
+                0x000007bc                showDoSplash
+ .text._ZL17showDoSplash_wrapv
+                0x000007c0       0x20 release\LihuiDomod_register.os
+ .text._ZL16showDoInter_wrapv
+                0x000007e0       0x20 release\LihuiDomod_register.os
+ .text._ZL17showDoBanner_wrapv
+                0x00000800       0x20 release\LihuiDomod_register.os
+ .text.RegisterExt
+                0x00000820       0x98 release\LihuiDomod_register.os
+                0x00000820                RegisterExt
+ .text.s3eEdkThreadRunOnOS
+                0xffffffffffffffff       0x30 E:\marmalade\7.0\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                0x000008b8                s3eEdkThreadRunOnOS
+
+.rodata         0x000008e8       0x5f
+ ** merge strings
+                0x000008e8       0x5f
+
+.fini_array     0x00001ee4        0x8
+ .fini_array    0x00001ee4        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .fini_array    0x00001ee8        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.init_array     0x00001eec        0x4
+ .init_array    0x00001eec        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.dynamic        0x00001ef0       0xe0
+ ** dynamic     0x00001ef0       0xe0
+
+.got            0x00001fd0       0x30
+ ** GOT         0x00001fd0       0x14
+ ** GOT PLT     0x00001fe4       0x1c
+
+.data           0x00002000        0x4
+ .data          0x00002000        0x4 D:/Users/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x00002000                __dso_handle
+
+.bss            0x00002004       0x10
+ .bss           0x00002004       0x10 release\LihuiDomod_platform.os

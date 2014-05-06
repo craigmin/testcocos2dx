@@ -1,0 +1,158 @@
+# 1 "D:\\10kgratExtension\\ExMarmalade\\Project\\2048Test\\third_party\\LihuiDomob\\source\\generic\\LihuiDomod.cpp"
+# 1 "d:\\10kgratExtension\\ExMarmalade\\Project\\2048Test\\third_party\\LihuiDomob\\build_lihuidomod_android_linux_scons_arm//"
+# 1 "<command-line>"
+# 1 "./temp_defines_debug.h" 1
+# 1 "<command-line>" 2
+# 1 "D:\\10kgratExtension\\ExMarmalade\\Project\\2048Test\\third_party\\LihuiDomob\\source\\generic\\LihuiDomod.cpp"
+# 13 "D:\\10kgratExtension\\ExMarmalade\\Project\\2048Test\\third_party\\LihuiDomob\\source\\generic\\LihuiDomod.cpp"
+# 1 "../source/h/LihuiDomod_internal.h" 1
+# 18 "../source/h/LihuiDomod_internal.h"
+# 1 "e:/marmalade/7.0/s3e/h/s3eTypes.h" 1
+# 35 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef unsigned char s3e_uint8_t;
+typedef signed char s3e_int8_t;
+typedef unsigned short int s3e_uint16_t;
+typedef signed short int s3e_int16_t;
+typedef unsigned int s3e_uint32_t;
+typedef signed int s3e_int32_t;
+# 49 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+  typedef signed long long s3e_int64_t;
+  typedef unsigned long long s3e_uint64_t;
+# 62 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef s3e_uint64_t uint64_t;
+typedef s3e_int64_t int64_t;
+typedef s3e_uint32_t uint32_t;
+typedef s3e_int32_t int32_t;
+typedef s3e_uint16_t uint16_t;
+typedef s3e_int16_t int16_t;
+typedef s3e_uint8_t uint8_t;
+typedef s3e_int8_t int8_t;
+# 84 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+    typedef int intptr_t;
+    typedef unsigned int uintptr_t;
+# 96 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef unsigned int uint;
+typedef unsigned short int ushort;
+typedef unsigned long int ulong;
+typedef unsigned char uint8;
+typedef signed char int8;
+
+
+typedef int64_t int64;
+typedef uint64_t uint64;
+
+
+
+
+typedef unsigned int uint32;
+
+
+
+
+
+
+typedef signed int int32;
+
+
+
+
+
+
+typedef uint16_t uint16;
+
+
+
+
+typedef int16_t int16;
+# 207 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef enum s3eResult
+{
+    S3E_RESULT_SUCCESS = 0,
+    S3E_RESULT_ERROR = 1
+} s3eResult;
+
+
+
+
+typedef uint8 s3eBool;
+# 227 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef unsigned short s3eWChar;
+# 237 "e:/marmalade/7.0/s3e/h/s3eTypes.h"
+typedef int32 (*s3eCallback) (void* systemData, void* userData);
+# 19 "../source/h/LihuiDomod_internal.h" 2
+# 1 "../h/LihuiDomod.h" 1
+# 21 "../h/LihuiDomod.h"
+extern "C" {
+
+
+
+
+
+s3eBool LihuiDomodAvailable();
+
+void showDoBanner();
+
+void showDoInter();
+
+void showDoSplash();
+
+}
+# 20 "../source/h/LihuiDomod_internal.h" 2
+# 1 "../source/h/LihuiDomod_autodefs.h" 1
+# 21 "../source/h/LihuiDomod_internal.h" 2
+
+
+
+
+
+
+
+s3eResult LihuiDomodInit();
+
+
+
+
+s3eResult LihuiDomodInit_platform();
+
+
+
+
+
+void LihuiDomodTerminate();
+
+
+
+
+void LihuiDomodTerminate_platform();
+void showDoBanner_platform();
+
+void showDoInter_platform();
+
+void showDoSplash_platform();
+# 14 "D:\\10kgratExtension\\ExMarmalade\\Project\\2048Test\\third_party\\LihuiDomob\\source\\generic\\LihuiDomod.cpp" 2
+s3eResult LihuiDomodInit()
+{
+
+    return LihuiDomodInit_platform();
+}
+
+void LihuiDomodTerminate()
+{
+
+    LihuiDomodTerminate_platform();
+}
+
+void showDoBanner()
+{
+ showDoBanner_platform();
+}
+
+void showDoInter()
+{
+ showDoInter_platform();
+}
+
+void showDoSplash()
+{
+ showDoSplash_platform();
+}

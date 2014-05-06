@@ -15,6 +15,11 @@ android:theme="@android:style/Theme.Translucent"
             android:name="com.alipay.android.app.sdk.WapPayActivity"
             android:screenOrientation="portrait" >
 </activity>
-		
+ <activity
+            android:name="cn.egame.terminal.paysdk.EgamePayActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+        </activity>
+
+  
 <meta-data android:value="53281ccc56240b6289008af6" android:name="UMENG_APPKEY"></meta-data>
 <meta-data android:value="UNI_store" android:name="UMENG_CHANNEL"/>
