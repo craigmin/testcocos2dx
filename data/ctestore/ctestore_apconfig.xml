@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AP密钥 -->
+    <string name="ctestore_apsecret">EB072B1C790E9E7CE040007F01002F45</string>
+    <!-- AP客服电话，允许为空 -->
+    <string name="ctestore_apphonenum">4008210849</string>
+    <!-- 是否是测试模式，true测试模式，其他正式模式 -->
+    <string name="ctestore_testflag">false</string>
+    <!-- AP名称 -->
+    <string name="ctestore_apname">上海游米网络科技有限公司</string>
+    <!-- 应用名称 -->
+    <string name="ctestore_appname">天天2048</string>
+</resources>
