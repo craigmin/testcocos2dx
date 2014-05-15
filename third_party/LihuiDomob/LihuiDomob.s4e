@@ -1,0 +1,31 @@
+callbacks
+
+include:
+
+#include <s3eTypes.h>
+
+enum LihuiDomobCallback
+{
+    LIHUIDO_CALLBACK_SPLASH_SUCCESSFUL,
+    LIHUIDO_CALLBACK_SPLASH_FAILED,
+    LIHUIDO_CALLBACK_POINT_SUCCESSFUL,
+    LIHUIDO_CALLBACK_POINT_FAILED,
+	LIHUIDO_CALLBACK_CONSUME_SUCCESSFUL,
+    LIHUIDO_CALLBACK_CONSUME_FAILED,
+    LIHUIDOMOB_CALLBACK_MAX
+};
+functions:
+
+void initDoAd() run_on_os_thread
+
+void showDoBanner() run_on_os_thread 
+
+void showDoInter() run_on_os_thread
+
+void showDoSplash() run_on_os_thread
+
+void checkPoints()  run_on_os_thread
+
+void usePoints(int point) run_on_os_thread
+
+void getPoints() run_on_os_thread
