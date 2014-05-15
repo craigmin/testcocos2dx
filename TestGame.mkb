@@ -6,7 +6,8 @@ options
 	module_path="third_party/LihuiAD_Baidu/"
 	module_path="third_party/LihuiLB/"
 	module_path="third_party/LihuiSocial/"	
-	module_path="third_party/LihuiDomod/"	
+	module_path="third_party/LihuiDomob/"
+	module_path="third_party/LihuiMMInAppAndroid/"	
 		
 }
 packages
@@ -21,12 +22,12 @@ files
     AppDelegate.h
 
 	[Object]
-	Point.cpp
-	Point.h
-	Score.cpp
-	Score.h
-	#Matrix.cpp
-	#Matrix.h
+	#Point.cpp
+	#Point.h
+	#Score.cpp
+	#Score.h
+	#ChessBoard.cpp
+	#ChessBoard.h
 
 	[UI]
 	#JerryScene.cpp
@@ -44,9 +45,23 @@ files
 	TaskManager.h
 	ThemeManager.cpp
     ThemeManager.h
+	#MoveTypes.cpp
+	#MoveTypes.h
+	#MoveOperation.cpp
+	#MoveOperation.h
 	#AppSettings.h
 	#AppSettings.cpp
-
+	PlatformManager.cpp
+	PlatformManager.h
+	#MoveDownOperation.h
+	#MoveLeftOperation.h
+	#MoveRightOperation.h
+	#MoveUpOperation.h
+	Consts.h
+	[Interface]
+	#IArrangeOperation.h
+	#IMovableValidator.h
+	#IMoveOperation.h
 	[TinyXML]
 	(source/TinyXML)
 	tinystr.cpp
@@ -60,6 +75,7 @@ files
 assets 
 {
 	(data)
+	#"premessable.txt"
 	#"BB3Share.jpg"
 	"images/themeCandy/background.png"
 	"images/themeCandy/gameover.png"
@@ -137,6 +153,10 @@ assets
 
 	"images/themeCandy/dialog_runout.png"
 	"images/themeCandy/dialog_left.png"
+
+	"images/themeCandy/exchange_dialog.png"
+	"images/themeCandy/get.png"
+	"images/themeCandy/exchange.png"
 
 	"images/themeCandy/btn_buygift.png"
 	"images/themeCandy/btn_buy3bombs.png"
@@ -243,6 +263,11 @@ assets
 	"images/themePlain/task_dialog_done.png"
 
 	"images/themePlain/dialog_runout.png"
+	"images/themePlain/dialog_left.png"
+
+	"images/themePlain/exchange_dialog.png"
+	"images/themePlain/get.png"
+	"images/themePlain/exchange.png"
 
 	"sunbeams.png"
 	"sounds/swipe.mp3"
@@ -255,6 +280,20 @@ assets
 	"fonts/arial.ttf"
 	#"fonts/candy.ttf"
 	
+	"ctestore/ctesotore_titlebg1.png"
+	"ctestore/ctestore_apconfig.xml"
+	"ctestore/ctestore_strings.xml"
+	"ctestore/ctestore_blog.png"
+	"ctestore/ctestore_close.png"
+	"ctestore/ctestore_failed.png"
+	"ctestore/ctestore_fanhui.png"
+	"ctestore/ctestore_neizbg.9.png"
+	"ctestore/ctestore_success.png"
+	"ctestore/ctestore_sure.png"
+	"ctestore/ctestore_titlelog.png"
+	"ctestore/ctestore_tstitle.png"
+	"ctestore/ctestore_waizbg.9.png"
+	"UnicomConsume/UnicomConsume.uwc"
 }
 
 subprojects
@@ -265,7 +304,8 @@ subprojects
 	LihuiAD_Baidu
 	LihuiLB
 	LihuiSocial
-	LihuiDomod
+	LihuiDomob
+	LihuiMMInApp
     third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
     third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
 	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
@@ -284,7 +324,7 @@ deployments
 	icon = "data/icons/icon170.png"
 	name = "Daily2048"
 	android-manifest='AndroidManifest.xml'
-	android-custom-activity='com.lihui.daily2048.LihuiMain'
+	android-custom-activity='cn.lihui.daily2048_ads.LihuiMain'
 	android-external-jars=marmaladecustom.jar
 	android-external-res="resEx/"
 }

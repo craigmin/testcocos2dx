@@ -39,6 +39,6 @@ deployments
 {
     android-external-jars="lib/android/LihuiAD_Baidu.jar"
     android-so="lib/android/libLihuiAD_Baidu.so"
-	android-external-jars="Baidu_MobAds_SDK.jar"
+	#android-external-jars="Baidu_MobAds_SDK.jar"
 	android-extra-application-manifest="BaiduAd.xml"
 }

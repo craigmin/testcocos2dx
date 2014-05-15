@@ -16,7 +16,7 @@ public class ResultListener implements LeaderBoardsResultListener {
 
 	@Override
 	public void onUpdateLeaderBoardsResult(int resultCode, String desc) {
-		// TODO Auto-generated method stub
+		// TOD    O Auto-generated method stub
 		switch (resultCode) {
 		case LeaderBoardsResultCode.RECEIVE_SUCCESS:
 			Log.e("注意UPDATE_SUCCESS","Execute"+resultCode+desc);

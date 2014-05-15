@@ -16,6 +16,7 @@ protected:
 	CCLabelTTF* topScoreLabel;
 	CCLabelTTF* bombLabel;
 	CCLabelTTF* rearrangeLabel;
+	CCLabelTTF* pointLabel;
 	CCMenuItemSprite *psoundmenuItemSprite;
 	CCMenuItemSprite*  pbombmenuItemSprite; 
 	CCMenuItemSprite*  prearrangemenuItemSprite;
@@ -54,6 +55,7 @@ typedef enum
 public:
     ~GameScene();
     
+	static GameScene* sharedInstance();
     // Init method
     virtual bool init();
 
@@ -71,6 +73,7 @@ public:
 	void drawScore();
 	void inMovable();
 	void drawProperty();
+	void drawWallPoints(const char* p);
 	void moveMatrix(int moveDir);
 	void gameOver();
 	void animateMatrix(int moveDir);
@@ -97,7 +100,11 @@ public:
 	void buy1ReButtonClick(CCObject *sender);
 	void buy2ResButtonClick(CCObject *sender);
 	void buy5ResButtonClick(CCObject *sender);
+	void getPointClick(CCObject *sender);
+	void bombConsumeClick(CCObject *sender);
+	void rearrangeConsumeClick(CCObject *sender);
 	
+	void processPurchase(const char* p);
 	void cleanPoint(float x,float y);
 	void updateCoodinates();
 	void cleanPointConfirm(int x,int y);

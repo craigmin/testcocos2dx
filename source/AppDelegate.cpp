@@ -3,7 +3,7 @@
 #include "AppDelegate.h"
 #include "SplashScreen.h"
 #include "GameLayer.h"
-
+#include "PlatformManager.h"
 #include "LihuiLB.h"
 
 USING_NS_CC;
@@ -36,6 +36,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	//Jerry--Init LB
 	initLB();
 	receiveRank();
+		PlatformManager::sharedInstance()->initDomobSystem();
+		PlatformManager::sharedInstance()->initInAppSystem();
+		//PlatformManager::sharedInstance()->showSpalsh();
+		
 	CCScene *pScene = GameLayer::scene();
 
 	// Run

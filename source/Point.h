@@ -11,8 +11,9 @@ private:
 	 int value;
 	 int score;
 	 int anim;
-	 bool isChanged;
+	 bool bChanged;
 public:
+	Point();
 	Point(int value);
 	Point(int x, int y);
 	Point(int x, int y, int value, int score,int anim, bool isChanged);
@@ -24,7 +25,7 @@ public:
 	void clear();
 	void bigger();
 	bool equals(Point p);
-	Point clone();
+	Point* clone();
 	void copyValue(Point p);
 	int getX();
 	int getY();
