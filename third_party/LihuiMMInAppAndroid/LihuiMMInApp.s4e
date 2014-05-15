@@ -1,0 +1,32 @@
+callbacks
+
+include:
+
+#include <s3eTypes.h>
+
+enum LihuiMMInAppCallback
+{
+    LIHUIMMINAPP_CALLBACK_PURCHASE_SUCCESSFUL,
+    LIHUIMMINAPP_CALLBACK_PURCHASE_FAILED,
+    LIHUIMMINAPP_CALLBACK_PURCHASE_RESTORED,
+    LIHUIMMINAPP_CALLBACK_PURCHASE_REVOKED,
+    LIHUIMMINAPP_CALLBACK_MAX
+};
+
+
+functions:
+
+/**
+ * 
+ */
+void LihuiInAppStart() run_on_os_thread
+
+/**
+ * 
+ */
+void LihuiInAppRestorePurchases() run_on_os_thread
+
+/**
+ * 
+ */
+void LihuiInAppBuyItem(const char* itemId) run_on_os_thread
