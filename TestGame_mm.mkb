@@ -1,0 +1,330 @@
+#!/usr/bin/env mkb
+options
+{
+	s3e-data-dir="data"
+	module_path="third_party/Lihui2048Api/"
+	module_path="third_party/LihuiAD_Baidu/"
+	module_path="third_party/LihuiLB/"
+	module_path="third_party/LihuiSocial/"	
+	module_path="third_party/LihuiDomob/"
+	module_path="third_party/LihuiMMInAppAndroid/"	
+		
+}
+packages
+{
+	tinyxml
+}
+files
+{
+    (source)
+    TestGame.cpp
+    AppDelegate.cpp
+    AppDelegate.h
+
+	[Object]
+	#Point.cpp
+	#Point.h
+	#Score.cpp
+	#Score.h
+	#ChessBoard.cpp
+	#ChessBoard.h
+
+	[UI]
+	#JerryScene.cpp
+	#JerryScene.h
+	GameLayer.cpp
+    GameLayer.h
+	GameScene.cpp
+    GameScene.h
+	SplashScreen.cpp
+    SplashScreen.h
+	LeaderBoard.cpp
+    LeaderBoard.h
+	[UI/Tools]
+	TaskManager.cpp
+	TaskManager.h
+	ThemeManager.cpp
+    ThemeManager.h
+	#MoveTypes.cpp
+	#MoveTypes.h
+	#MoveOperation.cpp
+	#MoveOperation.h
+	#AppSettings.h
+	#AppSettings.cpp
+	PlatformManager.cpp
+	PlatformManager.h
+	#MoveDownOperation.h
+	#MoveLeftOperation.h
+	#MoveRightOperation.h
+	#MoveUpOperation.h
+	Consts.h
+	[Interface]
+	#IArrangeOperation.h
+	#IMovableValidator.h
+	#IMoveOperation.h
+	[TinyXML]
+	(source/TinyXML)
+	tinystr.cpp
+	tinystr.h
+	tinyxml.cpp
+	tinyxml.h
+	tinyxmlerror.cpp
+	tinyxmlparser.cpp
+}
+
+assets 
+{
+	(data)
+	#"premessable.txt"
+	#"BB3Share.jpg"
+	"images/themeCandy/background.png"
+	"images/themeCandy/gameover.png"
+	"images/themeCandy/menu_instruction.png"
+	"images/themeCandy/menu_leaderboard.png"
+	"images/themeCandy/menu_quit.png"
+	"images/themeCandy/menu_start.png"
+	"images/themeCandy/menu_theme.png"
+
+	"images/themeCandy/gi_background.png"
+	"images/themeCandy/gi_background_2.png"
+	
+	"images/themeCandy/bomb.png"
+	"images/themeCandy/rearrange.png"
+	"images/themeCandy/shop.png"
+
+	"images/themeCandy/numb_2.png"
+	"images/themeCandy/numb_4.png"
+	"images/themeCandy/numb_8.png"
+	"images/themeCandy/numb_16.png"
+	"images/themeCandy/numb_32.png"
+	"images/themeCandy/numb_64.png"
+	"images/themeCandy/numb_128.png"
+	"images/themeCandy/numb_256.png"
+	"images/themeCandy/numb_512.png"
+	"images/themeCandy/numb_1024.png"
+	"images/themeCandy/numb_2048.png"
+	"images/themeCandy/numb_4096.png"
+	"images/themeCandy/numb_8192.png"
+	#"images/themeCandy/numb_16384.png"
+	#"images/themeCandy/numb_32768.png"
+	#"images/themeCandy/numb_blank.png"
+	#"images/themeCandy/numb_what.png"
+	"images/themeCandy/restart.png"
+	"images/themeCandy/back2menu.png"
+	"images/themeCandy/btn_update_nickname.png"
+	"images/themeCandy/back2game.png"
+
+	"images/themeCandy/splashscreen_css.jpg"
+	"images/themeCandy/dialog_bk.png"
+	"images/themeCandy/dialog_intro.png"
+	"images/themeCandy/restart_dialog_bk.png"
+	"images/themeCandy/dialog_bomb.png"
+	"images/themeCandy/dialog_rearrange.png"
+	"images/themeCandy/dialog_buy_bomb.png"
+	"images/themeCandy/dialog_buy_rearrange.png"
+
+	"images/themeCandy/btn_cancel.png"
+	"images/themeCandy/btn_confirm.png"
+	"images/themeCandy/btn_know.png"
+
+	"images/themeCandy/sound_on.png"
+	"images/themeCandy/sound_off.png"
+
+	"images/themeCandy/leaderboard.png"
+	"images/themeCandy/share.png"
+	"images/themeCandy/dialog_item.png"
+	"images/themeCandy/btn_gameover.png"
+	
+	"images/themeCandy/task_dialog_256.png"
+	"images/themeCandy/task_dialog_512.png"
+	"images/themeCandy/task_dialog_1024.png"
+	"images/themeCandy/task_dialog_1024_2.png"
+	"images/themeCandy/task_dialog_2048.png"
+	"images/themeCandy/task_dialog_2048_2.png"
+	"images/themeCandy/task_dialog_4096.png"
+	"images/themeCandy/task_dialog_20000.png"
+	"images/themeCandy/task_dialog_25000.png"
+	"images/themeCandy/task_dialog_35000.png"
+	"images/themeCandy/task_dialog_45000.png"
+	"images/themeCandy/task_dialog_65000.png"
+	"images/themeCandy/task_dialog_80000.png"
+	"images/themeCandy/task_dialog_100000.png"
+	"images/themeCandy/task_dialog_done.png"
+
+	"images/themeCandy/dialog_runout.png"
+	"images/themeCandy/dialog_left.png"
+
+	"images/themeCandy/exchange_dialog.png"
+	"images/themeCandy/get.png"
+	"images/themeCandy/exchange.png"
+
+	"images/themeCandy/btn_buygift.png"
+	"images/themeCandy/btn_buy3bombs.png"
+	"images/themeCandy/btn_buy5bombs.png"
+	"images/themeCandy/btn_buy10bombs.png"
+	"images/themeCandy/btn_buy1Re.png"
+	"images/themeCandy/btn_buy2Res.png"
+	"images/themeCandy/btn_buy5Res.png"
+	"images/themeCandy/btn_shop.png"
+	"images/themeCandy/btn_use.png"
+	
+	
+	"images/themeCandy/chs_theme.png"
+	"images/themeCandy/btn_chs.png"
+
+	"images/themePlain/background.png"
+	"images/themePlain/gameover.png"
+	"images/themePlain/menu_instruction.png"
+	"images/themePlain/menu_leaderboard.png"
+	"images/themePlain/menu_quit.png"
+	"images/themePlain/menu_start.png"
+	"images/themePlain/menu_theme.png"
+
+
+	
+	"images/themePlain/gi_background.png"
+	"images/themePlain/gi_background_2.png"
+
+	
+	"images/themePlain/bomb.png"
+	"images/themePlain/rearrange.png"
+	"images/themePlain/shop.png"
+
+	"images/themePlain/numb_2.png"
+	"images/themePlain/numb_4.png"
+	"images/themePlain/numb_8.png"
+	"images/themePlain/numb_16.png"
+	"images/themePlain/numb_32.png"
+	"images/themePlain/numb_64.png"
+	"images/themePlain/numb_128.png"
+	"images/themePlain/numb_256.png"
+	"images/themePlain/numb_512.png"
+	"images/themePlain/numb_1024.png"
+	"images/themePlain/numb_2048.png"
+	"images/themePlain/numb_4096.png"
+	"images/themePlain/numb_8192.png"
+	"images/themePlain/numb_16384.png"
+	"images/themePlain/numb_32768.png"
+	"images/themePlain/numb_blank.png"
+	"images/themePlain/numb_what.png"
+	"images/themePlain/restart.png"
+	"images/themePlain/back2menu.png"
+	"images/themePlain/btn_update_nickname.png"
+	"images/themePlain/back2game.png"
+
+	"images/themePlain/splashscreen_css.jpg"
+	"images/themePlain/dialog_bk.png"
+	"images/themePlain/dialog_intro.png"
+	"images/themePlain/restart_dialog_bk.png"
+	"images/themePlain/dialog_bomb.png"
+	"images/themePlain/dialog_rearrange.png"
+	"images/themePlain/dialog_buy_bomb.png"
+	"images/themePlain/dialog_buy_rearrange.png"
+
+	"images/themePlain/btn_cancel.png"
+	"images/themePlain/btn_confirm.png"
+	"images/themePlain/btn_know.png"
+
+	"images/themePlain/sound_on.png"
+	"images/themePlain/sound_off.png"
+
+	"images/themePlain/leaderboard.png"
+	"images/themePlain/share.png"
+	"images/themePlain/dialog_item.png"
+	"images/themePlain/btn_gameover.png"
+
+	"images/themePlain/btn_buygift.png"
+	"images/themePlain/btn_buy3bombs.png"
+	"images/themePlain/btn_buy5bombs.png"
+	"images/themePlain/btn_buy10bombs.png"
+	"images/themePlain/btn_buy1Re.png"
+	"images/themePlain/btn_buy2Res.png"
+	"images/themePlain/btn_buy5Res.png"
+	"images/themePlain/btn_shop.png"
+	"images/themePlain/btn_use.png"
+
+	"images/themePlain/chs_theme.png"
+	"images/themePlain/btn_chs.png"
+
+	"images/themePlain/task_dialog_256.png"
+	"images/themePlain/task_dialog_512.png"
+	"images/themePlain/task_dialog_1024.png"
+	"images/themePlain/task_dialog_1024_2.png"
+	"images/themePlain/task_dialog_2048.png"
+	"images/themePlain/task_dialog_2048_2.png"
+	"images/themePlain/task_dialog_4096.png"
+	"images/themePlain/task_dialog_20000.png"
+	"images/themePlain/task_dialog_25000.png"
+	"images/themePlain/task_dialog_35000.png"
+	"images/themePlain/task_dialog_45000.png"
+	"images/themePlain/task_dialog_65000.png"
+	"images/themePlain/task_dialog_80000.png"
+	"images/themePlain/task_dialog_100000.png"
+	"images/themePlain/task_dialog_done.png"
+
+	"images/themePlain/dialog_runout.png"
+	"images/themePlain/dialog_left.png"
+
+	"images/themePlain/exchange_dialog.png"
+	"images/themePlain/get.png"
+	"images/themePlain/exchange.png"
+
+	"sunbeams.png"
+	"sounds/swipe.mp3"
+	"sounds/CollisionBomb0.raw"
+	
+	
+	
+	"sounds/plaudit.raw"
+	
+	"fonts/arial.ttf"
+	#"fonts/candy.ttf"
+	
+	"ctestore/ctesotore_titlebg1.png"
+	"ctestore/ctestore_apconfig.xml"
+	"ctestore/ctestore_strings.xml"
+	"ctestore/ctestore_blog.png"
+	"ctestore/ctestore_close.png"
+	"ctestore/ctestore_failed.png"
+	"ctestore/ctestore_fanhui.png"
+	"ctestore/ctestore_neizbg.9.png"
+	"ctestore/ctestore_success.png"
+	"ctestore/ctestore_sure.png"
+	"ctestore/ctestore_titlelog.png"
+	"ctestore/ctestore_tstitle.png"
+	"ctestore/ctestore_waizbg.9.png"
+	"UnicomConsume/UnicomConsume.uwc"
+}
+
+subprojects
+{
+    iwutil
+    iwgl
+	Lihui2048Api
+	LihuiAD_Baidu
+	LihuiLB
+	LihuiSocial
+	LihuiDomob
+	LihuiMMInApp
+    third_party\cocos2dx\cocos2dx\proj.marmalade\cocos2dx
+    third_party\cocos2dx\external\Box2D\proj.marmalade\Box2D
+	third_party\cocos2dx\CocosDenshion\proj.marmalade\CocosDenshion
+	third_party\cocos2dx\extensions\proj.marmalade\cocos2dx-ext
+	tinyxml
+}
+
+deployment
+{
+}
+
+#### AUTO GENERATED deployment settings from DeployTool.exe. Do not edit below this line ####
+deployments
+{
+	["Default"]
+	icon = "data/icons/icon170.png"
+	name = "Daily2048"
+	android-manifest='AndroidManifest.xml'
+	android-custom-activity='cn.lihui.daily2048_ads.LihuiMain'
+	android-external-jars=marmaladecustom.jar
+	android-external-res="resEx/"
+}
