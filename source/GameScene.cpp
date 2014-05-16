@@ -684,9 +684,9 @@ void GameScene::pauseGame(pausetype Type){
 		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("dialog_item.png");
 	}if(Type == SHOP){
 		//WallPointVersion
-		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("exchange_dialog.png");
+		//dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("exchange_dialog.png");
 		//InAppVersion
-		//dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
+		dialog_bk= ThemeManager::sharedInstance()->spriteWithImageFile("shop.png");
 	}
 
 	dialog_bk->setScaleX(SCREEN_WIDTH/dialog_bk->getContentSize().width);
@@ -767,7 +767,7 @@ void GameScene::pauseGame(pausetype Type){
 		this->addChild(layer2, 10);
 		return;
 	}if(Type == SHOP){
-		///*
+		/*
 		//WallPointVersion
 		CCSprite* getpointNormal = ThemeManager::sharedInstance()->spriteWithImageFile("get.png");
 		CCSprite* getpointSelected = ThemeManager::sharedInstance()->spriteWithImageFile("get.png");
@@ -814,8 +814,8 @@ void GameScene::pauseGame(pausetype Type){
 		//Jerry--Tag
 		PlatformManager::sharedInstance()->checkWallPoints();
 		return;
-		//*/
-		/*
+		*/
+		///*
 		//InAppVersion
 		//buygift
 		CCSprite* buygiftNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_buygift.png");
@@ -886,7 +886,7 @@ void GameScene::pauseGame(pausetype Type){
 		layer2->setTag(1000);
 		this->addChild(layer2, 10);
 		return;
-		*/
+		//*/
 	}
 	pconfirmNormalItemSprite->setScale(LL_BUTTON_SCALE_VALUE);
 	CCMenu* pconfirmMenu = CCMenu::menuWithItems(pconfirmNormalItemSprite,NULL);

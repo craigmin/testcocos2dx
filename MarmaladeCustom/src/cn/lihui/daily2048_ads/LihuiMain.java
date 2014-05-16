@@ -23,7 +23,7 @@ public class LihuiMain extends LihuiActivity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ads = new DomobAds();
+		ads = new CocoAds();
 		ads.init();
 	}
 

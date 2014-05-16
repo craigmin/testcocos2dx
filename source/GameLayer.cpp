@@ -124,6 +124,7 @@ bool GameLayer::init()
 
 	//InitBdAd();
 	//showDoSplash();
+
 	PlatformManager::sharedInstance()->showBanner();
 	PlatformManager::sharedInstance()->showInter();
 	//showDoBanner();

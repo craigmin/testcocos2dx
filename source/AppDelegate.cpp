@@ -5,6 +5,7 @@
 #include "GameLayer.h"
 #include "PlatformManager.h"
 #include "LihuiLB.h"
+#include "LihuiMMInApp.h"
 
 USING_NS_CC;
 
@@ -36,6 +37,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	//Jerry--Init LB
 	initLB();
 	receiveRank();
+	//LihuiInAppStart();
+
 		PlatformManager::sharedInstance()->initDomobSystem();
 		PlatformManager::sharedInstance()->initInAppSystem();
 		//PlatformManager::sharedInstance()->showSpalsh();

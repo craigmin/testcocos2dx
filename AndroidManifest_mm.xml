@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="cn.lihui.daily2048_ads"
+      package="cn.lihui.daily2048"
       android:versionCode="4"
       android:versionName="1.4"
       android:installLocation="auto"
@@ -27,40 +27,7 @@ android:label="@string/app_name"
 <activity android:name=".wxapi.WXEntryActivity"
 android:label="@string/app_name"
 android:exported="true"/>	
- <!-- 配置插屏Activity(必须) -->
-        <activity
-            android:name="com.adcocoa.sdk.AdcocoaPopupActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Dialog" />
 
-        <!-- 配置Receiver(必须) -->
-        <receiver
-            android:name="com.adcocoa.sdk.receiver.AdcocoaStateReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.adcocoa.sdk.action.STATE_CHANGE" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
-                <data android:scheme="package" />
-				   </intent-filter>
-        </receiver>
-		 <!-- dianjin start -->
-        <activity
-            android:name="com.bodong.dianjinweb.downloadmanager.DianJinDownloadManager"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity
-            android:name="com.bodong.dianjinweb.web.DianjinWebAcitivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Black.NoTitleBar" />
-
-        <service android:name="com.bodong.dianjinweb.service.DianJinService" >
-        </service>
-        <!-- dianjin end -->
 			   
 		   <!-- Umeng -->
 		<meta-data android:value="533e5f3a56240b5a2d00e1ca" android:name="UMENG_APPKEY"></meta-data>
@@ -73,10 +40,9 @@ android:exported="true"/>
 	<uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+      <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	  <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>
