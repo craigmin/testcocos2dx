@@ -59,7 +59,7 @@ public class IAPListener implements OnPurchaseListener {
 			 * 商品购买成功或者已经购买。 此时会返回商品的paycode，orderID,以及剩余时间(租赁类型商品)
 			 */
 			result.append("购买成功");
-			if (arg1 != null) {
+				if (arg1 != null) {
 				// 商品的有效期(仅租赁类型商品有效)
 				String leftday = (String) arg1.get(OnPurchaseListener.LEFTDAY);
 				if (leftday != null && leftday.trim().length() != 0) {

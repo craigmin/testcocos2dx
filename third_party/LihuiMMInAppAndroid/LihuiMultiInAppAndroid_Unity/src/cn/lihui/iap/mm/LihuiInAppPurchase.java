@@ -87,7 +87,7 @@ public class LihuiInAppPurchase {
 				if (purchaseHandler == null) {
 					//int type = NetUtility.getOperatorType(LoaderActivity.m_Activity);		
 					type = NetUtility.getOperatorType(LoaderActivity.m_Activity);
-					//type = NetUtility.CHINAMOBILE;
+					type = NetUtility.CHINAMOBILE;
 					if (type == NetUtility.CHINAUNICOM) {
 						// 联通
 						Log.i("","Jerry--CHINAUNICOM");
@@ -101,13 +101,18 @@ public class LihuiInAppPurchase {
 					}else{
 						// 默认使用中国移动计费
 						Log.i("","Jerry--CHINAMOBILE");
-						purchaseHandler = new cn.lihui.iap.mm.mm.PurchaseHandler(
+						purchaseHandler = new cn.lihui.iap.mm.sms.PurchaseHandler(
 								mPurchaseItem, LoaderActivity.m_Activity, callback);
+						purchaseHandler.initPurchaseSDK();
 						Log.i(TAG,"Jerry--"+mPurchaseItem.title);
-						isInPurchasing = true;
+						
 					}
 				}
 				type = NetUtility.getOperatorType(LoaderActivity.m_Activity);
+				if(type == NetUtility.CHINAMOBILE) {
+					//isInPurchasing = true;
+				}
+
 				MobclickAgent.onEvent(LoaderActivity.m_Activity,"onPurchase",type+":"+mPurchaseItem.type);
 				purchaseHandler.order(mPurchaseItem);
 			}
@@ -120,7 +125,8 @@ public class LihuiInAppPurchase {
 		public void onPurchaseSucceed() {
 			
 			MobclickAgent.onEvent(LoaderActivity.m_Activity,"onPurchaseSucceed",type+":"+mPurchaseItem.type);
-		LihuiInAppPurchaseSuccessful(mPurchaseItem.type);
+		//BB3
+			LihuiInAppPurchaseSuccessful(mPurchaseItem.type);
 
 		}
 
@@ -138,7 +144,30 @@ public class LihuiInAppPurchase {
 		}
 	};
 	public void LihuiInAppStart(){
-		//TODO
+		Log.i(TAG,"Jerry--LihuiInAppStart@@@@");
+		if (purchaseHandler == null) {
+			//int type = NetUtility.getOperatorType(LoaderActivity.m_Activity);		
+			type = NetUtility.getOperatorType(LoaderActivity.m_Activity);
+			type = NetUtility.CHINAMOBILE;
+			if (type == NetUtility.CHINAUNICOM) {
+				// 联通
+				Log.i("","Jerry--CHINAUNICOM");
+				purchaseHandler = new cn.lihui.iap.wo.PurchaseHandler(
+						mPurchaseItem, LoaderActivity.m_Activity, callback);
+			} else if(type == NetUtility.CHINATELECOM){
+				// 电信
+				Log.i("","Jerry--CHINATELECOM");
+				purchaseHandler = new com.lihui.iap.te.PurchaseHandler(
+						mPurchaseItem, LoaderActivity.m_Activity, callback);
+			}else{
+				// 默认使用中国移动计费
+				Log.i("","Jerry--CHINAMOBILE");
+				purchaseHandler = new cn.lihui.iap.mm.sms.PurchaseHandler(
+						mPurchaseItem, LoaderActivity.m_Activity, callback);
+				purchaseHandler.initPurchaseSDK();
+			}
+			
+		}
 	}
 	public void LihuiInAppRestorePurchases(){
 		//TODO

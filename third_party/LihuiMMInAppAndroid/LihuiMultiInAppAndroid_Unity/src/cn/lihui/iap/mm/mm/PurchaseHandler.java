@@ -15,10 +15,11 @@ public class PurchaseHandler implements IPurchaseHandler  {
 	private PurchaseItem mPurchaseItem;
 	private Context context;
 	private static Boolean isInitIAP = false;
-	private static Boolean isOnCreate = false;
+	private static Boolean isOnCreate = true;
 	private IPurchaseCallback callback;
-    public static int count=0;
+
 	private static String TAG = "Lihui";
+	
 	private static final String APPID = "300008265411";
 	private static final String APPKEY = "EBE1CB1A33FA4B85";
 	private static IAPListener mListener;
@@ -32,14 +33,14 @@ public class PurchaseHandler implements IPurchaseHandler  {
 		this.context = context;
 		this.callback = callback;
 		isInitIAP = false;
-		count=0;
+
 	}
 
 	@Override
 	public void order(PurchaseItem purchaseItem) {
 		this.mPurchaseItem = purchaseItem;
 		
-		if (count==0) {
+		if (!isInitIAP) {
 	
 			//isOnCreate = false;
 			initPurchaseSDK();
@@ -55,7 +56,7 @@ public class PurchaseHandler implements IPurchaseHandler  {
 						mPurchaseItem.title + " " + e.getMessage());
 			}
 		}
-		count++;
+		
 	}
 
 	@Override
