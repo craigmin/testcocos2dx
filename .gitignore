@@ -37,3 +37,8 @@
 /MarmaladeCustom/bin
 
 /MarmaladeCustom/gen
+
+/third_party/LihuiSocial/LihuiSocial/.settings
+/third_party/LihuiSocial/LihuiSocial/gen
+
+/third_party/LihuiSocial/LihuiSocial/bin

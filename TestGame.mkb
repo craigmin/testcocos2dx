@@ -488,8 +488,8 @@ android-manifest='AndroidManifest_mm.xml'
 if{{defined PLATFORM_4399}}
 deployments
 {
-android-custom-activity='cn.lihui.daily2048_all_ads.LihuiMain'
-android-manifest='AndroidManifest_all_ads.xml'
+android-custom-activity='cn.lihui.daily2048_4399.LihuiMain'
+android-manifest='AndroidManifest_4399.xml'
 }
 if{{defined PLATFORM_LENOVO}}
 deployments

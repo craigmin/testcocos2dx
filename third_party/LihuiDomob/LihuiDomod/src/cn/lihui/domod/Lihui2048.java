@@ -281,7 +281,7 @@ public class Lihui2048 {
 //			public void onInterstitialAdReady() {
 //				Log.i("DomobSDKDemo", "onAdReady");
 //			}
-//
+// 
 //			@Override
 //			public void onLandingPageOpen() {
 //				Log.i("DomobSDKDemo", "onLandingPageOpen");

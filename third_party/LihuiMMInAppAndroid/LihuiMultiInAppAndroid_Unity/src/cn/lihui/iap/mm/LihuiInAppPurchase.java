@@ -100,6 +100,7 @@ public class LihuiInAppPurchase {
 //								mPurchaseItem, LoaderActivity.m_Activity, callback);
 						Toast.makeText(LoaderActivity.m_Activity, "本次支付不支持电信用户",
 							     Toast.LENGTH_SHORT).show();
+						return;
 					}else{
 						// 默认使用中国移动计费
 						Log.i("","Jerry--CHINAMOBILE");
