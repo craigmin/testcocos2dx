@@ -7,9 +7,9 @@
 #define PLATFORM_MM_SMS
 #define PLATFORM_IOS
 define PLATFORM_ALL
-#define PLATFORM_SSJJADS
-define PLATFORM_LENOVO
-#define PLATFORM_4399
+define PLATFORM_SSJJADS
+#define PLATFORM_LENOVO
+define PLATFORM_4399
 
 options
 {
@@ -439,20 +439,7 @@ subprojects
 	tinyxml
 }
 
-deployment
-{
-}
-files
-{
-(src)
-[..]
-mmiap.xml
-}
-assets
-{
-../src/mmiap.xml
-../src/CopyrightDeclaration.xml
-}
+
 
 #### AUTO GENERATED deployment settings from DeployTool.exe. Do not edit below this line ####
 deployments
