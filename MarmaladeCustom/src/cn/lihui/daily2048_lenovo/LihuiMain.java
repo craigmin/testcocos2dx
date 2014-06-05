@@ -1,4 +1,4 @@
-package cn.lihui.daily2048_189;
+package cn.lihui.daily2048_lenovo;
 
 import com.estore.lsms.tools.ApiParameter;
 import com.ideaworks3d.marmalade.LoaderActivity;
