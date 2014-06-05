@@ -1,0 +1,81 @@
+	<!-- Domod Offer Wall -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />  
+	<!-- WoInApp -->
+	¡¡<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+¡¡<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+¡¡<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<!-- MMInApp -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+		<!-- dianjin -->
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+	
+	   <!-- ÅäÖÃ²åÆÁActivity(±ØÐë) -->
+        <activity
+            android:name="com.adcocoa.sdk.AdcocoaPopupActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <!-- ÅäÖÃReceiver(±ØÐë) -->
+        <receiver
+            android:name="com.adcocoa.sdk.receiver.AdcocoaStateReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.adcocoa.sdk.action.STATE_CHANGE" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+				   </intent-filter>
+        </receiver>
+		    <!-- wostore -->
+		<meta-data android:name="wostore_billing_sms" android:value="true"/>
+        <meta-data android:name="wostore_billing_otherpay" android:value="false"/>
+        <meta-data android:name="wostore_billing_chinaunicom" android:value="true"/>		   
+		   <!-- Umeng -->
+		<meta-data android:value="533e5f3a56240b5a2d00e1ca" android:name="UMENG_APPKEY"></meta-data>
+		<meta-data android:value="Jerry" android:name="UMENG_CHANNEL"/>
+		
+		    <!-- dianjin start -->
+        <activity
+            android:name="com.bodong.dianjinweb.downloadmanager.DianJinDownloadManager"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name="com.bodong.dianjinweb.web.DianjinWebAcitivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+
+        <service android:name="com.bodong.dianjinweb.service.DianJinService" >
+        </service>
+        <!-- dianjin end -->
+		
+		  <activity android:name="com.estore.ui.CTEStoreSDKActivity" 
+     	   android:screenOrientation="portrait"
+     	   android:theme="@android:style/Theme.Translucent"/>

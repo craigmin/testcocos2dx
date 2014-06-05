@@ -4,7 +4,13 @@
 #define PLATFORM_189
 #define PLATFORM_10010
 #define PLATFORM_91ADS
-define PLATFORM_MM_SMS
+#define PLATFORM_MM_SMS
+#define PLATFORM_IOS
+define PLATFORM_ALL
+#define PLATFORM_SSJJADS
+define PLATFORM_LENOVO
+#define PLATFORM_4399
+
 options
 {
 	s3e-data-dir="data"
@@ -20,24 +26,13 @@ packages
 {
 	tinyxml
 }
+
 files
 {
     (source)
     TestGame.cpp
     AppDelegate.cpp
     AppDelegate.h
-
-	[Object]
-	#Point.cpp
-	#Point.h
-	#Score.cpp
-	#Score.h
-	#ChessBoard.cpp
-	#ChessBoard.h
-
-	[UI]
-	#JerryScene.cpp
-	#JerryScene.h
 	GameLayer.cpp
     GameLayer.h
 	GameScene.cpp
@@ -51,23 +46,8 @@ files
 	TaskManager.h
 	ThemeManager.cpp
     ThemeManager.h
-	#MoveTypes.cpp
-	#MoveTypes.h
-	#MoveOperation.cpp
-	#MoveOperation.h
-	#AppSettings.h
-	#AppSettings.cpp
 	PlatformManager.cpp
 	PlatformManager.h
-	#MoveDownOperation.h
-	#MoveLeftOperation.h
-	#MoveRightOperation.h
-	#MoveUpOperation.h
-	Consts.h
-	[Interface]
-	#IArrangeOperation.h
-	#IMovableValidator.h
-	#IMoveOperation.h
 	[TinyXML]
 	(source/TinyXML)
 	tinystr.cpp
@@ -77,12 +57,44 @@ files
 	tinyxmlerror.cpp
 	tinyxmlparser.cpp
 }
+if{{defined PLATFORM_IOS}}
+files
+{
+	(source)
+[Object]
+	Point.cpp
+	Point.h
+	Score.cpp
+	Score.h
+	ChessBoard.cpp
+	ChessBoard.h
+[UI/Tools]
+	MoveTypes.cpp
+	MoveTypes.h
+	MoveOperation.cpp
+	MoveOperation.h
+	AppSettings.h
+	AppSettings.cpp
+	MoveDownOperation.h
+	MoveLeftOperation.h
+	MoveRightOperation.h
+	MoveUpOperation.h
+	Consts.h
+[Interface]
+	IArrangeOperation.h
+	IMovableValidator.h
+	IMoveOperation.h
+[UI]
+	JerryScene.cpp
+	JerryScene.h
+}
 
 assets 
 {
 	(data)
 	#"premessable.txt"
 	#"BB3Share.jpg"
+	
 	"images/themeCandy/background.png"
 	"images/themeCandy/gameover.png"
 	"images/themeCandy/menu_instruction.png"
@@ -121,6 +133,7 @@ assets
 	"images/themeCandy/back2game.png"
 
 	"images/themeCandy/splashscreen_css.jpg"
+	"images/themeCandy/splashscreen_css2.jpg"
 	"images/themeCandy/dialog_bk.png"
 	"images/themeCandy/dialog_intro.png"
 	"images/themeCandy/restart_dialog_bk.png"
@@ -219,6 +232,7 @@ assets
 	"images/themePlain/back2game.png"
 
 	"images/themePlain/splashscreen_css.jpg"
+	"images/themePlain/splashscreen_css2.jpg"
 	"images/themePlain/dialog_bk.png"
 	"images/themePlain/dialog_intro.png"
 	"images/themePlain/restart_dialog_bk.png"
@@ -275,6 +289,102 @@ assets
 	"images/themePlain/get.png"
 	"images/themePlain/exchange.png"
 
+	"images/themeFrozen/background.png"
+	"images/themeFrozen/gameover.png"
+	"images/themeFrozen/menu_instruction.png"
+	"images/themeFrozen/menu_leaderboard.png"
+	"images/themeFrozen/menu_quit.png"
+	"images/themeFrozen/menu_start.png"
+	"images/themeFrozen/menu_theme.png"
+
+	"images/themeFrozen/gi_background.png"
+	"images/themeFrozen/gi_background_2.png"
+	
+	"images/themeFrozen/bomb.png"
+	"images/themeFrozen/rearrange.png"
+	"images/themeFrozen/shop.png"
+
+	"images/themeFrozen/numb_2.png"
+	"images/themeFrozen/numb_4.png"
+	"images/themeFrozen/numb_8.png"
+	"images/themeFrozen/numb_16.png"
+	"images/themeFrozen/numb_32.png"
+	"images/themeFrozen/numb_64.png"
+	"images/themeFrozen/numb_128.png"
+	"images/themeFrozen/numb_256.png"
+	"images/themeFrozen/numb_512.png"
+	"images/themeFrozen/numb_1024.png"
+	"images/themeFrozen/numb_2048.png"
+	"images/themeFrozen/numb_4096.png"
+	"images/themeFrozen/numb_8192.png"
+	#"images/themeFrozen/numb_16384.png"
+	#"images/themeFrozen/numb_32768.png"
+	#"images/themeFrozen/numb_blank.png"
+	#"images/themeFrozen/numb_what.png"
+	"images/themeFrozen/restart.png"
+	"images/themeFrozen/back2menu.png"
+	"images/themeFrozen/btn_update_nickname.png"
+	"images/themeFrozen/back2game.png"
+
+	"images/themeFrozen/splashscreen_css.jpg"
+	"images/themeFrozen/splashscreen_css2.jpg"
+	"images/themeFrozen/dialog_bk.png"
+	"images/themeFrozen/dialog_intro.png"
+	"images/themeFrozen/restart_dialog_bk.png"
+	"images/themeFrozen/dialog_bomb.png"
+	"images/themeFrozen/dialog_rearrange.png"
+	#"images/themeFrozen/dialog_buy_bomb.png"
+	#"images/themeFrozen/dialog_buy_rearrange.png"
+
+	"images/themeFrozen/btn_cancel.png"
+	"images/themeFrozen/btn_confirm.png"
+	"images/themeFrozen/btn_know.png"
+
+	"images/themeFrozen/sound_on.png"
+	"images/themeFrozen/sound_off.png"
+
+	"images/themeFrozen/leaderboard.png"
+	"images/themeFrozen/share.png"
+	"images/themeFrozen/dialog_item.png"
+	"images/themeFrozen/btn_gameover.png"
+	
+	"images/themeFrozen/task_dialog_256.png"
+	"images/themeFrozen/task_dialog_512.png"
+	"images/themeFrozen/task_dialog_1024.png"
+	"images/themeFrozen/task_dialog_1024_2.png"
+	"images/themeFrozen/task_dialog_2048.png"
+	"images/themeFrozen/task_dialog_2048_2.png"
+	"images/themeFrozen/task_dialog_4096.png"
+	"images/themeFrozen/task_dialog_20000.png"
+	"images/themeFrozen/task_dialog_25000.png"
+	"images/themeFrozen/task_dialog_35000.png"
+	"images/themeFrozen/task_dialog_45000.png"
+	"images/themeFrozen/task_dialog_65000.png"
+	"images/themeFrozen/task_dialog_80000.png"
+	"images/themeFrozen/task_dialog_100000.png"
+	"images/themeFrozen/task_dialog_done.png"
+
+	"images/themeFrozen/dialog_runout.png"
+	"images/themeFrozen/dialog_left.png"
+
+	"images/themeFrozen/exchange_dialog.png"
+	"images/themeFrozen/get.png"
+	"images/themeFrozen/exchange.png"
+
+	"images/themeFrozen/btn_buygift.png"
+	"images/themeFrozen/btn_buy3bombs.png"
+	"images/themeFrozen/btn_buy5bombs.png"
+	"images/themeFrozen/btn_buy10bombs.png"
+	"images/themeFrozen/btn_buy1Re.png"
+	"images/themeFrozen/btn_buy2Res.png"
+	"images/themeFrozen/btn_buy5Res.png"
+	"images/themeFrozen/btn_shop.png"
+	"images/themeFrozen/btn_use.png"
+	
+	
+	"images/themeFrozen/chs_theme.png"
+	"images/themeFrozen/btn_chs.png"
+
 	"sunbeams.png"
 	"sounds/swipe.mp3"
 	"sounds/CollisionBomb0.raw"
@@ -306,6 +416,11 @@ assets
 {
 "UnicomConsume/UnicomConsume.uwc"
 }
+if{{defined PLATFORM_ALL}}
+assets
+{
+"UnicomConsume/UnicomConsume.uwc"
+}
 
 subprojects
 {
@@ -327,7 +442,17 @@ subprojects
 deployment
 {
 }
-
+files
+{
+(src)
+[..]
+mmiap.xml
+}
+assets
+{
+../src/mmiap.xml
+../src/CopyrightDeclaration.xml
+}
 
 #### AUTO GENERATED deployment settings from DeployTool.exe. Do not edit below this line ####
 deployments
@@ -339,12 +464,15 @@ deployments
 	#android-custom-activity='cn.lihui.daily2048_ads.LihuiMain'
 	android-external-jars="marmaladecustom/bin/marmaladecustom.jar"
 	android-external-res="resEx/"
-}
+
+	
+	}
 if{{defined PLATFORM_MM}}
 deployments
 {
 android-custom-activity='cn.lihui.daily2048.LihuiMain'
 android-manifest='AndroidManifest_mm.xml'
+
 }
 if{{defined PLATFORM_189}}
 deployments
@@ -369,5 +497,17 @@ deployments
 {
 android-custom-activity='cn.lihui.daily2048.LihuiMain'
 android-manifest='AndroidManifest_mm.xml'
+}
+if{{defined PLATFORM_4399}}
+deployments
+{
+android-custom-activity='cn.lihui.daily2048_all_ads.LihuiMain'
+android-manifest='AndroidManifest_all_ads.xml'
+}
+if{{defined PLATFORM_LENOVO}}
+deployments
+{
+android-custom-activity='cn.lihui.daily2048_lenovo.LihuiMain'
+android-manifest='AndroidManifest_lenovo.xml'
 }
 

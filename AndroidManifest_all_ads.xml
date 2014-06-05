@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="cn.lihui.daily2048_all_ads"
+      android:versionCode="4"
+      android:versionName="1.4"
+      android:installLocation="auto"
+      >
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity android:name=".Main"
+                  android:label="天天2048"
+                  android:configChanges="locale|keyboardHidden|orientation"
+                  android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <provider android:name="com.ideaworks3d.marmalade.VFSProvider"
+                  android:authorities="zzzzc77e32e2066a877ba0039523a1db5585.VFSProvider"
+                  android:exported="false"
+                  android:multiprocess="true"
+        >
+        </provider>
+		<activity android:name="com.lihui.social4wx.SendToWXActivity"
+android:label="@string/app_name"
+/>
+<activity android:name=".wxapi.WXEntryActivity"
+android:label="@string/app_name"
+android:exported="true"/>	
+	       <!-- wostore -->
+		<meta-data android:name="wostore_billing_sms" android:value="true"/>
+        <meta-data android:name="wostore_billing_otherpay" android:value="false"/>
+        <meta-data android:name="wostore_billing_chinaunicom" android:value="true"/>	
+			   
+		   <!-- Umeng -->
+		<meta-data android:value="533e5f3a56240b5a2d00e1ca" android:name="UMENG_APPKEY"></meta-data>
+		<meta-data android:value="91ads" android:name="UMENG_CHANNEL"/>
+		    <!-- 使用4399广告sdk需要添下载服务 -->
+        <service
+            android:name="com.unionsy.sdk.SsjjAdService"
+            android:exported="false" />
+        <!-- 这里需要设置成您申请的广告IdKey和广告AppKey -->
+        <meta-data android:name="IdKey" android:value="310"/>
+        <meta-data android:name="AppKey" android:value="417"/>
+        
+        <!-- 4399广告SDK配置结束 -->
+		
+    </application>
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="8"/>
+	<!-- MMInApp -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+	<!-- WoInApp -->
+	　<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+　<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+　<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	
+	   <!-- 4399广告SDK必须添加权限 开始-->
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission
+        android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 4399广告SDK必须添加权限  结束-->
+
+</manifest>
