@@ -34,6 +34,7 @@ public:
 	void themeButtonClick(CCObject *sender);
 	void theme1useButtonClick(CCObject *sender);
 	void theme2useButtonClick(CCObject *sender);
+	void theme3useButtonClick(CCObject *sender);
 };
 
 #endif // __GAMELAYER_H__

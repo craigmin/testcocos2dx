@@ -41,6 +41,8 @@ const char* ThemeManager::getFontName() {
 		return "arial";
 	case themeCandy:
 		return "arial";
+	case themeFrozen:
+		return "arial";
 	default:
 		//sprintf(buff,"themePlain/");
 		break;
@@ -59,6 +61,9 @@ const char* ThemeManager::getPath(){
 	case themeCandy:
 		sprintf(buff,"themeCandy/");
 		break;
+	case themeFrozen:
+		sprintf(buff,"themeFrozen/");
+		break;
 	default:
 		sprintf(buff,"themePlain/");
 		break;
@@ -72,6 +77,8 @@ ccColor3B ThemeManager::getColor(){
 		return ccc3(0xFF,0xFF,0xFF);
 	case themeCandy:
 		return ccc3(0x0F,0x49,0xCC);
+	case themeFrozen:
+		return ccc3(0xFF,0xFF,0xFF);
 	default:
 		//sprintf(buff,"themePlain/");
 		break;

@@ -3,6 +3,9 @@
 #include "GameLayer.h"
 #include "LihuiLB.h"
 #include "ThemeManager.h"
+
+int splashIndex = 0;
+
 SplashScreen::~SplashScreen()
 {
 }
@@ -33,8 +36,9 @@ bool SplashScreen::init()
 	//Jerry--Init LB
 	initLB();
 	receiveRank();
+	splashIndex++;
 
-	CCSprite* bg = ThemeManager::sharedInstance()->spriteWithImageFile("splashscreen_css.jpg");
+	CCSprite* bg = ThemeManager::sharedInstance()->spriteWithImageFile(getSplashImage());
 	float scale = SCREEN_HEIGHT/bg->getContentSize().height;
 	bg->setScaleX(scale);
 	bg->setScaleY(scale);
@@ -54,8 +58,36 @@ bool SplashScreen::init()
 void SplashScreen::update(float dt)
 {
 	// Update Box2D world
-	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  GameLayer::scene()));
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5f,  nextLayer()));
 
     // BOX2D TIP
     // Update objects from box2d coordinates here
+}
+
+const char* SplashScreen::getSplashImage() {
+	switch (splashIndex)
+	{
+	case 1:
+		return "splashscreen_css.jpg" ;
+	case 2:
+		return "splashscreen_css2.jpg" ;
+	default:
+		break;
+	}
+
+	return "splashscreen_css.jpg";
+}
+
+CCScene* SplashScreen::nextLayer(){
+	switch (splashIndex)
+	{
+	case 1:
+		return SplashScreen::scene();
+	case 2:
+		return GameLayer::scene();
+	default:
+		break;
+	}
+
+	return GameLayer::scene();
 }

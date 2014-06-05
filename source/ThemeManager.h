@@ -8,7 +8,8 @@ using namespace cocos2d;
 
 typedef enum {
 	themePlain,
-	themeCandy
+	themeCandy,
+	themeFrozen
 } THEME_2048;
 
 class ThemeManager

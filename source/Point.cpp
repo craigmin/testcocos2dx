@@ -1,6 +1,7 @@
 #include "Point.h"
 #include "Consts.h"
 #include <stdlib.h>
+static Point * sInstance = NULL;
 
 Point::Point()
 {
@@ -10,6 +11,15 @@ Point::Point()
 	score=0;
 	anim=ANIM_NORMAL;
 	bChanged=false;
+}
+Point* Point::sharedInstance()
+{
+	if (sInstance)
+		return sInstance;
+	else {
+		sInstance = new Point();
+		return sInstance;
+	}
 }
 
 Point::Point(int v)

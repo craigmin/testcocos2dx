@@ -164,6 +164,8 @@ void GameLayer::instructionButtonClick(CCObject *sender){
 
 	CCSprite* cancelNormal = ThemeManager::sharedInstance()->spriteWithImageFile("btn_know.png");
 	CCSprite* cancelSelected = ThemeManager::sharedInstance()->spriteWithImageFile("btn_know.png");
+	
+	//CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, this, menu_selector(GameLayer::theme3useButtonClick));
 	CCMenuItemSprite* pcancelItemSprite = CCMenuItemSprite::itemWithNormalSprite(cancelNormal, cancelSelected, this, menu_selector(GameLayer::cancelButtonClick));
 	pcancelItemSprite->setScale(0.6*LL_SCREEN_SCALE_VALUE);
 	CCMenu* pcancelMenu = CCMenu::menuWithItems(pcancelItemSprite,NULL);
@@ -246,5 +248,11 @@ void GameLayer::theme2useButtonClick(CCObject *sender){
 	this->removeChildByTag(1000);
 	bPaused = false;
 	ThemeManager::sharedInstance()->setTheme(themeCandy);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5,GameLayer::scene()));
+}
+void GameLayer::theme3useButtonClick(CCObject *sender){
+	this->removeChildByTag(1000);
+	bPaused = false;
+	ThemeManager::sharedInstance()->setTheme(themeFrozen);
 	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::transitionWithDuration(0.5,GameLayer::scene()));
 }

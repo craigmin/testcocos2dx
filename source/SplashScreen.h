@@ -25,6 +25,8 @@ public:
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(SplashScreen);
     
+	const char* getSplashImage();
+	CCScene* nextLayer();
 };
 
 #endif // __SplashScreen_H__

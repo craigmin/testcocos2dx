@@ -13,6 +13,7 @@ private:
 	 int anim;
 	 bool bChanged;
 public:
+	static Point* sharedInstance();
 	Point();
 	Point(int value);
 	Point(int x, int y);

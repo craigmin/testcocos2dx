@@ -125,7 +125,7 @@ void PlatformManager::initDomobSystem()
 }
 void PlatformManager::releaseDomobSystem()
 {
-	if(AdEnable){
+	if(AdEnable){ 
 		LihuiDomobUnRegister(LIHUIDO_CALLBACK_SPLASH_SUCCESSFUL,&LihuiSplashSuccessCallback);
 		LihuiDomobUnRegister(LIHUIDO_CALLBACK_SPLASH_FAILED,&LihuiSplashFailedCallback);
 		LihuiDomobUnRegister(LIHUIDO_CALLBACK_POINT_SUCCESSFUL,&LihuiGetPointSuccessCallback);
