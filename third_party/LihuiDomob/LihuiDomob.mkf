@@ -53,3 +53,8 @@ deployments
 	android-external-jars="domob_android_offer_wall_sdk.jar"
 	android-external-jars="domob_android_sdk.jar"
 }
+if{{defined PLATFORM_SSJJADS}}
+deployments
+{
+	android-external-jars="ssjj_ads_android_sdk.jar"
+}

@@ -2,6 +2,9 @@ package cn.lihui.iap.wo;
 
 import android.content.Context;
 import android.util.Log;
+import cn.lihui.iap.i.IPurchaseCallback;
+import cn.lihui.iap.i.IPurchaseHandler;
+import cn.lihui.iap.mm.PurchaseItem;
 
 import com.alipay.android.msp.demo.ExternalPartner;
 import com.ideaworks3d.marmalade.LoaderActivity;
@@ -9,22 +12,12 @@ import com.umeng.analytics.MobclickAgent;
 import com.unicom.dcLoader.Utils;
 import com.unicom.dcLoader.Utils.UnipayPayResultListener;
 
-
-import cn.lihui.iap.i.IPurchaseCallback;
-import cn.lihui.iap.i.IPurchaseHandler;
-import cn.lihui.iap.mm.PurchaseItem;
-
 public class PurchaseHandler implements IPurchaseHandler {
 
 	private static PayResultListener payResultListener;
 	private PurchaseItem mPurchaseItem;
 	private static Boolean isInitIAP = false;
-	private static final String AppId="909248362220140505141737409500";
-	private static final String cpCode="9092483622";
-	private static final String cpId="86008029";
-	private static final String companyName="上海游米网络科技有限公司";
-	private static final String telphone="4008210849";
-	private static final String appName="天天2048";
+
 	private Context context;
 	private IPurchaseCallback callback;
 
@@ -45,7 +38,7 @@ public class PurchaseHandler implements IPurchaseHandler {
 		}
 		Log.i("","Jerry--CU_order");
 		this.mPurchaseItem = purchaseItem;
-		initPurchaseSDK();
+		//initPurchaseSDK();
 //		Utils.getInstances().setBaseInfo(context, false, true, "");
 //		Utils.getInstances().pay(context, mPurchaseItem.idContentWO,
 //				"", mPurchaseItem.title, mPurchaseItem.prize,
@@ -63,7 +56,7 @@ public class PurchaseHandler implements IPurchaseHandler {
 //					AppId, cpCode, cpId,
 //					companyName,telphone,appName, "uid",
 //					payResultListener);
-		Utils.getInstances().initSDK(context, 0);
+		Utils.getInstances().initSDK(context, 1);
 			isInitIAP = true;
 		}	}
 

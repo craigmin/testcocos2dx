@@ -68,11 +68,22 @@ deployments
 if {{ defined PLATFORM_MM_SMS}}
 deployments
 {
-
- android-external-jars="mmsmsbilling1.2.3.jar"
-
+	android-external-jars="mmsmsbilling1.2.3.jar"
    android-so="armeabi/libsmsiap.so"
-  
 }
-
+if{{defined PLATFORM_ALL}}
+deployments
+{
+	android-external-jars="mmsmsbilling1.2.3.jar"
+	android-so="armeabi/libsmsiap.so"
+    #android-external-jars="alipay_lib.jar"
+	#android-external-jars="alipay.jar"
+	android-external-jars="Multimode_UniPay_base.jar"
+}
+if {{ defined PLATFORM_LENOVO}}
+deployments
+{
+   android-external-jars="CTEStoreSDKLocalSms2.0.1.jar" 
+   android-so="armeabi/libndktools.so" 
+}
 

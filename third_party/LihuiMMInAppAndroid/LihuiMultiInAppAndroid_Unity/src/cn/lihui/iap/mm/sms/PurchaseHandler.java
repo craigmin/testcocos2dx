@@ -46,6 +46,7 @@ public class PurchaseHandler  implements IPurchaseHandler {
     public static int count=0;
 	private IPurchaseCallback callback;
 	private static Boolean isInitIAP = false;
+	private static Boolean isInitSMS = false;
 	
 	public PurchaseHandler(PurchaseItem mPurchaseItem, Context context, IPurchaseCallback callback){
 		this.mPurchaseItem = mPurchaseItem;
@@ -66,8 +67,17 @@ public class PurchaseHandler  implements IPurchaseHandler {
 			initPurchaseSDK();
 		} else try {
 			Log.i("","Jerry--smsOrder");
-			// purchase.smsOrder(context, mPaycode, listener);
-			purchase.smsOrder(context, mPurchaseItem.idContentMM, mListener);
+			
+			/**
+			 * step4. IAP组件初始化开始， 参数PurchaseListener，初始化函数需传入step1时实例化的
+			 * PurchaseListener。
+			 */
+			if(!isInitSMS) {
+				purchase.smsInit(context, mListener);
+			} else {
+				// purchase.smsOrder(context, mPaycode, listener);
+				purchase.smsOrder(context, mPurchaseItem.idContentMM, mListener);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,19 +112,19 @@ public class PurchaseHandler  implements IPurchaseHandler {
 		 */
 		try {
 			purchase.setAppInfo(APPID, APPKEY);
-			/**
-			 * step4. IAP组件初始化开始， 参数PurchaseListener，初始化函数需传入step1时实例化的
-			 * PurchaseListener。
-			 */
-			purchase.smsInit(context, mListener);
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			isInitIAP = false;
 		}
+		isInitIAP = true;
 	}
 	
 	public void setInitFlag(boolean flag) {
-		isInitIAP = flag;
+		isInitSMS = flag;
+		if(isInitSMS) {
+			purchase.smsOrder(context, mPurchaseItem.idContentMM, mListener);
+		}
 	}
 
 	private final static String PAYCODE = "Paycode";

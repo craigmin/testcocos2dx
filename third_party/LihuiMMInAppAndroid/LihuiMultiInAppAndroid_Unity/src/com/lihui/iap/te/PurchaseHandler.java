@@ -53,7 +53,7 @@ public class PurchaseHandler implements IPurchaseHandler {
    
        //this.code = new String("E59A4C411A9797C0E040640A041E0698");
         bundle.putString(ApiParameter.APPCHARGEID, mPurchaseItem.idContentTE);
-        bundle.putString(ApiParameter.CHANNELID, "T000");
+        bundle.putString(ApiParameter.CHANNELID, "T009");
         bundle.putBoolean(ApiParameter.SCREENHORIZONTAL, false);//��������XML"
         
         bundle.putString(ApiParameter.CHARGENAME, mPurchaseItem.title);

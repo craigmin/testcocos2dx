@@ -37,7 +37,7 @@ s3eResult LihuiDomobInit_platform()
     jmethodID cons = NULL;
 
     // Get the extension class
-    jclass cls = s3eEdkAndroidFindClass("cn.lihui.domod.Lihui2048");
+    jclass cls =  env->FindClass("cn/lihui/ssjjAd/lihui2048");
     if (!cls)
         goto fail;
 

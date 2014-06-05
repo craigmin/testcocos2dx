@@ -87,7 +87,7 @@ public class LihuiInAppPurchase {
 				if (purchaseHandler == null) {
 					//int type = NetUtility.getOperatorType(LoaderActivity.m_Activity);		
 					type = NetUtility.getOperatorType(LoaderActivity.m_Activity);
-					type = NetUtility.CHINAMOBILE;
+					//type = NetUtility.CHINATELECOM;
 					if (type == NetUtility.CHINAUNICOM) {
 						// 联通
 						Log.i("","Jerry--CHINAUNICOM");
@@ -98,6 +98,8 @@ public class LihuiInAppPurchase {
 						Log.i("","Jerry--CHINATELECOM");
 						purchaseHandler = new com.lihui.iap.te.PurchaseHandler(
 								mPurchaseItem, LoaderActivity.m_Activity, callback);
+//						Toast.makeText(LoaderActivity.m_Activity, "本次支付不支持电信用户",
+//							     Toast.LENGTH_SHORT).show();
 					}else{
 						// 默认使用中国移动计费
 						Log.i("","Jerry--CHINAMOBILE");
@@ -148,17 +150,19 @@ public class LihuiInAppPurchase {
 		if (purchaseHandler == null) {
 			//int type = NetUtility.getOperatorType(LoaderActivity.m_Activity);		
 			type = NetUtility.getOperatorType(LoaderActivity.m_Activity);
-			type = NetUtility.CHINAMOBILE;
+			//type = NetUtility.CHINATELECOM;
 			if (type == NetUtility.CHINAUNICOM) {
 				// 联通
 				Log.i("","Jerry--CHINAUNICOM");
 				purchaseHandler = new cn.lihui.iap.wo.PurchaseHandler(
 						mPurchaseItem, LoaderActivity.m_Activity, callback);
+				purchaseHandler.initPurchaseSDK();
 			} else if(type == NetUtility.CHINATELECOM){
 				// 电信
 				Log.i("","Jerry--CHINATELECOM");
 				purchaseHandler = new com.lihui.iap.te.PurchaseHandler(
 						mPurchaseItem, LoaderActivity.m_Activity, callback);
+				
 			}else{
 				// 默认使用中国移动计费
 				Log.i("","Jerry--CHINAMOBILE");
