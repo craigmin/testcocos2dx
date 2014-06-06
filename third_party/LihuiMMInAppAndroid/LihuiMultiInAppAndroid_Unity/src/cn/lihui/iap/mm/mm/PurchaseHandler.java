@@ -100,7 +100,7 @@ public class PurchaseHandler implements IPurchaseHandler  {
 		mPurchase = Purchase.getInstance();
 		try {
 			mPurchase.setAppInfo(APPID, APPKEY);
-			mPurchase.init(context, mListener);
+			//mPurchase.init(context, mListener);
 			//isInitIAP=true;
 		} catch (Throwable e) {
 			Log.e("LihuiIAP", "MM purchase init failed: "

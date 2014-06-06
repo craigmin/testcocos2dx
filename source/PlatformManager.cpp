@@ -7,7 +7,7 @@
 static PlatformManager * sInstance = NULL;
 PlatformManager::PlatformManager()
 {
-	AdEnable=true;
+	AdEnable=false;
 	//itemRequestInProgress = false;
 }
 

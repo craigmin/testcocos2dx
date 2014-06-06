@@ -7,9 +7,9 @@
 #define PLATFORM_MM_SMS
 #define PLATFORM_IOS
 define PLATFORM_ALL
-define PLATFORM_SSJJADS
-#define PLATFORM_LENOVO
-define PLATFORM_4399
+#define PLATFORM_SSJJADS
+define PLATFORM_LENOVO
+#define PLATFORM_4399
 
 options
 {

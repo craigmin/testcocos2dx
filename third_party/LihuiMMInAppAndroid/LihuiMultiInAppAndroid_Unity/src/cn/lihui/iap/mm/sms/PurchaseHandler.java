@@ -60,8 +60,8 @@ public class PurchaseHandler  implements IPurchaseHandler {
 	@Override
 	public void order(PurchaseItem purchaseItem) {
 		this.mPurchaseItem = purchaseItem;
-		
-		if (!isInitIAP) {
+		purchase.smsOrder(context, mPurchaseItem.idContentMM, mListener);
+		/*if (!isInitIAP) {
 	
 			//isOnCreate = false;
 			initPurchaseSDK();
@@ -71,7 +71,7 @@ public class PurchaseHandler  implements IPurchaseHandler {
 			/**
 			 * step4. IAP组件初始化开始， 参数PurchaseListener，初始化函数需传入step1时实例化的
 			 * PurchaseListener。
-			 */
+			 *
 			if(!isInitSMS) {
 				purchase.smsInit(context, mListener);
 			} else {
@@ -80,7 +80,7 @@ public class PurchaseHandler  implements IPurchaseHandler {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		//count++;
 	}
 
